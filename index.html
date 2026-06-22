@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@SAVIKTORIAI — AI Content Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #dcdcdc;
@@ -18,19 +17,13 @@
       --text: #111111;
       --muted: #666666;
       --faint: #999999;
-      --accent: #111111;
       --white: #f5f5f5;
-
       --font: 'Inter', 'Helvetica Neue', sans-serif;
-
       --xs: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
       --sm: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
       --base: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
-      --lg: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
       --xl: clamp(1.5rem, 1rem + 2vw, 2.5rem);
       --hero: clamp(2.8rem, 1rem + 6vw, 7rem);
-
-      --r-sm: 6px;
       --r-md: 12px;
       --r-lg: 18px;
       --r-xl: 24px;
@@ -99,7 +92,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 18px clamp(20px, 5vw, 60px);
-      background: oklch(from var(--bg) l c h / 0.85);
+      background: rgba(220, 220, 220, 0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -110,10 +103,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-    }
-
-    .nav-logo:hover {
-      opacity: 0.6;
     }
 
     .nav-right {
@@ -130,10 +119,6 @@
       font-weight: 500;
     }
 
-    .nav-right a:hover {
-      color: var(--text);
-    }
-
     .nav-back {
       display: none;
       align-items: center;
@@ -146,17 +131,13 @@
       cursor: pointer;
     }
 
-    .nav-back:hover {
-      color: var(--text);
+    .nav-back.visible {
+      display: flex;
     }
 
     .nav-back svg {
       width: 14px;
       height: 14px;
-    }
-
-    .nav-back.visible {
-      display: flex;
     }
 
     .hero {
@@ -167,13 +148,6 @@
       padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 80px);
       position: relative;
       overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: var(--bg);
     }
 
     .hero-content {
@@ -207,7 +181,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-top: clamp(32px, 4vw, 56px);
+      margin-top: 40px;
       flex-wrap: wrap;
       gap: 16px;
     }
@@ -241,11 +215,12 @@
       gap: 8px;
       flex-wrap: wrap;
       align-items: center;
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 60px;
       z-index: 100;
-      background: oklch(from var(--bg) l c h / 0.9);
+      background: rgba(220, 220, 220, 0.92);
       backdrop-filter: blur(8px);
     }
 
@@ -254,16 +229,11 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 500;
-      padding: 6px 14px;
+      padding: 10px 18px;
       border-radius: var(--r-xl);
       border: 1px solid var(--border);
       color: var(--muted);
       transition: all 0.2s var(--ease);
-    }
-
-    .filter-btn:hover {
-      border-color: var(--text);
-      color: var(--text);
     }
 
     .filter-btn.active {
@@ -273,7 +243,8 @@
     }
 
     .gallery-section {
-      padding: clamp(24px, 3vw, 48px) clamp(20px, 5vw, 60px) 80px;
+      padding: 36px clamp(20px, 5vw, 60px) 80px;
+      min-height: 420px;
     }
 
     .gallery-grid {
@@ -289,12 +260,12 @@
       cursor: pointer;
       background: var(--bg2);
       aspect-ratio: 3 / 4;
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
     }
 
     .work-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
     }
 
     .work-card img {
@@ -302,40 +273,6 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.6s var(--ease);
-    }
-
-    .work-card:hover img {
-      transform: scale(1.04);
-    }
-
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease);
-    }
-
-    .work-card:hover .card-overlay {
-      opacity: 1;
-    }
-
-    .card-title {
-      font-size: var(--base);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #fff;
-      line-height: 1.1;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-subtitle {
-      font-size: var(--xs);
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 3px;
-      letter-spacing: 0.04em;
     }
 
     .card-info-static {
@@ -367,12 +304,28 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
+    .card-title {
+      font-size: var(--base);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .card-subtitle {
+      font-size: var(--xs);
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
     #project-view {
       padding-top: 80px;
     }
 
     .project-hero {
-      padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 60px) clamp(32px, 4vw, 56px);
+      padding: 48px clamp(20px, 5vw, 60px) 40px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -439,12 +392,14 @@
     .project-body {
       display: grid;
       grid-template-columns: 1fr 340px;
-      gap: clamp(32px, 4vw, 64px);
-      padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 60px);
+      gap: 48px;
+      padding: 48px clamp(20px, 5vw, 60px);
       align-items: start;
     }
 
-    .project-desc-block h3 {
+    .project-desc-block h3,
+    .project-gallery h3,
+    .project-video h3 {
       font-size: var(--xs);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -515,19 +470,31 @@
       margin-top: 2px;
     }
 
-    .project-gallery,
-    .project-video {
-      padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 5vw, 80px);
+    .project-sidebar {
+      position: sticky;
+      top: 96px;
     }
 
-    .project-gallery h3,
-    .project-video h3 {
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card h4 {
       font-size: var(--xs);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       font-weight: 500;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
+    }
+
+    .project-gallery,
+    .project-video {
+      padding: 0 clamp(20px, 5vw, 60px) 56px;
     }
 
     .project-media-shell {
@@ -563,8 +530,8 @@
     }
 
     .project-gallery-grid.slider-169 .slide {
-      width: 100%;
       scroll-snap-align: start;
+      width: 100%;
     }
 
     .project-gallery-grid.slider-169 img {
@@ -573,6 +540,59 @@
       object-fit: contain;
       object-position: center;
       background: #d8d8d8;
+      border-radius: var(--r-lg);
+    }
+
+    .project-gallery-grid.slider-mixed-vertical {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 32vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 999px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide {
+      scroll-snap-align: start;
+      width: 100%;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-video {
+      aspect-ratio: 9 / 16;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #cfcfcf;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-image img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
       border-radius: var(--r-lg);
     }
 
@@ -590,11 +610,7 @@
       background: rgba(17, 17, 17, 0.78);
       color: #fff;
       backdrop-filter: blur(8px);
-      transition: opacity .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
-    }
-
-    .gallery-arrow:hover {
-      background: rgba(17, 17, 17, 0.95);
+      transition: all .2s var(--ease);
     }
 
     .gallery-arrow[disabled] {
@@ -622,10 +638,6 @@
       overflow: hidden;
     }
 
-    .project-video-frame.ratio-916 {
-      max-width: 420px;
-    }
-
     .project-video-frame.ratio-169 {
       max-width: 1100px;
     }
@@ -634,13 +646,6 @@
       position: relative;
       width: 100%;
       height: 0;
-    }
-
-    .project-video-frame.ratio-916 .project-video-frame-inner {
-      padding-bottom: 177.777%;
-    }
-
-    .project-video-frame.ratio-169 .project-video-frame-inner {
       padding-bottom: 56.25%;
     }
 
@@ -650,33 +655,6 @@
       width: 100%;
       height: 100%;
       border: 0;
-    }
-
-    .project-video-centered {
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    .project-sidebar {
-      position: sticky;
-      top: 96px;
-    }
-
-    .sidebar-card {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 24px;
-      border: 1px solid var(--border);
-      margin-bottom: 16px;
-    }
-
-    .sidebar-card h4 {
-      font-size: var(--xs);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 14px;
     }
 
     .project-nav-bottom {
@@ -698,16 +676,9 @@
       text-transform: uppercase;
       font-weight: 500;
       color: var(--muted);
-      cursor: pointer;
       padding: 12px 20px;
       border-radius: var(--r-xl);
       border: 1px solid var(--border);
-      transition: all 0.2s var(--ease);
-    }
-
-    .proj-nav-btn:hover {
-      color: var(--text);
-      border-color: var(--text);
     }
 
     .proj-nav-btn svg {
@@ -720,7 +691,7 @@
       border-top: 1px solid var(--border);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(32px, 5vw, 80px);
+      gap: 48px;
       align-items: center;
     }
 
@@ -749,15 +720,7 @@
       padding: 20px 24px;
       border-radius: var(--r-lg);
       border: 1px solid var(--border);
-      transition: all 0.25s var(--ease);
       background: var(--surface);
-    }
-
-    .contact-link:hover {
-      background: var(--text);
-      color: var(--white);
-      border-color: var(--text);
-      transform: translateX(4px);
     }
 
     .contact-link-left {
@@ -771,10 +734,6 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-    }
-
-    .contact-link:hover .contact-link-platform {
-      color: rgba(255, 255, 255, 0.6);
     }
 
     .contact-link-handle {
@@ -802,32 +761,9 @@
       text-transform: uppercase;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .6s var(--ease), transform .6s var(--ease);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-d1 {
-      transition-delay: .1s;
-    }
-
-    .reveal-d2 {
-      transition-delay: .2s;
-    }
-
-    .reveal-d3 {
-      transition-delay: .3s;
-    }
-
-    @media(max-width:900px) {
+    @media (max-width: 900px) {
       .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .project-body {
@@ -838,27 +774,22 @@
         position: static;
       }
 
-      .contact-section {
-        grid-template-columns: 1fr;
-      }
-
       .project-gallery-grid.grid-34 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .gallery-arrow {
-        width: 42px;
-        height: 42px;
+      .project-gallery-grid.slider-mixed-vertical {
+        grid-auto-columns: 68vw;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media(max-width:600px) {
+    @media (max-width: 600px) {
       .gallery-grid {
         grid-template-columns: 1fr;
-      }
-
-      .work-card {
-        aspect-ratio: 3 / 4;
       }
 
       .nav-right {
@@ -869,24 +800,16 @@
         grid-template-columns: 1fr;
       }
 
+      .project-gallery-grid.slider-mixed-vertical {
+        grid-auto-columns: 82vw;
+      }
+
       .gallery-arrow.prev {
         left: 10px;
       }
 
       .gallery-arrow.next {
         right: 10px;
-      }
-
-      .project-video-frame.ratio-916 {
-        max-width: 100%;
-      }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      * {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -897,8 +820,7 @@
     <div class="nav-logo" onclick="showHome()">@SAVIKTORIAI</div>
     <div class="nav-right">
       <a href="#works" onclick="showHome()">Works</a>
-      <a href="#contact-anchor"
-        onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
+      <a href="#contact-anchor" onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
     </div>
     <button class="nav-back" id="nav-back" onclick="showHome()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -910,20 +832,19 @@
 
   <div class="view active" id="home-view">
     <section class="hero">
-      <div class="hero-bg"></div>
       <div class="hero-content">
-        <div class="hero-label reveal">AI Content Creator · Milano</div>
-        <h1 class="hero-title reveal reveal-d1">
+        <div class="hero-label">AI Content Creator · Milano</div>
+        <h1 class="hero-title">
           Creating <span class="dim">the future</span><br>
           of content <span class="dim">powered</span><br>
           by AI
         </h1>
         <div class="hero-bottom">
-          <p class="hero-desc reveal reveal-d2">
+          <p class="hero-desc">
             AI-generated videos, visual campaigns and digital storytelling
             for brands and personal projects.
           </p>
-          <div class="hero-scroll reveal reveal-d3">
+          <div class="hero-scroll">
             <span class="scroll-line"></span>
             scroll to explore
           </div>
@@ -943,14 +864,14 @@
 
     <section class="contact-section" id="contact-anchor">
       <div>
-        <h2 class="contact-title reveal">
+        <h2 class="contact-title">
           Let's <span class="dim">create</span><br>
           something<br>
           <span class="dim">together</span>
         </h2>
       </div>
       <div class="contact-links">
-        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link reveal">
+        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link">
           <div class="contact-link-left">
             <span class="contact-link-platform">Telegram</span>
             <span class="contact-link-handle">@saviktoriai</span>
@@ -959,8 +880,7 @@
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </a>
-        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener noreferrer"
-          class="contact-link reveal reveal-d1">
+        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link">
           <div class="contact-link-left">
             <span class="contact-link-platform">Instagram</span>
             <span class="contact-link-handle">@saviktoriai</span>
@@ -969,7 +889,7 @@
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </a>
-        <a href="mailto:viktoriiasaraeva@gmail.com" class="contact-link reveal reveal-d2">
+        <a href="mailto:viktoriiasaraeva@gmail.com" class="contact-link">
           <div class="contact-link-left">
             <span class="contact-link-platform">Email</span>
             <span class="contact-link-handle">viktoriiasaraeva@gmail.com</span>
@@ -1016,28 +936,25 @@
         gallery: ['./21-1.webp', './21-2.webp', './21-3.webp']
       },
       {
-  id: 'franui',
-  title: 'Franuí Halloween',
-  subtitle: 'Personal project',
-  tags: ['Video'],
-  category: ['video'],
-  thumb: './22.png',
-  year: '2025',
-  type: 'Personal Project',
-  galleryStyle: 'slider-mixed-vertical',
-  videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
-  description: 'A Halloween mood project mixing recognizable horror imagery with product placement and cozy cinematic framing.',
-  bullets: [
-    'Combined pop-culture horror with a product-centered setup.',
-    'Built a strong seasonal visual mood using lighting and composition.',
-    'Focused on atmosphere and meme-like memorability.'
-  ],
-  results: [],
+        id: 'franui',
+        title: 'Franuí Halloween',
+        subtitle: 'Personal project',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './22.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'https://kinescope.io/bKxPN5Jx5Uhz8hNY1Mj7PH',
+        description: 'A Halloween mood project mixing recognizable horror imagery with product placement and cozy cinematic framing.',
+        bullets: [
+          'Combined pop-culture horror with a product-centered setup.',
+          'Built a strong seasonal visual mood using lighting and composition.',
+          'Focused on atmosphere and meme-like memorability.'
+        ],
+        results: [],
         gallery: ['./22-1.webp', './22-2.webp', './22-3.webp', './22-4.webp']
       },
-
-      videoEmbed: 'https://kinescope.io/bKxPN5Jx5Uhz8hNY1Mj7PH',
-      
       {
         id: 'frozen',
         title: 'Frozen Live-Action',
@@ -1066,7 +983,7 @@
         thumb: './24.png',
         year: '2025',
         type: 'Brand Project',
-        galleryStyle: 'default',
+        galleryStyle: 'grid-34',
         description: 'A seasonal AI reel built around a giant surreal object in a city context, designed for impact and instant stop-scrolling effect.',
         bullets: [
           'Created a visually loud campaign image with strong scale contrast.',
@@ -1098,25 +1015,25 @@
         gallery: ['./25.png']
       },
       {
-  id: 'miumiu',
-  title: 'Demonic Miutine by miumiu',
-  subtitle: 'Personal project',
-  tags: ['Video'],
-  category: ['video'],
-  thumb: './22.png',
-  year: '2025',
-  type: 'Personal Project',
-  galleryStyle: 'slider-mixed-vertical',
-  videoEmbed: ['https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn', 'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'],
-  description: 'A Halloween mood project mixing recognizable horror imagery with product placement and cozy cinematic framing.',
-  bullets: [
-    'Combined pop-culture horror with a product-centered setup.',
-    'Built a strong seasonal visual mood using lighting and composition.',
-    'Focused on atmosphere and meme-like memorability.'
-  ],
-  results: [],
-  gallery: ['./26-1.png', './26-2.png']
-},
+        id: 'miumiu',
+        title: 'Miu Miu Halloween',
+        subtitle: 'Personal project',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './26.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: ['https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn', 'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'],
+        description: 'A beauty/fashion Halloween concept built around bold red lighting, sharp styling and a luxury product image.',
+        bullets: [
+          'Created a fashion-horror visual setup with a premium feel.',
+          'Integrated the perfume bottle into a theatrical composition.',
+          'Focused on editorial styling and dramatic color contrast.'
+        ],
+        results: [],
+        gallery: ['./26-1.png', './26-2.png']
+      },
       {
         id: 'postcards',
         title: 'Postcards',
@@ -1136,28 +1053,26 @@
         results: [],
         gallery: ['./27.png']
       },
-      
-    {
-  id: 'milfey3',
-  title: 'Milfey × Qute Studio',
-  subtitle: 'Personal project',
-  tags: ['Video'],
-  category: ['video'],
-  thumb: './28.png',
-  year: '2025',
-  type: 'Personal Project',
-  galleryStyle: 'slider-mixed-vertical',
-  videoEmbed: 'https://kinescope.io/jubWMGh648qbQsGFt9GCcT',
-  description: 'A clean portrait-based beauty reel concept with soft branding and a calm visual rhythm.',
-  bullets: [
-    'Combined pop-culture horror with a product-centered setup.',
-    'Built a strong seasonal visual mood using lighting and composition.',
-    'Focused on atmosphere and meme-like memorability.'
-  ],
-  results: [],
-  gallery: ['./28-1.png', './28-2.png', './28-3.png', './28-4.png']
-},
-    
+      {
+        id: 'milfey3',
+        title: 'Milfey × Qute',
+        subtitle: 'Instagram Reel',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './28.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        description: 'A clean portrait-based beauty reel concept with soft branding and a calm visual rhythm.',
+        bullets: [
+          'Used a minimal background and direct portrait composition.',
+          'Built a trust-based beauty aesthetic for social formats.',
+          'Focused on a clean and elegant visual identity.'
+        ],
+        results: [],
+        gallery: ['./28.png']
+      },
       {
         id: 'milfey1',
         title: 'Milfey × Qute',
@@ -1167,8 +1082,7 @@
         thumb: './29.png',
         year: '2025',
         type: 'Brand Project',
-        galleryStyle: 'grid-34',
-        videoRatio: '9:16',
+        galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A beauty-focused reel concept for Instagram, with a futuristic skincare aesthetic and soft, premium visuals.',
         bullets: [
@@ -1226,8 +1140,7 @@
         thumb: './32.png',
         year: '2025',
         type: 'Personal Project',
-        galleryStyle: 'grid-34',
-        videoRatio: '9:16',
+        galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
         bullets: [
@@ -1247,7 +1160,6 @@
         thumb: './33.png',
         year: '2025',
         type: 'Brand Project',
-        videoRatio: '16:9',
         videoOnly: true,
         videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A website video concept for a health brand with a clean, trusted and calming visual tone.',
@@ -1324,7 +1236,6 @@
         thumb: './37.png',
         year: '2025',
         type: 'Brand Project',
-        videoRatio: '16:9',
         videoOnly: true,
         videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A sports-oriented branded visual using a tennis-ball macro as the key campaign metaphor.',
@@ -1339,27 +1250,112 @@
 
     function renderGallery(filter = 'all') {
       const grid = document.getElementById('gallery-grid');
-      const filtered = filter === 'all' ? projects : projects.filter(p => p.category.includes(filter));
+      const filtered = filter === 'all'
+        ? projects
+        : projects.filter(p => p.category.includes(filter));
 
       grid.innerHTML = filtered.map((p, i) => `
-        <div class="work-card" data-category="${p.category.join(' ')}" onclick="showProject('${p.id}')">
+        <div class="work-card" onclick="showProject('${p.id}')">
           <img src="${p.thumb}" alt="${p.title}" width="900" height="1200" loading="${i < 6 ? 'eager' : 'lazy'}">
           <div class="card-info-static">
             <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
             <div class="card-title">${p.title}</div>
             <div class="card-subtitle">${p.subtitle}</div>
           </div>
-          <div class="card-overlay"></div>
         </div>
       `).join('');
-
-      observeReveal();
     }
 
     function filterCards(btn, filter) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderGallery(filter);
+    }
+
+    function buildGallery(p) {
+      if (p.videoOnly) return '';
+
+      if (p.galleryStyle === 'slider-169') {
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <div class="project-gallery-grid slider-169" data-carousel>
+                ${p.gallery.map((g, i) => `
+                  <div class="slide" data-slide-index="${i}">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+              <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (p.galleryStyle === 'slider-mixed-vertical') {
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <div class="project-gallery-grid slider-mixed-vertical">
+                <div class="slide slide-video">
+                  <iframe
+                    src="${p.videoEmbed || ''}"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                    allowfullscreen
+                    loading="lazy">
+                  </iframe>
+                </div>
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide slide-image">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="project-gallery">
+          <h3>Gallery</h3>
+          <div class="project-gallery-grid grid-34">
+            ${(p.gallery || []).map((g, i) => `
+              <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function buildVideoOnly(p) {
+      if (!p.videoOnly) return '';
+      return `
+        <div class="project-video">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-169">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function showProject(id) {
@@ -1379,67 +1375,6 @@
               <div class="result-label">${r.label}</div>
             </div>
           `).join('')}
-        </div>
-      ` : '';
-
-      const videoHTML = p.videoEmbed ? `
-        <div class="project-video">
-          <h3>Video</h3>
-          <div class="project-video-centered">
-            <div class="project-video-frame ${p.videoRatio === '9:16' ? 'ratio-916' : 'ratio-169'}">
-              <div class="project-video-frame-inner">
-                <iframe
-                  src="${p.videoEmbed}"
-                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-                  allowfullscreen
-                  loading="lazy">
-                </iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      ` : '';
-
-      const hasGallery = !p.videoOnly && p.gallery && p.gallery.length;
-      const galleryMode = p.galleryStyle === 'slider-169' ? 'slider-169' : 'grid-34';
-      const isSlider = galleryMode === 'slider-169' && hasGallery;
-
-      const galleryItems = (p.gallery || []).map((g, i) => {
-        if (isSlider) {
-          return `
-            <div class="slide" data-slide-index="${i}">
-              <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
-            </div>
-          `;
-        }
-
-        return `<img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">`;
-      }).join('');
-
-      const galleryHTML = hasGallery ? `
-        <div class="project-gallery">
-          <h3>Gallery</h3>
-          <div class="project-media-shell">
-            ${isSlider ? `
-              <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M15 18l-6-6 6-6"/>
-                </svg>
-              </button>
-            ` : ''}
-
-            <div class="project-gallery-grid ${galleryMode}" ${isSlider ? `data-carousel="${p.id}"` : ''}>
-              ${galleryItems}
-            </div>
-
-            ${isSlider ? `
-              <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 6l6 6-6 6"/>
-                </svg>
-              </button>
-            ` : ''}
-          </div>
         </div>
       ` : '';
 
@@ -1478,8 +1413,8 @@
           </div>
         </div>
 
-        ${videoHTML}
-        ${galleryHTML}
+        ${buildVideoOnly(p)}
+        ${buildGallery(p)}
 
         <div class="project-nav-bottom">
           ${prev ? `<button class="proj-nav-btn" onclick="showProject('${prev.id}')">
@@ -1530,7 +1465,6 @@
 
       prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
       nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
       updateButtons();
     }
 
@@ -1540,25 +1474,9 @@
       document.getElementById('nav-back').classList.remove('visible');
       document.querySelector('.nav-logo').style.display = '';
       window.scrollTo({ top: 0 });
-      observeReveal();
-    }
-
-    function observeReveal() {
-      const els = document.querySelectorAll('.reveal:not(.visible)');
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      els.forEach(el => obs.observe(el));
     }
 
     renderGallery();
-    observeReveal();
   </script>
 </body>
 

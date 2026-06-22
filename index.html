@@ -546,17 +546,17 @@
     }
 
     .project-gallery-grid.slider-mixed-vertical {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(280px, 32vw);
-      gap: 16px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding-bottom: 8px;
-      -webkit-overflow-scrolling: touch;
-    }
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 24vw);
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
 
     .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar,
     .project-video-strip-grid::-webkit-scrollbar {
@@ -581,30 +581,29 @@
     }
 
     .project-gallery-grid.slider-mixed-vertical .slide-video {
-      aspect-ratio: 3 / 4;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      background: #111;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  aspect-ratio: 9 / 16;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #111;
+  position: relative;
+}
 
-    .project-gallery-grid.slider-mixed-vertical .slide-video iframe {
-      width: 75%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
+.project-gallery-grid.slider-mixed-vertical .slide-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 
-    .project-gallery-grid.slider-mixed-vertical .slide-image img {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: center;
-      border-radius: var(--r-lg);
-    }
+.project-gallery-grid.slider-mixed-vertical .slide-image img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--r-lg);
+}
 
     .project-video-strip-grid {
       display: grid;
@@ -821,7 +820,7 @@
 
       .project-gallery-grid.slider-mixed-vertical,
       .project-video-strip-grid {
-        grid-auto-columns: 68vw;
+        grid-auto-columns: 52vw;
       }
 
       .contact-section {
@@ -844,7 +843,7 @@
 
       .project-gallery-grid.slider-mixed-vertical,
       .project-video-strip-grid {
-        grid-auto-columns: 82vw;
+        grid-auto-columns: 72vw;
       }
 
       .gallery-arrow.prev {
@@ -1083,7 +1082,7 @@
           'Focused on editorial styling and dramatic color contrast.'
         ],
         results: [],
-        gallery: ['./26-1.png', './26-2.png']
+        gallery: ['./26-1.png', './26-2.webp']
       },
       {
         id: 'postcards',

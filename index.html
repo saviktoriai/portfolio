@@ -515,11 +515,13 @@
       margin-top: 2px;
     }
 
-    .project-gallery {
+    .project-gallery,
+    .project-video {
       padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 5vw, 80px);
     }
 
-    .project-gallery h3 {
+    .project-gallery h3,
+    .project-video h3 {
       font-size: var(--xs);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -528,43 +530,132 @@
       margin-bottom: 20px;
     }
 
+    .project-media-shell {
+      position: relative;
+    }
+
     .project-gallery-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(720px, 78vw);
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
+      display: grid;
+      gap: 12px;
+    }
 
-.project-gallery-grid::-webkit-scrollbar {
-  height: 10px;
-}
+    .project-gallery-grid.grid-34 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 
-.project-gallery-grid::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 999px;
-}
+    .project-gallery-grid.grid-34 img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-md);
+    }
 
-.project-gallery-grid::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.22);
-  border-radius: 999px;
-}
+    .project-gallery-grid.slider-169 {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      gap: 0;
+      overflow: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      border-radius: var(--r-lg);
+    }
 
-.project-gallery-grid img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  object-position: center;
-  border-radius: var(--r-md);
-  background: #d8d8d8;
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
+    .project-gallery-grid.slider-169 .slide {
+      width: 100%;
+      scroll-snap-align: start;
+    }
+
+    .project-gallery-grid.slider-169 img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      object-position: center;
+      background: #d8d8d8;
+      border-radius: var(--r-lg);
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(17, 17, 17, 0.78);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      transition: opacity .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
+    }
+
+    .gallery-arrow:hover {
+      background: rgba(17, 17, 17, 0.95);
+    }
+
+    .gallery-arrow[disabled] {
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .gallery-arrow.prev {
+      left: 16px;
+    }
+
+    .gallery-arrow.next {
+      right: 16px;
+    }
+
+    .gallery-arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .project-video-frame {
+      width: 100%;
+      background: #cfcfcf;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .project-video-frame.ratio-916 {
+      max-width: 420px;
+    }
+
+    .project-video-frame.ratio-169 {
+      max-width: 1100px;
+    }
+
+    .project-video-frame-inner {
+      position: relative;
+      width: 100%;
+      height: 0;
+    }
+
+    .project-video-frame.ratio-916 .project-video-frame-inner {
+      padding-bottom: 177.777%;
+    }
+
+    .project-video-frame.ratio-169 .project-video-frame-inner {
+      padding-bottom: 56.25%;
+    }
+
+    .project-video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .project-video-centered {
+      display: flex;
+      justify-content: flex-start;
+    }
 
     .project-sidebar {
       position: sticky;
@@ -751,8 +842,13 @@
         grid-template-columns: 1fr;
       }
 
-      .project-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .project-gallery-grid.grid-34 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-arrow {
+        width: 42px;
+        height: 42px;
       }
     }
 
@@ -769,8 +865,20 @@
         display: none;
       }
 
-      .project-gallery-grid {
+      .project-gallery-grid.grid-34 {
         grid-template-columns: 1fr;
+      }
+
+      .gallery-arrow.prev {
+        left: 10px;
+      }
+
+      .gallery-arrow.next {
+        right: 10px;
+      }
+
+      .project-video-frame.ratio-916 {
+        max-width: 100%;
       }
     }
 
@@ -778,6 +886,7 @@
       * {
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -841,7 +950,7 @@
         </h2>
       </div>
       <div class="contact-links">
-        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener" class="contact-link reveal">
+        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link reveal">
           <div class="contact-link-left">
             <span class="contact-link-platform">Telegram</span>
             <span class="contact-link-handle">@saviktoriai</span>
@@ -850,7 +959,7 @@
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </a>
-        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener"
+        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener noreferrer"
           class="contact-link reveal reveal-d1">
           <div class="contact-link-left">
             <span class="contact-link-platform">Instagram</span>
@@ -893,6 +1002,7 @@
         thumb: './21.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'slider-169',
         description: 'Driven by a sense of nostalgia for the iconic Winx universe, I created a series of AI-powered live-action transformation videos featuring the fairies.',
         bullets: [
           'Developed custom AI models representing three Winx characters, reimagined in a realistic live-action style.',
@@ -903,7 +1013,7 @@
           { num: '2.2M+', label: 'Total views across platforms' },
           { num: 'Viral', label: 'Nostalgia-driven traction' }
         ],
-        gallery: ['./21-1.webp','./21-2.webp','./21-3.webp']
+        gallery: ['./21-1.webp', './21-2.webp', './21-3.webp']
       },
       {
         id: 'franui',
@@ -914,6 +1024,9 @@
         thumb: './22.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'grid-34',
+        videoRatio: '9:16',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A Halloween mood project mixing recognizable horror imagery with product placement and cozy cinematic framing.',
         bullets: [
           'Combined pop-culture horror with a product-centered setup.',
@@ -932,6 +1045,7 @@
         thumb: './23.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'slider-169',
         description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
         bullets: [
           'Explored adaptation of a known animated universe into AI live-action visuals.',
@@ -950,6 +1064,7 @@
         thumb: './24.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'default',
         description: 'A seasonal AI reel built around a giant surreal object in a city context, designed for impact and instant stop-scrolling effect.',
         bullets: [
           'Created a visually loud campaign image with strong scale contrast.',
@@ -968,6 +1083,7 @@
         thumb: './25.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
         description: 'A mascot-driven visual concept for a Telegram-based game campaign created for Alfa Bank × Changellenge.',
         bullets: [
           'Designed a memorable 3D mascot with a playful branded identity.',
@@ -988,6 +1104,9 @@
         thumb: './26.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'grid-34',
+        videoRatio: '9:16',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A beauty/fashion Halloween concept built around bold red lighting, sharp styling and a luxury product image.',
         bullets: [
           'Created a fashion-horror visual setup with a premium feel.',
@@ -1006,6 +1125,7 @@
         thumb: './27.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'grid-34',
         description: 'A postcard-inspired visual series exploring surreal, ironic and emotionally charged compositions.',
         bullets: [
           'Created editorial static visuals with a strong poster-like composition.',
@@ -1024,6 +1144,9 @@
         thumb: './28.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
+        videoRatio: '9:16',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A clean portrait-based beauty reel concept with soft branding and a calm visual rhythm.',
         bullets: [
           'Used a minimal background and direct portrait composition.',
@@ -1042,6 +1165,9 @@
         thumb: './29.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
+        videoRatio: '9:16',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A beauty-focused reel concept for Instagram, with a futuristic skincare aesthetic and soft, premium visuals.',
         bullets: [
           'Created social-first beauty content with a polished high-end feel.',
@@ -1060,6 +1186,7 @@
         thumb: './30.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
         description: 'A clean beauty visual built around a product gesture, minimal styling and commercial clarity.',
         bullets: [
           'Focused on close-up beauty framing and premium skin rendering.',
@@ -1078,6 +1205,7 @@
         thumb: './31.png',
         year: '2025',
         type: 'Competition Entry',
+        galleryStyle: 'grid-34',
         description: 'A surreal editorial sports visual for a Higgsfield competition, reframing golf through lifestyle and art direction.',
         bullets: [
           'Turned a golf motif into a stylized editorial still-life.',
@@ -1096,6 +1224,9 @@
         thumb: './32.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'grid-34',
+        videoRatio: '9:16',
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
         bullets: [
           'Built around calm rhythm and cinematic stillness.',
@@ -1114,14 +1245,16 @@
         thumb: './33.png',
         year: '2025',
         type: 'Brand Project',
+        videoRatio: '16:9',
+        videoOnly: true,
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A website video concept for a health brand with a clean, trusted and calming visual tone.',
         bullets: [
           'Created imagery with a health-tech but human-centered feel.',
           'Used a minimalist background and focused portrait styling.',
           'Built a look suitable for hero website placement.'
         ],
-        results: [],
-        gallery: ['./33.png']
+        results: []
       },
       {
         id: 'hiding',
@@ -1132,6 +1265,7 @@
         thumb: './34.png',
         year: '2025',
         type: 'Personal Project',
+        galleryStyle: 'grid-34',
         description: 'A delicate surreal portrait about vulnerability, privacy and emotional retreat, built around a shell-like protective form.',
         bullets: [
           'Created an organic sculptural composition with a soft palette.',
@@ -1150,6 +1284,7 @@
         thumb: './35.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
         description: 'A campaign visual about female strength, determination and bold movement, interpreted through a striking red boxing scene.',
         bullets: [
           'Created a fashion-sport crossover image with high intensity.',
@@ -1168,6 +1303,7 @@
         thumb: './36.png',
         year: '2025',
         type: 'Brand Project',
+        galleryStyle: 'grid-34',
         description: 'A sharp, fashion-forward sports/editorial visual with strong angle, contrast and masculine energy.',
         bullets: [
           'Built a bold brand frame with strong upward perspective.',
@@ -1186,20 +1322,23 @@
         thumb: './37.png',
         year: '2025',
         type: 'Brand Project',
+        videoRatio: '16:9',
+        videoOnly: true,
+        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
         description: 'A sports-oriented branded visual using a tennis-ball macro as the key campaign metaphor.',
         bullets: [
           'Focused on texture, tension and object-as-hero composition.',
           'Built a simple but memorable sports-ad visual cue.',
           'Designed for high contrast and thumbnail recognizability.'
         ],
-        results: [],
-        gallery: ['./37.png']
+        results: []
       }
     ];
 
     function renderGallery(filter = 'all') {
       const grid = document.getElementById('gallery-grid');
       const filtered = filter === 'all' ? projects : projects.filter(p => p.category.includes(filter));
+
       grid.innerHTML = filtered.map((p, i) => `
         <div class="work-card" data-category="${p.category.join(' ')}" onclick="showProject('${p.id}')">
           <img src="${p.thumb}" alt="${p.title}" width="900" height="1200" loading="${i < 6 ? 'eager' : 'lazy'}">
@@ -1211,6 +1350,7 @@
           <div class="card-overlay"></div>
         </div>
       `).join('');
+
       observeReveal();
     }
 
@@ -1223,11 +1363,12 @@
     function showProject(id) {
       const p = projects.find(x => x.id === id);
       if (!p) return;
+
       const idx = projects.indexOf(p);
       const prev = projects[idx - 1];
       const next = projects[idx + 1];
 
-      const resultsHTML = p.results.length ? `
+      const resultsHTML = p.results && p.results.length ? `
         <div class="project-results">
           <h4>Results</h4>
           ${p.results.map(r => `
@@ -1236,6 +1377,67 @@
               <div class="result-label">${r.label}</div>
             </div>
           `).join('')}
+        </div>
+      ` : '';
+
+      const videoHTML = p.videoEmbed ? `
+        <div class="project-video">
+          <h3>Video</h3>
+          <div class="project-video-centered">
+            <div class="project-video-frame ${p.videoRatio === '9:16' ? 'ratio-916' : 'ratio-169'}">
+              <div class="project-video-frame-inner">
+                <iframe
+                  src="${p.videoEmbed}"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                  allowfullscreen
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      ` : '';
+
+      const hasGallery = !p.videoOnly && p.gallery && p.gallery.length;
+      const galleryMode = p.galleryStyle === 'slider-169' ? 'slider-169' : 'grid-34';
+      const isSlider = galleryMode === 'slider-169' && hasGallery;
+
+      const galleryItems = (p.gallery || []).map((g, i) => {
+        if (isSlider) {
+          return `
+            <div class="slide" data-slide-index="${i}">
+              <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+            </div>
+          `;
+        }
+
+        return `<img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">`;
+      }).join('');
+
+      const galleryHTML = hasGallery ? `
+        <div class="project-gallery">
+          <h3>Gallery</h3>
+          <div class="project-media-shell">
+            ${isSlider ? `
+              <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+            ` : ''}
+
+            <div class="project-gallery-grid ${galleryMode}" ${isSlider ? `data-carousel="${p.id}"` : ''}>
+              ${galleryItems}
+            </div>
+
+            ${isSlider ? `
+              <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </button>
+            ` : ''}
+          </div>
         </div>
       ` : '';
 
@@ -1250,6 +1452,7 @@
             <div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>
           </div>
         </div>
+
         <div class="project-body">
           <div class="project-desc-block">
             <h3>About the project</h3>
@@ -1257,6 +1460,7 @@
             <ul class="project-bullets">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
             ${resultsHTML}
           </div>
+
           <div class="project-sidebar">
             <div class="sidebar-card">
               <h4>Quick info</h4>
@@ -1271,12 +1475,10 @@
             </div>
           </div>
         </div>
-        <div class="project-gallery">
-          <h3>Gallery</h3>
-          <div class="project-gallery-grid">
-            ${p.gallery.map((g, i) => `<img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">`).join('')}
-          </div>
-        </div>
+
+        ${videoHTML}
+        ${galleryHTML}
+
         <div class="project-nav-bottom">
           ${prev ? `<button class="proj-nav-btn" onclick="showProject('${prev.id}')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
@@ -1293,7 +1495,41 @@
       document.getElementById('project-view').classList.add('active');
       document.getElementById('nav-back').classList.add('visible');
       document.querySelector('.nav-logo').style.display = 'none';
+
+      initProjectCarousel();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initProjectCarousel() {
+      const carousel = document.querySelector('[data-carousel]');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('.slide'));
+      const prevBtn = document.querySelector('[data-carousel-prev]');
+      const nextBtn = document.querySelector('[data-carousel-next]');
+      if (!slides.length || !prevBtn || !nextBtn) return;
+
+      let currentIndex = 0;
+
+      function updateButtons() {
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === slides.length - 1;
+      }
+
+      function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+        slides[currentIndex].scrollIntoView({
+          behavior: 'smooth',
+          inline: 'start',
+          block: 'nearest'
+        });
+        updateButtons();
+      }
+
+      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+      updateButtons();
     }
 
     function showHome() {
@@ -1315,6 +1551,7 @@
           }
         });
       }, { threshold: 0.1 });
+
       els.forEach(el => obs.observe(el));
     }
 

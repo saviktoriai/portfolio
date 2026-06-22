@@ -399,7 +399,8 @@
 
     .project-desc-block h3,
     .project-gallery h3,
-    .project-video h3 {
+    .project-video h3,
+    .project-video-strip h3 {
       font-size: var(--xs);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -493,7 +494,8 @@
     }
 
     .project-gallery,
-    .project-video {
+    .project-video,
+    .project-video-strip {
       padding: 0 clamp(20px, 5vw, 60px) 56px;
     }
 
@@ -556,16 +558,19 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar {
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar,
+    .project-video-strip-grid::-webkit-scrollbar {
       height: 10px;
     }
 
-    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-track {
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-track,
+    .project-video-strip-grid::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.06);
       border-radius: 999px;
     }
 
-    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-thumb {
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-thumb,
+    .project-video-strip-grid::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.22);
       border-radius: 999px;
     }
@@ -576,22 +581,22 @@
     }
 
     .project-gallery-grid.slider-mixed-vertical .slide-video {
-  aspect-ratio: 3 / 4;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: #111;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      aspect-ratio: 3 / 4;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.project-gallery-grid.slider-mixed-vertical .slide-video iframe {
-  width: 75%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
+    .project-gallery-grid.slider-mixed-vertical .slide-video iframe {
+      width: 75%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
 
     .project-gallery-grid.slider-mixed-vertical .slide-image img {
       width: 100%;
@@ -599,6 +604,37 @@
       object-fit: cover;
       object-position: center;
       border-radius: var(--r-lg);
+    }
+
+    .project-video-strip-grid {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 32vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-video-card {
+      scroll-snap-align: start;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-video-card iframe {
+      width: 75%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
 
     .gallery-arrow {
@@ -783,7 +819,8 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .project-gallery-grid.slider-mixed-vertical {
+      .project-gallery-grid.slider-mixed-vertical,
+      .project-video-strip-grid {
         grid-auto-columns: 68vw;
       }
 
@@ -805,7 +842,8 @@
         grid-template-columns: 1fr;
       }
 
-      .project-gallery-grid.slider-mixed-vertical {
+      .project-gallery-grid.slider-mixed-vertical,
+      .project-video-strip-grid {
         grid-auto-columns: 82vw;
       }
 
@@ -919,32 +957,32 @@
   <script>
     const projects = [
       {
-  id: 'winx',
-  title: 'Winx Live-Action',
-  subtitle: 'Fairy transformation',
-  tags: ['Video'],
-  category: ['video'],
-  thumb: './21.png',
-  year: '2025',
-  type: 'Personal Project',
-  galleryStyle: 'slider-169',
-  description: 'Driven by a sense of nostalgia for the iconic Winx universe, I created a series of AI-powered live-action transformation videos featuring the fairies.',
-  bullets: [
-    'Developed custom AI models representing three Winx characters, reimagined in a realistic live-action style.',
-    'Designed transformation costumes, including both pre- and post-transformation looks, while preserving the original aesthetic.',
-    'Produced short-form action videos with cinematic visuals, dynamic editing, and high-impact transformation effects.'
-  ],
-  results: [
-    { num: '2.2M+', label: 'Total views across platforms' },
-    { num: 'Viral', label: 'Nostalgia-driven traction' }
-  ],
-  videoGallery: [
-    'https://kinescope.io/aaSgmNy3NfHjuRC9biExvn',
-    'https://kinescope.io/fMiXvgEkV8iW4GVUotSrpk',
-    'https://kinescope.io/dQBjbMTfvN41dVovMVmwMt'
-  ],
-  gallery: ['./21-1.webp', './21-2.webp', './21-3.webp']
-},
+        id: 'winx',
+        title: 'Winx Live-Action',
+        subtitle: 'Fairy transformation',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './21.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-169',
+        description: 'Driven by a sense of nostalgia for the iconic Winx universe, I created a series of AI-powered live-action transformation videos featuring the fairies.',
+        bullets: [
+          'Developed custom AI models representing three Winx characters, reimagined in a realistic live-action style.',
+          'Designed transformation costumes, including both pre- and post-transformation looks, while preserving the original aesthetic.',
+          'Produced short-form action videos with cinematic visuals, dynamic editing, and high-impact transformation effects.'
+        ],
+        results: [
+          { num: '2.2M+', label: 'Total views across platforms' },
+          { num: 'Viral', label: 'Nostalgia-driven traction' }
+        ],
+        videoGallery: [
+          'https://kinescope.io/aaSgmNy3NfHjuRC9biExvn',
+          'https://kinescope.io/fMiXvgEkV8iW4GVUotSrpk',
+          'https://kinescope.io/dQBjbMTfvN41dVovMVmwMt'
+        ],
+        gallery: ['./21-1.webp', './21-2.webp', './21-3.webp']
+      },
       {
         id: 'franui',
         title: 'Franuí Halloween',
@@ -1034,7 +1072,10 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: ['https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn', 'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'],
+        videoEmbed: [
+          'https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn',
+          'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'
+        ],
         description: 'A beauty/fashion Halloween concept built around bold red lighting, sharp styling and a luxury product image.',
         bullets: [
           'Created a fashion-horror visual setup with a premium feel.',
@@ -1073,7 +1114,7 @@
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A clean portrait-based beauty reel concept with soft branding and a calm visual rhythm.',
         bullets: [
           'Used a minimal background and direct portrait composition.',
@@ -1093,7 +1134,7 @@
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A beauty-focused reel concept for Instagram, with a futuristic skincare aesthetic and soft, premium visuals.',
         bullets: [
           'Created social-first beauty content with a polished high-end feel.',
@@ -1151,7 +1192,7 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
         bullets: [
           'Built around calm rhythm and cinematic stillness.',
@@ -1171,7 +1212,7 @@
         year: '2025',
         type: 'Brand Project',
         videoOnly: true,
-        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A website video concept for a health brand with a clean, trusted and calming visual tone.',
         bullets: [
           'Created imagery with a health-tech but human-centered feel.',
@@ -1247,7 +1288,7 @@
         year: '2025',
         type: 'Brand Project',
         videoOnly: true,
-        videoEmbed: 'PASTE_KINESCOPE_IFRAME_URL_HERE',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A sports-oriented branded visual using a tennis-ball macro as the key campaign metaphor.',
         bullets: [
           'Focused on texture, tension and object-as-hero composition.',
@@ -1282,6 +1323,29 @@
       renderGallery(filter);
     }
 
+    function buildVideoStrip(p) {
+      if (!p.videoGallery || !p.videoGallery.length) return '';
+
+      return `
+        <div class="project-video-strip">
+          <h3>Videos</h3>
+          <div class="project-video-strip-grid">
+            ${p.videoGallery.map((videoUrl, i) => `
+              <div class="project-video-card">
+                <iframe
+                  src="${videoUrl}"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                  allowfullscreen
+                  loading="lazy"
+                  title="${p.title} video ${i + 1}">
+                </iframe>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     function buildGallery(p) {
       if (p.videoOnly) return '';
 
@@ -1296,7 +1360,7 @@
                 </svg>
               </button>
               <div class="project-gallery-grid slider-169" data-carousel>
-                ${p.gallery.map((g, i) => `
+                ${(p.gallery || []).map((g, i) => `
                   <div class="slide" data-slide-index="${i}">
                     <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
                   </div>
@@ -1313,19 +1377,27 @@
       }
 
       if (p.galleryStyle === 'slider-mixed-vertical') {
+        const videoItems = Array.isArray(p.videoEmbed)
+          ? p.videoEmbed
+          : (p.videoEmbed ? [p.videoEmbed] : []);
+
         return `
           <div class="project-gallery">
             <h3>Gallery</h3>
             <div class="project-media-shell">
               <div class="project-gallery-grid slider-mixed-vertical">
-                <div class="slide slide-video">
-                  <iframe
-                    src="${p.videoEmbed || ''}"
-                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-                    allowfullscreen
-                    loading="lazy">
-                  </iframe>
-                </div>
+                ${videoItems.map((videoUrl, i) => `
+                  <div class="slide slide-video">
+                    <iframe
+                      src="${videoUrl}"
+                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                      allowfullscreen
+                      loading="lazy"
+                      title="${p.title} video ${i + 1}">
+                    </iframe>
+                  </div>
+                `).join('')}
+
                 ${(p.gallery || []).map((g, i) => `
                   <div class="slide slide-image">
                     <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
@@ -1351,6 +1423,7 @@
 
     function buildVideoOnly(p) {
       if (!p.videoOnly) return '';
+
       return `
         <div class="project-video">
           <h3>Video</h3>
@@ -1360,7 +1433,8 @@
                 src="${p.videoEmbed || ''}"
                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
                 allowfullscreen
-                loading="lazy">
+                loading="lazy"
+                title="${p.title} video">
               </iframe>
             </div>
           </div>
@@ -1404,18 +1478,27 @@
           <div class="project-desc-block">
             <h3>About the project</h3>
             <p>${p.description}</p>
-            <ul class="project-bullets">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+            <ul class="project-bullets">
+              ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+            </ul>
             ${resultsHTML}
           </div>
 
           <div class="project-sidebar">
             <div class="sidebar-card">
               <h4>Quick info</h4>
-              ${p.tags.map(t => `<div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">${t}</div>`).join('')}
+              ${p.tags.map(t => `
+                <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">
+                  ${t}
+                </div>
+              `).join('')}
             </div>
+
             <div class="sidebar-card" style="background:var(--text);color:var(--white)">
               <h4 style="color:rgba(255,255,255,0.5)">Get in touch</h4>
-              <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">Interested in a similar project?</p>
+              <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">
+                Interested in a similar project?
+              </p>
               <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px">
                 viktoriiasaraeva@gmail.com →
               </a>
@@ -1424,17 +1507,27 @@
         </div>
 
         ${buildVideoOnly(p)}
+        ${buildVideoStrip(p)}
         ${buildGallery(p)}
 
         <div class="project-nav-bottom">
-          ${prev ? `<button class="proj-nav-btn" onclick="showProject('${prev.id}')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-            ${prev.title}
-          </button>` : '<div></div>'}
-          ${next ? `<button class="proj-nav-btn" onclick="showProject('${next.id}')">
-            ${next.title}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M14 5l7 7-7 7"/></svg>
-          </button>` : '<div></div>'}
+          ${prev ? `
+            <button class="proj-nav-btn" onclick="showProject('${prev.id}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+              </svg>
+              ${prev.title}
+            </button>
+          ` : '<div></div>'}
+
+          ${next ? `
+            <button class="proj-nav-btn" onclick="showProject('${next.id}')">
+              ${next.title}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M14 5l7 7-7 7"/>
+              </svg>
+            </button>
+          ` : '<div></div>'}
         </div>
       `;
 
@@ -1454,6 +1547,7 @@
       const slides = Array.from(carousel.querySelectorAll('.slide'));
       const prevBtn = document.querySelector('[data-carousel-prev]');
       const nextBtn = document.querySelector('[data-carousel-next]');
+
       if (!slides.length || !prevBtn || !nextBtn) return;
 
       let currentIndex = 0;
@@ -1475,6 +1569,7 @@
 
       prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
       nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
       updateButtons();
     }
 

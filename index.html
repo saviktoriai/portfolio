@@ -546,30 +546,33 @@
     }
 
     .project-gallery-grid.slider-mixed-vertical {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(240px, 24vw);
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 24vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
 
     .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar,
     .project-video-strip-grid::-webkit-scrollbar {
       height: 10px;
     }
 
     .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-track,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar-track,
     .project-video-strip-grid::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.06);
       border-radius: 999px;
     }
 
     .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-thumb,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar-thumb,
     .project-video-strip-grid::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.22);
       border-radius: 999px;
@@ -581,110 +584,86 @@
     }
 
     .project-gallery-grid.slider-mixed-vertical .slide-video {
-  aspect-ratio: 9 / 16;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: #111;
-  position: relative;
-}
+      aspect-ratio: 9 / 16;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
 
-.project-gallery-grid.slider-mixed-vertical .slide-video iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
+    .project-gallery-grid.slider-mixed-vertical .slide-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
 
-.project-gallery-grid.slider-mixed-vertical .slide-image img {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  object-position: center;
-  border-radius: var(--r-lg);
-}
+    .project-gallery-grid.slider-mixed-vertical .slide-image img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
 
     .project-gallery-grid.slider-portrait {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(280px, 32vw);
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 32vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-.project-gallery-grid.slider-portrait::-webkit-scrollbar {
-  height: 10px;
-}
+    .project-gallery-grid.slider-portrait .slide {
+      scroll-snap-align: start;
+      width: 100%;
+    }
 
-.project-gallery-grid.slider-portrait::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 999px;
-}
-
-.project-gallery-grid.slider-portrait::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.22);
-  border-radius: 999px;
-}
-
-.project-gallery-grid.slider-portrait .slide {
-  scroll-snap-align: start;
-  width: 100%;
-}
-
-.project-gallery-grid.slider-portrait img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center;
-  border-radius: var(--r-lg);
-}
+    .project-gallery-grid.slider-portrait img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
 
     .project-video-strip-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(560px, 72vw);
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(560px, 72vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-.project-video-card {
-  scroll-snap-align: start;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: #111;
-  position: relative;
-}
+    .project-video-card {
+      scroll-snap-align: start;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
 
-.project-video-card iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-
-@media (max-width: 900px) {
-  .project-gallery-grid.slider-mixed-vertical,
-.project-gallery-grid.slider-portrait {
-  grid-auto-columns: 52vw;
-}
-
-.project-video-strip-grid {
-  grid-auto-columns: 86vw;
-}
+    .project-video-card iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
 
     .gallery-arrow {
       position: absolute;
@@ -869,14 +848,13 @@
       }
 
       .project-gallery-grid.slider-mixed-vertical,
-      .project-video-strip-grid {
+      .project-gallery-grid.slider-portrait {
         grid-auto-columns: 52vw;
       }
 
-      .project-gallery-grid.slider-mixed-vertical,
-.project-gallery-grid.slider-portrait {
-  grid-auto-columns: 52vw;
-}
+      .project-video-strip-grid {
+        grid-auto-columns: 86vw;
+      }
 
       .contact-section {
         grid-template-columns: 1fr;
@@ -897,10 +875,14 @@
       }
 
       .project-gallery-grid.slider-mixed-vertical,
-      .project-video-strip-grid {
+      .project-gallery-grid.slider-portrait {
         grid-auto-columns: 72vw;
       }
-      
+
+      .project-video-strip-grid {
+        grid-auto-columns: 92vw;
+      }
+
       .gallery-arrow.prev {
         left: 10px;
       }
@@ -909,48 +891,6 @@
         right: 10px;
       }
     }
-  @media (max-width: 900px) {
-  .project-gallery-grid.slider-mixed-vertical,
-  .project-gallery-grid.slider-portrait {
-    grid-auto-columns: 52vw;
-  }
-
-  .project-video-strip-grid {
-    grid-auto-columns: 86vw;
-  }
-}
-
-@media (max-width: 600px) {
-  .project-gallery-grid.slider-mixed-vertical,
-  .project-gallery-grid.slider-portrait {
-    grid-auto-columns: 72vw;
-  }
-
-  .project-video-strip-grid {
-    grid-auto-columns: 92vw;
-  }
-}
-  @media (max-width: 900px) {
-  .project-gallery-grid.slider-mixed-vertical,
-  .project-gallery-grid.slider-portrait {
-    grid-auto-columns: 52vw;
-  }
-
-  .project-video-strip-grid {
-    grid-auto-columns: 86vw;
-  }
-}
-
-@media (max-width: 600px) {
-  .project-gallery-grid.slider-mixed-vertical,
-  .project-gallery-grid.slider-portrait {
-    grid-auto-columns: 72vw;
-  }
-
-  .project-video-strip-grid {
-    grid-auto-columns: 92vw;
-  }
-}
   </style>
 </head>
 
@@ -1100,26 +1040,26 @@
         gallery: ['./22-2.webp', './22-3.webp', './22-4.webp']
       },
       {
-  id: 'frozen',
-  title: 'Frozen Live-Action',
-  subtitle: 'Personal project',
-  tags: ['Video'],
-  category: ['video'],
-  thumb: './23.png',
-  year: '2025',
-  type: 'Personal Project',
-  galleryStyle: 'slider-portrait',
-  videoWide: true,
-  videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
-  description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
-  bullets: [
-    'Explored adaptation of a known animated universe into AI live-action visuals.',
-    'Focused on mood, costume realism and believable character styling.',
-    'Used AI tools to achieve a dreamy but grounded visual language.'
-  ],
-  results: [],
-  gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
-},
+        id: 'frozen',
+        title: 'Frozen Live-Action',
+        subtitle: 'Personal project',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './23.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-portrait',
+        videoWide: true,
+        videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
+        description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
+        bullets: [
+          'Explored adaptation of a known animated universe into AI live-action visuals.',
+          'Focused on mood, costume realism and believable character styling.',
+          'Used AI tools to achieve a dreamy but grounded visual language.'
+        ],
+        results: [],
+        gallery: ['./23-1.png', './23-2.png', './23-3.png', './23-4.png']
+      },
       {
         id: 'whycgi',
         title: 'Why.CGI',
@@ -1464,98 +1404,96 @@
     }
 
     function buildGallery(p) {
-  if (p.videoOnly) return '';
+      if (p.videoOnly) return '';
 
-  if (p.galleryStyle === 'slider-169') {
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-
-          <div class="project-gallery-grid slider-169" data-carousel>
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide" data-slide-index="${i}">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+      if (p.galleryStyle === 'slider-169') {
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <div class="project-gallery-grid slider-169" data-carousel>
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide" data-slide-index="${i}">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+                  </div>
+                `).join('')}
               </div>
+              <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (p.galleryStyle === 'slider-mixed-vertical') {
+        const videoItems = Array.isArray(p.videoEmbed)
+          ? p.videoEmbed
+          : (p.videoEmbed ? [p.videoEmbed] : []);
+
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <div class="project-gallery-grid slider-mixed-vertical">
+                ${videoItems.map((videoUrl, i) => `
+                  <div class="slide slide-video">
+                    <iframe
+                      src="${videoUrl}"
+                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                      allowfullscreen
+                      loading="lazy"
+                      title="${p.title} video ${i + 1}">
+                    </iframe>
+                  </div>
+                `).join('')}
+
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide slide-image">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (p.galleryStyle === 'slider-portrait') {
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <div class="project-gallery-grid slider-portrait">
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="project-gallery">
+          <h3>Gallery</h3>
+          <div class="project-gallery-grid grid-34">
+            ${(p.gallery || []).map((g, i) => `
+              <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
             `).join('')}
           </div>
-
-          <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 6l6 6-6 6"/>
-            </svg>
-          </button>
         </div>
-      </div>
-    `;
-  }
-
-  if (p.galleryStyle === 'slider-mixed-vertical') {
-    const videoItems = Array.isArray(p.videoEmbed)
-      ? p.videoEmbed
-      : (p.videoEmbed ? [p.videoEmbed] : []);
-
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <div class="project-gallery-grid slider-mixed-vertical">
-            ${videoItems.map((videoUrl, i) => `
-              <div class="slide slide-video">
-                <iframe
-                  src="${videoUrl}"
-                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-                  allowfullscreen
-                  loading="lazy"
-                  title="${p.title} video ${i + 1}">
-                </iframe>
-              </div>
-            `).join('')}
-
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide slide-image">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1600" loading="lazy">
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  if (p.galleryStyle === 'slider-portrait') {
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <div class="project-gallery-grid slider-portrait">
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  return `
-    <div class="project-gallery">
-      <h3>Gallery</h3>
-      <div class="project-gallery-grid grid-34">
-        ${(p.gallery || []).map((g, i) => `
-          <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
-        `).join('')}
-      </div>
-    </div>
-  `;
-}
+      `;
+    }
 
     function buildVideoOnly(p) {
       if (!p.videoOnly) return '';
@@ -1579,26 +1517,26 @@
     }
 
     function buildWideVideo(p) {
-  if (!p.videoWide) return '';
+      if (!p.videoWide) return '';
 
-  return `
-    <div class="project-video">
-      <h3>Video</h3>
-      <div class="project-video-frame ratio-169">
-        <div class="project-video-frame-inner">
-          <iframe
-            src="${p.videoEmbed || ''}"
-            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-            allowfullscreen
-            loading="lazy"
-            title="${p.title} video">
-          </iframe>
+      return `
+        <div class="project-video">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-169">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy"
+                title="${p.title} video">
+              </iframe>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  `;
-}
-    
+      `;
+    }
+
     function showProject(id) {
       const p = projects.find(x => x.id === id);
       if (!p) return;

@@ -605,6 +605,46 @@
   border-radius: var(--r-lg);
 }
 
+    .project-gallery-grid.slider-portrait {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 32vw);
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-gallery-grid.slider-portrait::-webkit-scrollbar {
+  height: 10px;
+}
+
+.project-gallery-grid.slider-portrait::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+}
+
+.project-gallery-grid.slider-portrait::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 999px;
+}
+
+.project-gallery-grid.slider-portrait .slide {
+  scroll-snap-align: start;
+  width: 100%;
+}
+
+.project-gallery-grid.slider-portrait img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--r-lg);
+}
+
     .project-video-strip-grid {
   display: grid;
   grid-auto-flow: column;
@@ -835,6 +875,11 @@
         grid-auto-columns: 52vw;
       }
 
+      .project-gallery-grid.slider-mixed-vertical,
+.project-gallery-grid.slider-portrait {
+  grid-auto-columns: 52vw;
+}
+
       .contact-section {
         grid-template-columns: 1fr;
       }
@@ -857,7 +902,7 @@
       .project-video-strip-grid {
         grid-auto-columns: 72vw;
       }
-
+      
       .gallery-arrow.prev {
         left: 10px;
       }
@@ -1023,7 +1068,7 @@
   thumb: './23.png',
   year: '2025',
   type: 'Personal Project',
-  galleryStyle: 'grid-34',
+  galleryStyle: 'slider-portrait',
   videoWide: true,
   videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
   description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',

@@ -647,7 +647,6 @@
     .project-gallery-grid.slider-portrait {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(280px, 32vw);
       gap: 16px;
       overflow-x: auto;
       overflow-y: hidden;
@@ -657,14 +656,30 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    .project-gallery-grid.slider-portrait.is-3-4 {
+      grid-auto-columns: minmax(280px, 32vw);
+    }
+
+    .project-gallery-grid.slider-portrait.is-9-16 {
+      grid-auto-columns: minmax(220px, 26vw);
+    }
+
     .project-gallery-grid.slider-portrait .slide {
       scroll-snap-align: start;
       width: 100%;
     }
 
-    .project-gallery-grid.slider-portrait img {
+    .project-gallery-grid.slider-portrait.is-3-4 img {
       width: 100%;
       aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
+
+    .project-gallery-grid.slider-portrait.is-9-16 img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
       object-fit: cover;
       object-position: center;
       border-radius: var(--r-lg);
@@ -857,9 +872,16 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .project-gallery-grid.slider-mixed-vertical,
-      .project-gallery-grid.slider-portrait {
+      .project-gallery-grid.slider-mixed-vertical {
         grid-auto-columns: 52vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-3-4 {
+        grid-auto-columns: 52vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-9-16 {
+        grid-auto-columns: 40vw;
       }
 
       .project-video-strip-grid {
@@ -888,9 +910,16 @@
         grid-template-columns: 1fr;
       }
 
-      .project-gallery-grid.slider-mixed-vertical,
-      .project-gallery-grid.slider-portrait {
+      .project-gallery-grid.slider-mixed-vertical {
         grid-auto-columns: 72vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-3-4 {
+        grid-auto-columns: 72vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-9-16 {
+        grid-auto-columns: 58vw;
       }
 
       .project-video-strip-grid {
@@ -1088,7 +1117,7 @@
         year: '2025',
         type: 'Brand Project',
         videoPortrait: true,
-        videoEmbed: 'https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'In the lead-up to Thanksgiving Day, the video was developed for the client’s Instagram page.',
         bullets: [
           'Created a seasonal social-first concept for Instagram.',
@@ -1099,26 +1128,27 @@
         gallery: []
       },
       {
-  id: 'alfabank',
-  title: 'Alfa Bank × Changellenge',
-  subtitle: 'Telegram-based game',
-  tags: ['Static Images'],
-  category: ['static'],
-  thumb: './25.png',
-  year: '2025',
-  type: 'Brand Project',
-  galleryStyle: 'slider-portrait',
-  description: 'A mascot-driven visual concept for a Telegram-based game campaign created for Alfa Bank × Changellenge.',
-  bullets: [
-    'Designed a memorable 3D mascot with a playful branded identity.',
-    'Adapted the visuals for community interaction and Telegram mechanics.',
-    'Focused on clarity, friendliness and campaign recognizability.'
-  ],
-  results: [
-    { num: '34K', label: 'Interactions' }
-  ],
-  gallery: ['./25-1.png', './25-2.png', './25-3.png']
-},
+        id: 'alfabank',
+        title: 'Alfa Bank × Changellenge',
+        subtitle: 'Telegram-based game',
+        tags: ['Static Images'],
+        category: ['static'],
+        thumb: './25.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-portrait',
+        portraitRatio: '9-16',
+        description: 'A mascot-driven visual concept for a Telegram-based game campaign created for Alfa Bank × Changellenge.',
+        bullets: [
+          'Designed a memorable 3D mascot with a playful branded identity.',
+          'Adapted the visuals for community interaction and Telegram mechanics.',
+          'Focused on clarity, friendliness and campaign recognizability.'
+        ],
+        results: [
+          { num: '34K', label: 'Interactions' }
+        ],
+        gallery: ['./25-1.png', './25-2.png', './25-3.png']
+      },
       {
         id: 'miumiu',
         title: 'Miu Miu Halloween',
@@ -1486,11 +1516,13 @@
       }
 
       if (p.galleryStyle === 'slider-portrait') {
+        const ratioClass = p.portraitRatio === '9-16' ? 'is-9-16' : 'is-3-4';
+
         return `
           <div class="project-gallery">
             <h3>Gallery</h3>
             <div class="project-media-shell">
-              <div class="project-gallery-grid slider-portrait">
+              <div class="project-gallery-grid slider-portrait ${ratioClass}">
                 ${(p.gallery || []).map((g, i) => `
                   <div class="slide">
                     <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">

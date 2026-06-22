@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -390,7 +391,7 @@
 
     .project-body {
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: minmax(0, 1fr) 340px;
       gap: 48px;
       padding: 48px clamp(20px, 5vw, 60px);
       align-items: start;
@@ -498,8 +499,44 @@
       padding: 0 clamp(20px, 5vw, 60px) 56px;
     }
 
-    .project-media-shell {
+    .project-video-compact {
+      padding-top: 8px;
+    }
+
+    .project-video-frame {
+      width: 100%;
+      background: #cfcfcf;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .project-video-frame.ratio-169 {
+      max-width: 1100px;
+    }
+
+    .project-video-frame.ratio-916 {
+      max-width: 380px;
+      background: #111;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.10);
+    }
+
+    .project-video-frame-inner {
       position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+    }
+
+    .project-video-frame.ratio-916 .project-video-frame-inner {
+      padding-bottom: 177.7778%;
+    }
+
+    .project-video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .project-gallery-grid {
@@ -664,41 +701,6 @@
       display: block;
     }
 
-    .project-video-frame {
-      width: 100%;
-      background: #cfcfcf;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-    }
-
-    .project-video-frame.ratio-169 {
-      max-width: 1100px;
-    }
-
-    .project-video-frame.ratio-916 {
-      max-width: 420px;
-      background: #111;
-    }
-
-    .project-video-frame-inner {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%;
-    }
-
-    .project-video-frame.ratio-916 .project-video-frame-inner {
-      padding-bottom: 177.7778%;
-    }
-
-    .project-video-frame iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
     .gallery-arrow {
       position: absolute;
       top: 50%;
@@ -838,83 +840,6 @@
       text-transform: uppercase;
     }
 
-    .editorial-project {
-      padding: 64px clamp(20px, 5vw, 60px) 72px;
-    }
-
-    .editorial-project-header {
-      text-align: center;
-      padding: 24px 0 56px;
-    }
-
-    .editorial-project-title {
-      font-size: clamp(2rem, 1.1rem + 3vw, 3.6rem);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .editorial-project-subtitle {
-      font-size: clamp(1.15rem, 0.95rem + 1vw, 1.8rem);
-      font-style: italic;
-      color: #3f3f3f;
-    }
-
-    .editorial-project-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
-      gap: clamp(40px, 6vw, 96px);
-      align-items: center;
-      max-width: 1320px;
-      margin: 0 auto;
-      min-height: 68vh;
-    }
-
-    .editorial-project-copy {
-      max-width: 660px;
-    }
-
-    .editorial-project-client {
-      font-size: clamp(1.2rem, 1rem + 0.8vw, 2rem);
-      font-style: italic;
-      line-height: 1.45;
-      margin-bottom: 36px;
-    }
-
-    .editorial-project-copy p {
-      font-size: clamp(1.1rem, 0.96rem + 0.45vw, 1.45rem);
-      line-height: 1.65;
-      max-width: 32ch;
-      color: #1b1b1b;
-    }
-
-    .editorial-project-media {
-      justify-self: end;
-      width: 100%;
-      max-width: 420px;
-    }
-
-    .editorial-project-video {
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      background: #111;
-      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.10);
-      position: relative;
-    }
-
-    .editorial-project-video .project-video-frame {
-      max-width: none;
-      border-radius: 0;
-    }
-
-    .editorial-project-caption {
-      margin-top: 12px;
-      font-size: clamp(1rem, 0.92rem + 0.4vw, 1.25rem);
-      font-style: italic;
-      color: #222;
-    }
-
     @media (max-width: 900px) {
       .gallery-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -941,26 +866,12 @@
         grid-auto-columns: 86vw;
       }
 
+      .project-video-frame.ratio-916 {
+        max-width: 340px;
+      }
+
       .contact-section {
         grid-template-columns: 1fr;
-      }
-
-      .editorial-project-grid {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .editorial-project-copy {
-        max-width: none;
-      }
-
-      .editorial-project-copy p {
-        max-width: none;
-      }
-
-      .editorial-project-media {
-        justify-self: start;
-        max-width: 380px;
       }
     }
 
@@ -986,6 +897,10 @@
         grid-auto-columns: 92vw;
       }
 
+      .project-video-frame.ratio-916 {
+        max-width: 100%;
+      }
+
       .gallery-arrow.prev {
         left: 10px;
       }
@@ -993,21 +908,10 @@
       .gallery-arrow.next {
         right: 10px;
       }
-
-      .editorial-project {
-        padding-top: 40px;
-      }
-
-      .editorial-project-header {
-        padding-bottom: 36px;
-      }
-
-      .editorial-project-media {
-        max-width: 100%;
-      }
     }
   </style>
 </head>
+
 <body>
   <nav class="nav">
     <div class="nav-logo" onclick="showHome()">@SAVIKTORIAI</div>
@@ -1172,30 +1076,27 @@
           'Used AI tools to achieve a dreamy but grounded visual language.'
         ],
         results: [],
-        gallery: ['./23-1.PNG', './23-2.PNG', './23-3.PNG', './23-4.PNG']
+        gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
       },
       {
         id: 'whycgi',
-        title: 'THANKSGIVING DAY',
-        subtitle: 'For WHY.CGI',
+        title: 'Why.CGI',
+        subtitle: 'Thanksgiving Day Reel',
         tags: ['Video'],
         category: ['video'],
         thumb: './24.png',
         year: '2025',
         type: 'Brand Project',
-        editorialLayout: 'vertical-reel',
-        videoVertical: true,
+        videoPortrait: true,
         videoEmbed: 'https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV',
-        description: 'In the lead-up to Thanksgiving Day, the video was developed for client’s Instagram page.',
-        clientLine: 'Client: WHY.CGI — creative studio',
-        caption: 'Thanksgiving Reel — WHY.CGI',
+        description: 'In the lead-up to Thanksgiving Day, the video was developed for the client’s Instagram page.',
         bullets: [
           'Created a seasonal social-first concept for Instagram.',
-          'Used surreal oversized visual language for immediate stop-scrolling impact.',
-          'Built the piece around a clean and memorable CGI moment.'
+          'Built the visual around a surreal oversized CGI moment for fast attention.',
+          'Designed the piece as a compact, memorable reel for short-form viewing.'
         ],
         results: [],
-        gallery: ['./24.png']
+        gallery: []
       },
       {
         id: 'alfabank',
@@ -1522,7 +1423,7 @@
     }
 
     function buildGallery(p) {
-      if (p.videoOnly || p.editorialLayout) return '';
+      if (p.videoOnly || !p.gallery || !p.gallery.length) return '';
 
       if (p.galleryStyle === 'slider-169') {
         return `
@@ -1655,40 +1556,24 @@
       `;
     }
 
-    function buildEditorialProject(p) {
-      if (!p.editorialLayout) return '';
+    function buildPortraitVideo(p) {
+      if (!p.videoPortrait) return '';
 
       return `
-        <section class="editorial-project">
-          <div class="editorial-project-header">
-            <h1 class="editorial-project-title">${p.title}</h1>
-            <div class="editorial-project-subtitle">${p.subtitle}</div>
-          </div>
-
-          <div class="editorial-project-grid">
-            <div class="editorial-project-copy">
-              <div class="editorial-project-client">${p.clientLine || ''}</div>
-              <p>${p.description}</p>
-            </div>
-
-            <div class="editorial-project-media">
-              <div class="editorial-project-video">
-                <div class="project-video-frame ratio-916">
-                  <div class="project-video-frame-inner">
-                    <iframe
-                      src="${p.videoEmbed || ''}"
-                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-                      allowfullscreen
-                      loading="lazy"
-                      title="${p.title} video">
-                    </iframe>
-                  </div>
-                </div>
-              </div>
-              <div class="editorial-project-caption">${p.caption || ''}</div>
+        <div class="project-video project-video-compact">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-916">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy"
+                title="${p.title} video">
+              </iframe>
             </div>
           </div>
-        </section>
+        </div>
       `;
     }
 
@@ -1699,38 +1584,6 @@
       const idx = projects.indexOf(p);
       const prev = projects[idx - 1];
       const next = projects[idx + 1];
-
-      if (p.editorialLayout) {
-        document.getElementById('project-content').innerHTML = `
-          ${buildEditorialProject(p)}
-          <div class="project-nav-bottom">
-            ${prev ? `
-              <button class="proj-nav-btn" onclick="showProject('${prev.id}')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
-                </svg>
-                ${prev.title}
-              </button>
-            ` : '<div></div>'}
-
-            ${next ? `
-              <button class="proj-nav-btn" onclick="showProject('${next.id}')">
-                ${next.title}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M14 5l7 7-7 7"/>
-                </svg>
-              </button>
-            ` : '<div></div>'}
-          </div>
-        `;
-
-        document.getElementById('home-view').classList.remove('active');
-        document.getElementById('project-view').classList.add('active');
-        document.getElementById('nav-back').classList.add('visible');
-        document.querySelector('.nav-logo').style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
 
       const resultsHTML = p.results && p.results.length ? `
         <div class="project-results">
@@ -1790,6 +1643,7 @@
 
         ${buildVideoOnly(p)}
         ${buildWideVideo(p)}
+        ${buildPortraitVideo(p)}
         ${buildVideoStrip(p)}
         ${buildGallery(p)}
 
@@ -1867,4 +1721,5 @@
     renderGallery();
   </script>
 </body>
+
 </html>

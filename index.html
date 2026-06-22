@@ -1,94 +1,44 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Content Creator — Portfolio</title>
-
+  <title>@SAVIKTORIAI — AI Content Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300..700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
     rel="stylesheet">
-
   <style>
-    :root,
-    [data-theme="dark"] {
-      --color-bg: #0e0d0c;
-      --color-surface: #141312;
-      --color-surface-2: #1a1917;
-      --color-surface-offset: #201f1d;
-      --color-surface-dynamic: #2a2927;
-      --color-divider: #2e2c2a;
-      --color-border: oklch(0.85 0.01 80 / 0.1);
-      --color-text: #e8e6e1;
-      --color-text-muted: #8a8884;
-      --color-text-faint: #4e4d4b;
-      --color-text-inverse: #0e0d0c;
-      --color-primary: #c8a96e;
-      --color-primary-hover: #dbbf88;
-      --color-primary-active: #a88b50;
-      --color-primary-highlight: #2d2820;
+    /* ── TOKENS ── */
+    :root {
+      --bg: #dcdcdc;
+      --bg2: #d0d0d0;
+      --surface: #e4e4e4;
+      --border: rgba(0, 0, 0, 0.10);
+      --text: #111111;
+      --muted: #666666;
+      --faint: #999999;
+      --accent: #111111;
+      --white: #f5f5f5;
 
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+      --font: 'Inter', 'Helvetica Neue', sans-serif;
 
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --text-hero: clamp(3rem, 0.5rem + 7vw, 7rem);
+      --xs: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
+      --sm: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
+      --base: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      --lg: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+      --xl: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+      --hero: clamp(2.8rem, 1rem + 6vw, 7rem);
 
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-5: 1.25rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-10: 2.5rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --space-20: 5rem;
-      --space-24: 6rem;
-      --space-32: 8rem;
-
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --radius-full: 9999px;
-      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
-      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.25);
-      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.35);
-      --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.5);
-      --shadow-glow: 0 0 60px oklch(0.7 0.12 60 / 0.12);
-
-      --content-default: 960px;
-      --content-wide: 1200px;
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 18px;
+      --r-xl: 24px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    [data-theme="light"] {
-      --color-bg: #f7f5f0;
-      --color-surface: #f9f8f4;
-      --color-surface-2: #faf9f7;
-      --color-surface-offset: #f2ede8;
-      --color-surface-dynamic: #eae5df;
-      --color-divider: #ddd8d1;
-      --color-border: oklch(0.2 0.01 80 / 0.1);
-      --color-text: #1a1815;
-      --color-text-muted: #7a7570;
-      --color-text-faint: #bab5ae;
-      --color-text-inverse: #f9f8f4;
-      --color-primary: #9a6f2e;
-      --color-primary-hover: #7d5820;
-      --color-primary-active: #5c3f12;
-      --color-primary-highlight: #f0e6d3;
-    }
-
+    /* ── RESET ── */
     *,
     *::before,
     *::after {
@@ -99,17 +49,15 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 80px;
       -webkit-font-smoothing: antialiased
     }
 
     body {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--color-text);
-      background: var(--color-bg);
-      line-height: 1.65;
-      min-height: 100dvh;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100dvh
     }
 
     img {
@@ -118,373 +66,698 @@
       height: auto
     }
 
-    a,
-    button {
-      transition: all var(--transition)
+    a {
+      text-decoration: none;
+      color: inherit
     }
 
     button {
       cursor: pointer;
-      background: none;
-      border: none;
       font: inherit;
-      color: inherit
+      color: inherit;
+      border: none;
+      background: none
     }
 
     ul {
       list-style: none
     }
 
-    .container {
-      max-width: var(--content-default);
-      margin-inline: auto;
-      padding-inline: clamp(var(--space-4), 5vw, var(--space-12))
+    /* ── VIEWS ── */
+    .view {
+      display: none
     }
 
-    .container--wide {
-      max-width: var(--content-wide);
-      margin-inline: auto;
-      padding-inline: clamp(var(--space-4), 5vw, var(--space-12))
+    .view.active {
+      display: block
     }
 
-    section {
-      padding-block: clamp(var(--space-16), 8vw, var(--space-32))
-    }
-
+    /* ══════════════════════════════
+   NAV
+══════════════════════════════ */
     .nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
-      padding: var(--space-4) clamp(var(--space-4), 5vw, var(--space-12));
+      z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      backdrop-filter: blur(16px);
-      background: oklch(from var(--color-bg) l c h / 0.8);
-      border-bottom: 1px solid var(--color-border);
+      padding: 18px clamp(20px, 5vw, 60px);
+      background: oklch(from var(--bg) l c h / 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
+      font-size: var(--sm);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-logo:hover {
+      opacity: 0.6
+    }
+
+    .nav-right {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      font-family: var(--font-display);
-      font-size: var(--text-lg);
-      color: var(--color-text);
-      text-decoration: none;
+      gap: 32px
     }
 
-    .nav-logo svg {
-      width: 32px;
-      height: 32px
+    .nav-right a {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
     }
 
-    .nav-links {
-      display: flex;
-      gap: var(--space-8);
-      align-items: center
+    .nav-right a:hover {
+      color: var(--text)
     }
 
-    .nav-links a {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--color-primary)
-    }
-
-    .theme-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      display: flex;
+    .nav-back {
+      display: none;
       align-items: center;
-      justify-content: center;
-      border: 1px solid var(--color-border);
-      color: var(--color-text-muted);
+      gap: 8px;
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
     }
 
-    .theme-toggle:hover {
-      color: var(--color-primary);
-      border-color: var(--color-primary)
+    .nav-back:hover {
+      color: var(--text)
     }
 
+    .nav-back svg {
+      width: 14px;
+      height: 14px
+    }
+
+    .nav-back.visible {
+      display: flex
+    }
+
+    /* ══════════════════════════════
+   HERO
+══════════════════════════════ */
     .hero {
       min-height: 100dvh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: var(--space-16);
-      padding-top: 80px;
-      padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
-      max-width: var(--content-wide);
-      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 80px);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-eyebrow {
-      font-size: var(--text-xs);
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--bg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1
+    }
+
+    .hero-label {
+      font-size: var(--xs);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: var(--space-4);
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 500;
     }
 
     .hero-title {
-      font-family: var(--font-display);
-      font-size: var(--text-hero);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-6);
+      font-size: var(--hero);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 1100px;
     }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--color-primary)
+    .hero-title .dim {
+      color: var(--faint)
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: clamp(32px, 4vw, 56px);
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .hero-desc {
-      font-size: var(--text-base);
-      color: var(--color-text-muted);
-      max-width: 48ch;
-      margin-bottom: var(--space-8);
+      font-size: var(--base);
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.65;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: var(--space-4);
-      flex-wrap: wrap
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      padding: var(--space-3) var(--space-8);
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      font-size: var(--text-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-
-    .btn-primary {
-      background: var(--color-primary);
-      color: var(--color-text-inverse);
-      border: 2px solid var(--color-primary);
-    }
-
-    .btn-primary:hover {
-      background: var(--color-primary-hover);
-      border-color: var(--color-primary-hover)
-    }
-
-    .btn-ghost {
-      border: 1px solid var(--color-border);
-      color: var(--color-text);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary)
-    }
-
-    .hero-visual {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      box-shadow: var(--shadow-lg), var(--shadow-glow);
-    }
-
-    .hero-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover
-    }
-
-    .section-label {
-      font-size: var(--text-xs);
-      letter-spacing: 0.15em;
+    .hero-scroll {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: var(--space-4);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      line-height: 1.1;
-      margin-bottom: var(--space-6);
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--color-primary)
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: var(--space-16);
-      align-items: center;
-    }
-
-    .about-img-wrap {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-    }
-
-    .about-img-wrap img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover
-    }
-
-    .about-text p {
-      color: var(--color-text-muted);
-      max-width: 52ch;
-      margin-bottom: var(--space-4);
-    }
-
-    .skills-list {
+      color: var(--faint);
       display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--faint)
+    }
+
+    /* ══════════════════════════════
+   FILTER BAR
+══════════════════════════════ */
+    .filter-bar {
+      padding: 24px clamp(20px, 5vw, 60px);
+      display: flex;
+      gap: 8px;
       flex-wrap: wrap;
-      gap: var(--space-2);
-      margin-top: var(--space-6)
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      background: oklch(from var(--bg) l c h / 0.9);
+      backdrop-filter: blur(8px);
     }
 
-    .skill-tag {
-      font-size: var(--text-xs);
-      padding: var(--space-1) var(--space-3);
-      border-radius: var(--radius-full);
-      border: 1px solid var(--color-border);
-      color: var(--color-text-muted);
+    .filter-btn {
+      font-size: var(--xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s var(--ease);
     }
 
-    .works-grid {
+    .filter-btn:hover {
+      border-color: var(--text);
+      color: var(--text)
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text)
+    }
+
+    /* ══════════════════════════════
+   GALLERY
+══════════════════════════════ */
+    .gallery-section {
+      padding: clamp(24px, 3vw, 48px) clamp(20px, 5vw, 60px) 80px
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--space-4);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* bento: card 1 spans 2 cols */
+    .work-card:nth-child(1) {
+      grid-column: span 2
+    }
+
+    .work-card:nth-child(7) {
+      grid-column: span 2
+    }
+
+    .work-card:nth-child(13) {
+      grid-column: span 2
     }
 
     .work-card {
+      position: relative;
       overflow: hidden;
-      border-radius: var(--radius-xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      border-radius: var(--r-lg);
+      cursor: pointer;
+      background: var(--bg2);
+      aspect-ratio: 4/5;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
     }
 
     .work-card:nth-child(1) {
-      grid-column: span 8
+      aspect-ratio: 16/9
     }
 
-    .work-card:nth-child(2) {
-      grid-column: span 4
+    .work-card:nth-child(7) {
+      aspect-ratio: 16/9
     }
 
-    .work-card:nth-child(3) {
-      grid-column: span 4
+    .work-card:nth-child(13) {
+      aspect-ratio: 16/9
     }
 
-    .work-card:nth-child(4) {
-      grid-column: span 8
+    .work-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15)
     }
 
-    .work-img {
+    .work-card img {
       width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
     }
 
-    .work-card:nth-child(2) .work-img,
-    .work-card:nth-child(3) .work-img {
-      aspect-ratio: 4/5
+    .work-card:hover img {
+      transform: scale(1.04)
     }
 
-    .work-info {
-      padding: var(--space-4) var(--space-5);
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .work-card:hover .card-overlay {
+      opacity: 1
+    }
+
+    .card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 18px 18px;
+    }
+
+    .card-tags {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px
     }
 
-    .work-title {
-      font-size: var(--text-sm);
+    .card-tag {
+      font-size: var(--xs);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--r-xl);
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-title {
+      font-size: var(--lg);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-subtitle {
+      font-size: var(--xs);
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    /* always visible info for non-hover */
+    .card-info-static {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 14px 14px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+    }
+
+    .card-info-static .card-title {
+      font-size: var(--base)
+    }
+
+    /* ══════════════════════════════
+   PROJECT PAGE
+══════════════════════════════ */
+    #project-view {
+      padding-top: 80px
+    }
+
+    .project-hero {
+      padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 60px) clamp(32px, 4vw, 56px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-eyebrow {
+      font-size: var(--xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .project-title-big {
+      font-size: clamp(2.5rem, 1rem+5vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .project-meta-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-meta-item label {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .project-meta-item span {
+      font-size: var(--sm);
       font-weight: 600
     }
 
-    .work-tag {
-      font-size: var(--text-xs);
-      color: var(--color-text-muted)
+    .project-tags-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 20px
     }
 
-    .tools-section {
-      background: var(--color-surface)
+    .project-tag {
+      font-size: var(--xs);
+      padding: 4px 12px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
-    .tools-grid {
+    .project-body {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
-      gap: var(--space-4);
-      margin-top: var(--space-10);
+      grid-template-columns: 1fr 340px;
+      gap: clamp(32px, 4vw, 64px);
+      padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 60px);
+      align-items: start;
     }
 
-    .tool-card {
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-6);
+    .project-desc-block h3 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 12px;
     }
 
-    .tool-name {
-      font-size: var(--text-sm);
-      font-weight: 600;
-      margin-bottom: var(--space-1)
+    .project-desc-block p {
+      font-size: var(--base);
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 16px;
+      max-width: 66ch;
     }
 
-    .tool-desc {
-      font-size: var(--text-xs);
-      color: var(--color-text-muted)
+    .project-bullets {
+      margin: 16px 0 24px 0
     }
 
+    .project-bullets li {
+      font-size: var(--base);
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .project-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--faint);
+    }
+
+    .project-results {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-top: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .project-results h4 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .result-stat {
+      margin-bottom: 16px
+    }
+
+    .result-num {
+      font-size: var(--xl);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .result-label {
+      font-size: var(--xs);
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .project-gallery {
+      padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 5vw, 80px);
+    }
+
+    .project-gallery h3 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .project-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .project-gallery-grid img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: var(--r-md);
+    }
+
+    .project-gallery-grid .tall {
+      aspect-ratio: 4/5
+    }
+
+    .project-sidebar {
+      position: sticky;
+      top: 96px
+    }
+
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card h4 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .project-nav-bottom {
+      padding: 40px clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .proj-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 12px 20px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      transition: all 0.2s var(--ease);
+    }
+
+    .proj-nav-btn:hover {
+      color: var(--text);
+      border-color: var(--text)
+    }
+
+    .proj-nav-btn svg {
+      width: 16px;
+      height: 16px
+    }
+
+    /* ══════════════════════════════
+   CONTACT SECTION
+══════════════════════════════ */
     .contact-section {
-      text-align: center
+      padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
     }
 
-    .contact-section .section-title {
-      font-size: var(--text-hero)
+    .contact-title {
+      font-size: clamp(2.5rem, 1rem+4vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 0.95;
     }
 
-    .contact-section p {
-      color: var(--color-text-muted);
-      max-width: 44ch;
-      margin-inline: auto;
-      margin-bottom: var(--space-8);
+    .contact-title .dim {
+      color: var(--faint)
     }
 
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      transition: all 0.25s var(--ease);
+      background: var(--surface);
+    }
+
+    .contact-link:hover {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+      transform: translateX(4px)
+    }
+
+    .contact-link-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px
+    }
+
+    .contact-link-platform {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .contact-link:hover .contact-link-platform {
+      color: rgba(255, 255, 255, 0.6)
+    }
+
+    .contact-link-handle {
+      font-size: var(--base);
+      font-weight: 600
+    }
+
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.4
+    }
+
+    /* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
     footer {
-      padding-block: var(--space-8);
-      border-top: 1px solid var(--color-border);
+      padding: 24px clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: var(--space-4);
-      max-width: var(--content-wide);
-      margin-inline: auto;
-      padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
-      font-size: var(--text-xs);
-      color: var(--color-text-faint);
+      gap: 12px;
+      font-size: var(--xs);
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
+    /* ══════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════ */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .7s cubic-bezier(0.16, 1, 0.3, 1), transform .7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease)
     }
 
     .reveal.visible {
@@ -492,33 +765,79 @@
       transform: translateY(0)
     }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding-top: 100px;
-        padding-bottom: var(--space-16)
+    .reveal-d1 {
+      transition-delay: .1s
+    }
+
+    .reveal-d2 {
+      transition-delay: .2s
+    }
+
+    .reveal-d3 {
+      transition-delay: .3s
+    }
+
+    /* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+    @media(max-width:900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr)
       }
 
-      .hero-visual {
-        max-height: 420px;
+      .work-card:nth-child(1),
+      .work-card:nth-child(7),
+      .work-card:nth-child(13) {
+        grid-column: span 2;
         aspect-ratio: 16/9
       }
 
-      .about-grid {
+      .project-body {
         grid-template-columns: 1fr
       }
 
-      .works-grid {
+      .project-sidebar {
+        position: static
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr
+      }
+
+      .project-gallery-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:600px) {
+      .gallery-grid {
         grid-template-columns: 1fr
       }
 
       .work-card:nth-child(n) {
-        grid-column: span 1
+        grid-column: span 1;
+        aspect-ratio: 4/5
       }
 
-      .nav-links {
+      .work-card:nth-child(1),
+      .work-card:nth-child(7),
+      .work-card:nth-child(13) {
+        aspect-ratio: 16/9
+      }
+
+      .nav-right {
         display: none
+      }
+
+      .project-gallery-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important
       }
     }
   </style>
@@ -526,187 +845,573 @@
 
 <body>
 
+  <!-- NAV -->
   <nav class="nav">
-    <a href="#" class="nav-logo">
-      <svg viewBox="0 0 32 32" fill="none" aria-label="Logo">
-        <rect width="32" height="32" rx="8" fill="var(--color-primary)" opacity="0.15" />
-        <path d="M8 24 L16 8 L24 24" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <circle cx="16" cy="17" r="2.5" fill="var(--color-primary)" />
-      </svg>
-      AI Creator
-    </a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#works">Works</a>
-      <a href="#tools">Tools</a>
-      <a href="#contact">Contact</a>
+    <div class="nav-logo" onclick="showHome()">@SAVIKTORIAI</div>
+    <div class="nav-right">
+      <a href="#works" onclick="showHome()">Works</a>
+      <a href="#contact-anchor"
+        onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
     </div>
-    <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">◐</button>
+    <button class="nav-back" id="nav-back" onclick="showHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+      </svg>
+      Back to works
+    </button>
   </nav>
 
-  <main>
-    <section style="padding-top:0; padding-bottom:0;">
-      <div class="hero">
-        <div>
-          <div class="hero-eyebrow reveal">AI Content Creator</div>
-          <h1 class="hero-title reveal">Creating<br><em>visual worlds</em><br>with AI</h1>
-          <p class="hero-desc reveal">
-            Видеоконтент, промпт-инжиниринг и AI-генерация для IT-брендов и tech-конференций. Midjourney · Kling ·
-            Seedance.
+  <!-- ══ HOME VIEW ══ -->
+  <div class="view active" id="home-view">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-label reveal">AI Content Creator · Milano</div>
+        <h1 class="hero-title reveal reveal-d1">
+          Creating <span class="dim">the future</span><br>
+          of content <span class="dim">powered</span><br>
+          by AI
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-desc reveal reveal-d2">
+            AI-generated videos, visual campaigns and digital storytelling
+            for brands and personal projects.
           </p>
-          <div class="hero-actions reveal">
-            <a href="#works" class="btn-primary">View Works</a>
-            <a href="#contact" class="btn-ghost">Get in Touch</a>
-          </div>
-        </div>
-        <div class="hero-visual reveal">
-          <img src="https://picsum.photos/seed/aicreator-hero/800/1000" alt="AI-generated visual artwork" width="800"
-            height="1000" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-img-wrap reveal">
-            <img src="https://picsum.photos/seed/aicreator-portrait/600/800" alt="Content creator portrait" width="600"
-              height="800" loading="lazy">
-          </div>
-          <div class="about-text">
-            <div class="section-label reveal">About me</div>
-            <h2 class="section-title reveal">Where tech meets<br><em>visual storytelling</em></h2>
-            <p class="reveal">
-              Я — контент-криэйтор и SMM-специалист для IT-организаций. Специализируюсь на создании AI-видео и
-              визуального контента для tech-конференций и сообществ.
-            </p>
-            <p class="reveal">
-              Работаю с Midjourney, Seedance и Kling 3.0 — от промпта до финального ролика. Веду Telegram-каналы и
-              создаю визуальный язык для IT-брендов.
-            </p>
-            <div class="skills-list reveal">
-              <span class="skill-tag">Midjourney</span>
-              <span class="skill-tag">Kling 3.0</span>
-              <span class="skill-tag">Seedance</span>
-              <span class="skill-tag">Prompt Engineering</span>
-              <span class="skill-tag">AI Video</span>
-              <span class="skill-tag">SMM</span>
-            </div>
+          <div class="hero-scroll reveal reveal-d3">
+            <span class="scroll-line"></span>
+            scroll to explore
           </div>
         </div>
       </div>
     </section>
 
-    <section id="works">
-      <div class="container--wide">
-        <div class="section-label reveal">Portfolio</div>
-        <h2 class="section-title reveal">Selected <em>Works</em></h2>
-        <div class="works-grid">
-          <div class="work-card reveal">
-            <img class="work-img" src="https://picsum.photos/seed/aiwork1/900/506"
-              alt="Cybersecurity conference promo video" width="900" height="506" loading="lazy">
-            <div class="work-info">
-              <span class="work-title">Cyberconf Promo Reel</span>
-              <span class="work-tag">Kling · Midjourney</span>
-            </div>
-          </div>
-          <div class="work-card reveal">
-            <img class="work-img" src="https://picsum.photos/seed/aiwork2/500/625" alt="AI visual series for IT brand"
-              width="500" height="625" loading="lazy">
-            <div class="work-info">
-              <span class="work-title">Tech Brand Visuals</span>
-              <span class="work-tag">Midjourney</span>
-            </div>
-          </div>
-          <div class="work-card reveal">
-            <img class="work-img" src="https://picsum.photos/seed/aiwork3/500/625" alt="Seedance video for social media"
-              width="500" height="625" loading="lazy">
-            <div class="work-info">
-              <span class="work-title">Social Content Series</span>
-              <span class="work-tag">Seedance</span>
-            </div>
-          </div>
-          <div class="work-card reveal">
-            <img class="work-img" src="https://picsum.photos/seed/aiwork4/900/506" alt="Telegram channel visual content"
-              width="900" height="506" loading="lazy">
-            <div class="work-info">
-              <span class="work-title">Telegram Visual Pack</span>
-              <span class="work-tag">AI Visuals</span>
-            </div>
-          </div>
-        </div>
+    <!-- FILTER -->
+    <div class="filter-bar" id="works">
+      <button class="filter-btn active" onclick="filterCards(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterCards(this,'animation')">Animation</button>
+      <button class="filter-btn" onclick="filterCards(this,'static')">Static Images</button>
+      <button class="filter-btn" onclick="filterCards(this,'video')">Video</button>
+      <button class="filter-btn" onclick="filterCards(this,'brand')">Brand</button>
+      <button class="filter-btn" onclick="filterCards(this,'personal')">Personal</button>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="gallery-section">
+      <div class="gallery-grid" id="gallery-grid">
       </div>
     </section>
 
-    <section id="tools" class="tools-section">
-      <div class="container">
-        <div class="section-label reveal">My Toolkit</div>
-        <h2 class="section-title reveal">Tools & <em>Platforms</em></h2>
-        <div class="tools-grid">
-          <div class="tool-card reveal">
-            <div class="tool-name">Midjourney v7</div>
-            <div class="tool-desc">Image generation, art direction, prompt crafting.</div>
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact-anchor">
+      <div>
+        <h2 class="contact-title reveal">
+          Let's <span class="dim">create</span><br>
+          something<br>
+          <span class="dim">together</span>
+        </h2>
+      </div>
+      <div class="contact-links">
+        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener" class="contact-link reveal">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Telegram</span>
+            <span class="contact-link-handle">@saviktoriai</span>
           </div>
-          <div class="tool-card reveal">
-            <div class="tool-name">Kling 3.0</div>
-            <div class="tool-desc">Cinematic AI video generation for promos and reels.</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener"
+          class="contact-link reveal reveal-d1">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Instagram</span>
+            <span class="contact-link-handle">@saviktoriai</span>
           </div>
-          <div class="tool-card reveal">
-            <div class="tool-name">Seedance</div>
-            <div class="tool-desc">Fast iterative AI video workflows for social media.</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+        <a href="mailto:viktoriiasaraeva@gmail.com" class="contact-link reveal reveal-d2">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Email</span>
+            <span class="contact-link-handle">viktoriiasaraeva@gmail.com</span>
           </div>
-          <div class="tool-card reveal">
-            <div class="tool-name">Prompt Engineering</div>
-            <div class="tool-desc">Structured prompts for precise visual results.</div>
-          </div>
-        </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
       </div>
     </section>
 
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <div class="section-label">Let's work together</div>
-        <h2 class="section-title">Ready to create<br><em>something?</em></h2>
-        <p>Есть проект, конференция или идея? Напишите — обсудим, как сделать визуальный контент, который запомнят.</p>
-        <div class="hero-actions" style="justify-content:center;">
-          <a href="mailto:hello@example.com" class="btn-primary">Write to me</a>
-          <a href="https://t.me/username" class="btn-ghost" target="_blank" rel="noopener noreferrer">Telegram</a>
-        </div>
-      </div>
-    </section>
-  </main>
+    <footer>
+      <span>© 2026 @SAVIKTORIAI</span>
+      <span>AI Content Creator · Milano, IT</span>
+    </footer>
+  </div>
 
-  <footer>
-    <span>© 2026 AI Creator</span>
-    <span>Milano · AI Video · Prompt Design</span>
-  </footer>
+  <!-- ══ PROJECT VIEW ══ -->
+  <div class="view" id="project-view">
+    <div id="project-content"></div>
+  </div>
 
   <script>
-    (function () {
-      const t = document.querySelector('[data-theme-toggle]');
-      const r = document.documentElement;
-      let d = r.getAttribute('data-theme') || 'dark';
-      t && t.addEventListener('click', () => {
-        d = d === 'dark' ? 'light' : 'dark';
-        r.setAttribute('data-theme', d);
-      });
-    })();
+    // ── PROJECT DATA ──
+    const projects = [
+      {
+        id: 'winx',
+        title: 'Winx Live-Action',
+        subtitle: 'Fairy transformation',
+        tags: ['Animation', 'Consistent Character'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/winx-thumb/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'Driven by a sense of nostalgia for the iconic Winx universe, I created a series of AI-powered live-action transformation videos featuring the fairies.',
+        bullets: [
+          'Developed custom AI models representing three Winx characters, reimagined in a realistic live-action style.',
+          'Designed transformation costumes — both pre- and post-transformation — preserving original aesthetic while enhancing realism.',
+          'Produced short-form action videos showcasing transformation sequences with cinematic visuals and dynamic editing.'
+        ],
+        results: [{ num: '920K+', label: 'Total views across platforms' }, { num: 'Viral', label: 'Nostalgia-driven reach' }],
+        gallery: ['https://picsum.photos/seed/winx1/900/506', 'https://picsum.photos/seed/winx2/900/506', 'https://picsum.photos/seed/winx3/900/506']
+      },
+      {
+        id: 'axolotl',
+        title: 'Axolotl The Stealer',
+        subtitle: 'Cartoon',
+        tags: ['Animation', 'Consistent Character'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/axolotl/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'An animated cartoon series featuring Axolotl — a charming thief navigating a whimsical world. Full character design and animation with consistent AI-generated character.',
+        bullets: [
+          'Developed a unique cartoon character with consistent appearance across all scenes.',
+          'Created multi-episode animated sequences using AI video generation tools.',
+          'Built a narrative arc that resonated with animation enthusiasts online.'
+        ],
+        results: [{ num: 'Series', label: 'Multi-episode animated content' }],
+        gallery: ['https://picsum.photos/seed/axo1/900/506', 'https://picsum.photos/seed/axo2/900/506', 'https://picsum.photos/seed/axo3/900/506']
+      },
+      {
+        id: 'postcards',
+        title: 'Postcards',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static', 'personal'],
+        thumb: 'https://picsum.photos/seed/postcards/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A series of illustrated postcard-style visuals exploring surreal and emotional narratives through AI-generated imagery.',
+        bullets: [
+          'Designed a cohesive visual language across a series of postcard illustrations.',
+          'Explored surrealism, emotion and narrative in static AI-generated compositions.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/pc1/900/506', 'https://picsum.photos/seed/pc2/900/506', 'https://picsum.photos/seed/pc3/900/506']
+      },
+      {
+        id: 'frozen',
+        title: 'Frozen Live-Action',
+        subtitle: 'Personal project',
+        tags: ['Animation', 'Consistent Character'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/frozen/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A live-action reimagining of the Frozen universe using AI-generated video, bringing Anna to life in a cinematic, photorealistic style.',
+        bullets: [
+          'Reconstructed iconic Frozen scenes with AI live-action characters.',
+          'Maintained consistent character appearance across multiple generated clips.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/fr1/900/506', 'https://picsum.photos/seed/fr2/900/506', 'https://picsum.photos/seed/fr3/900/506']
+      },
+      {
+        id: 'whycgi',
+        title: 'Why.CGI',
+        subtitle: 'Thanksgiving Day Reel',
+        tags: ['Animation'],
+        category: ['animation', 'brand'],
+        thumb: 'https://picsum.photos/seed/whycgi/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A CGI-style Thanksgiving Day reel created for Why.CGI — blending hyper-realistic 3D aesthetics with AI video generation tools.',
+        bullets: [
+          'Produced a festive short-form reel with CGI-quality visuals using AI tools.',
+          'Combined product placement and seasonal storytelling.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/cgi1/900/506', 'https://picsum.photos/seed/cgi2/900/506', 'https://picsum.photos/seed/cgi3/900/506']
+      },
+      {
+        id: 'alfabank',
+        title: 'Alfa Bank × Changellenge',
+        subtitle: 'Telegram-based game',
+        tags: ['Random Development', 'Static Images'],
+        category: ['brand', 'static'],
+        thumb: 'https://picsum.photos/seed/alfabank/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A Telegram-based interactive game and visual campaign for Alfa Bank in collaboration with Changellenge — combining AI visuals with gamification mechanics.',
+        bullets: [
+          'Designed all visual assets for the Telegram mini-game interface.',
+          'Created a consistent character and visual style for the game world.',
+          'Collaborated on campaign strategy to drive user engagement.'
+        ],
+        results: [{ num: '33 640', label: 'Колеса фортуны spun' }],
+        gallery: ['https://picsum.photos/seed/alfa1/900/506', 'https://picsum.photos/seed/alfa2/900/506', 'https://picsum.photos/seed/alfa3/900/506']
+      },
+      {
+        id: 'franui',
+        title: 'Franuí Halloween',
+        subtitle: 'Personal project',
+        tags: ['Animation', 'Physical Product Implementation', 'Sound Design', 'Consistent Character'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/franui/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A Halloween-themed AI video campaign featuring the Ghostface character enjoying Franuí coffee — combining horror aesthetics with lifestyle product placement.',
+        bullets: [
+          'Created a consistent Ghostface character integrated with real product.',
+          'Combined horror visual language with lifestyle brand aesthetic.',
+          'Produced with custom sound design for maximum atmosphere.'
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/fran1/900/506', 'https://picsum.photos/seed/fran2/900/506', 'https://picsum.photos/seed/fran3/900/506']
+      },
+      {
+        id: 'miumiu',
+        title: 'Miu Miu Halloween',
+        subtitle: 'Personal project',
+        tags: ['Animation', 'Physical Product Implementation'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/miumiu/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A Halloween campaign concept for Miu Miu — merging high fashion aesthetics with dark, cinematic AI-generated imagery.',
+        bullets: [
+          'Integrated Miu Miu product into a dark, editorial Halloween visual world.',
+          'Created a series of AI videos that feel native to luxury brand communication.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/mm1/900/506', 'https://picsum.photos/seed/mm2/900/506', 'https://picsum.photos/seed/mm3/900/506']
+      },
+      {
+        id: 'postcards2',
+        title: 'Postcards — Future',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static', 'personal'],
+        thumb: 'https://picsum.photos/seed/future/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A vibrant illustrated series exploring optimistic visions of the future — colourful, bold, and rooted in a retro-futurist visual language.',
+        bullets: [
+          'Created a series of bright, editorial illustrations with a retro-futurist feel.',
+          'Explored themes of technology, freedom and community.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/fut1/900/506', 'https://picsum.photos/seed/fut2/900/506', 'https://picsum.photos/seed/fut3/900/506']
+      },
+      {
+        id: 'milfey1',
+        title: 'Milfey × Qute',
+        subtitle: 'Instagram Reel',
+        tags: ['Animation'],
+        category: ['animation', 'brand'],
+        thumb: 'https://picsum.photos/seed/milfey1/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'An Instagram Reel for Milfey × Qute — a beauty and lifestyle collaboration brought to life through AI-generated video storytelling.',
+        bullets: [
+          'Produced a short-form Instagram Reel optimised for engagement.',
+          'Used AI video tools to create cinematic beauty content.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/mlf1a/900/506', 'https://picsum.photos/seed/mlf1b/900/506', 'https://picsum.photos/seed/mlf1c/900/506']
+      },
+      {
+        id: 'milfey2',
+        title: 'Milfey × Qute',
+        subtitle: 'AI-Visuals',
+        tags: ['Static Images'],
+        category: ['static', 'brand'],
+        thumb: 'https://picsum.photos/seed/milfey2/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'Static visual campaign for Milfey × Qute — editorial AI-generated images designed for social media and campaign materials.',
+        bullets: [
+          'Created a series of polished static visuals for social campaign.',
+          'Maintained brand consistency across all generated images.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/mlf2a/900/506', 'https://picsum.photos/seed/mlf2b/900/506', 'https://picsum.photos/seed/mlf2c/900/506']
+      },
+      {
+        id: 'milfey3',
+        title: 'Milfey × Qute',
+        subtitle: 'Instagram Reel',
+        tags: ['Animation', 'Consistent Character'],
+        category: ['animation', 'brand'],
+        thumb: 'https://picsum.photos/seed/milfey3/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A second Instagram Reel for Milfey × Qute featuring a consistent AI character throughout the story.',
+        bullets: [
+          'Developed a recurring character with consistent appearance across the reel.',
+          'Blended brand storytelling with character-driven narrative.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/mlf3a/900/506', 'https://picsum.photos/seed/mlf3b/900/506', 'https://picsum.photos/seed/mlf3c/900/506']
+      },
+      {
+        id: 'golf',
+        title: 'Golf Is Bigger Than Just A Game',
+        subtitle: 'Higgsfield competition',
+        tags: ['Static Images'],
+        category: ['static', 'brand'],
+        thumb: 'https://picsum.photos/seed/golf/900/506',
+        year: '2024',
+        type: 'Competition Entry',
+        description: 'A visual storytelling project for the Higgsfield competition — reframing golf as a cultural and social phenomenon beyond sport.',
+        bullets: [
+          'Created a compelling visual narrative around golf culture and community.',
+          'Competition entry combining editorial photography aesthetics with AI generation.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/golf1/900/506', 'https://picsum.photos/seed/golf2/900/506', 'https://picsum.photos/seed/golf3/900/506']
+      },
+      {
+        id: 'mood',
+        title: 'Mood Video',
+        subtitle: 'Personal project',
+        tags: ['Animation', 'Sound Design'],
+        category: ['animation', 'personal'],
+        thumb: 'https://picsum.photos/seed/mood/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'An atmospheric mood video exploring emotional landscapes through AI-generated imagery paired with carefully selected sound design.',
+        bullets: [
+          'Created a visual mood journey using AI-generated cinematic clips.',
+          'Sound design and pacing crafted to enhance emotional resonance.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/mood1/900/506', 'https://picsum.photos/seed/mood2/900/506', 'https://picsum.photos/seed/mood3/900/506']
+      },
+      {
+        id: 'clyo',
+        title: 'Clyo Health',
+        subtitle: 'Website video',
+        tags: ['Animation'],
+        category: ['animation', 'brand', 'video'],
+        thumb: 'https://picsum.photos/seed/clyo/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A website hero video for Clyo Health — a health-tech brand. Clean, modern and trustworthy visual storytelling using AI video generation.',
+        bullets: [
+          'Produced a full-screen website hero video communicating brand values.',
+          'Balanced clinical clarity with warm, human visual language.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/clyo1/900/506', 'https://picsum.photos/seed/clyo2/900/506', 'https://picsum.photos/seed/clyo3/900/506']
+      },
+      {
+        id: 'tremessis',
+        title: 'Tremessis',
+        subtitle: 'AI-visuals',
+        tags: ['Static Images', 'Iconic Images', 'Consistent Character', 'Physical Product Implementation'],
+        category: ['static', 'brand'],
+        thumb: 'https://picsum.photos/seed/tremessis/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A full AI-visual campaign for Tremessis — combining iconic character work with physical product integration in high-fashion editorial style.',
+        bullets: [
+          'Designed a series of editorial stills featuring a consistent AI character.',
+          'Integrated real products seamlessly into AI-generated environments.',
+          'Developed an iconic visual identity for the brand campaign.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/trem1/900/506', 'https://picsum.photos/seed/trem2/900/506', 'https://picsum.photos/seed/trem3/900/506']
+      },
+      {
+        id: 'youwanna',
+        title: 'You Wanna',
+        subtitle: "Woman is a winner' campaign",
+        tags: ['Static Images', 'Consistent Character', 'Physical Product Implementation'],
+        category: ['static', 'brand'],
+        thumb: 'https://picsum.photos/seed/youwanna/800/1000',
+        year: '2024',
+        type: 'Brand Project',
+        description: "A powerful campaign celebrating women's strength and ambition — 'Woman is a winner' — featuring AI-generated visuals of a strong, consistent female character.",
+        bullets: [
+          "Created a bold visual language around strength, femininity and winning.",
+          "Developed consistent female character across all campaign materials.",
+          "Integrated brand product into empowering narrative visuals.",
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/yw1/900/506', 'https://picsum.photos/seed/yw2/900/506', 'https://picsum.photos/seed/yw3/900/506']
+      },
+      {
+        id: 'hiding',
+        title: 'Hiding In A Shell',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static', 'personal'],
+        thumb: 'https://picsum.photos/seed/hiding/800/1000',
+        year: '2024',
+        type: 'Personal Project',
+        description: 'A contemplative editorial series exploring vulnerability and protection — a figure hiding within a shell, surrounded by organic textures.',
+        bullets: [
+          'Explored themes of vulnerability, solitude and nature through AI imagery.',
+          'Built a dreamlike, organic visual world using AI image generation.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/hide1/900/506', 'https://picsum.photos/seed/hide2/900/506', 'https://picsum.photos/seed/hide3/900/506']
+      },
+      {
+        id: 'labrehab',
+        title: 'Labrehab',
+        subtitle: 'Video-ad',
+        tags: ['Video'],
+        category: ['video', 'brand'],
+        thumb: 'https://picsum.photos/seed/labrehab/900/506',
+        year: '2024',
+        type: 'Brand Project',
+        description: 'A short-form video advertisement for Labrehab — combining sports aesthetics with AI-generated visuals for a dynamic, high-energy brand video.',
+        bullets: [
+          'Produced a branded video-ad with high visual energy and sports aesthetic.',
+          'Used AI video generation to achieve cinematic quality at fast turnaround.',
+        ],
+        results: [],
+        gallery: ['https://picsum.photos/seed/lab1/900/506', 'https://picsum.photos/seed/lab2/900/506', 'https://picsum.photos/seed/lab3/900/506']
+      }
+    ];
 
-    (function () {
-      const els = document.querySelectorAll('.reveal');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
+    // ── RENDER GALLERY ──
+    function renderGallery(filter = 'all') {
+      const grid = document.getElementById('gallery-grid');
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category.includes(filter));
+      grid.innerHTML = filtered.map((p, i) => `
+    <div class="work-card" data-category="${p.category.join(' ')}" onclick="showProject('${p.id}')">
+      <img src="${p.thumb}" alt="${p.title}" width="800" height="1000" loading="${i < 6 ? 'eager' : 'lazy'}">
+      <div class="card-info-static">
+        <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+        <div class="card-title">${p.title}</div>
+        <div class="card-subtitle">${p.subtitle}</div>
+      </div>
+      <div class="card-overlay"></div>
+    </div>
+  `).join('');
+      observeReveal();
+    }
+
+    function filterCards(btn, filter) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGallery(filter);
+    }
+
+    // ── SHOW PROJECT ──
+    function showProject(id) {
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+      const idx = projects.indexOf(p);
+      const prev = projects[idx - 1];
+      const next = projects[idx + 1];
+
+      const resultsHTML = p.results.length ? `
+    <div class="project-results">
+      <h4>Results</h4>
+      ${p.results.map(r => `
+        <div class="result-stat">
+          <div class="result-num">${r.num}</div>
+          <div class="result-label">${r.label}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+      document.getElementById('project-content').innerHTML = `
+    <div class="project-hero">
+      <div class="project-eyebrow">${p.type} · ${p.year}</div>
+      <h1 class="project-title-big">${p.title}</h1>
+      <div class="project-tags-row">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+      <div class="project-meta-row">
+        <div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div>
+        <div class="project-meta-item"><label>Type</label><span>${p.type}</span></div>
+        <div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-desc-block">
+        <h3>About the project</h3>
+        <p>${p.description}</p>
+        <ul class="project-bullets">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+        ${resultsHTML}
+      </div>
+      <div class="project-sidebar">
+        <div class="sidebar-card">
+          <h4>Quick info</h4>
+          ${p.tags.map(t => `<div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">${t}</div>`).join('')}
+        </div>
+        <div class="sidebar-card" style="background:var(--text);color:var(--white)">
+          <h4 style="color:rgba(255,255,255,0.5)">Get in touch</h4>
+          <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">Interested in a similar project?</p>
+          <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px">
+            viktoriiasaraeva@gmail.com →
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-gallery">
+      <h3>Gallery</h3>
+      <div class="project-gallery-grid">
+        ${p.gallery.map((g, i) => `<img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="506" loading="lazy" class="${i === 0 ? '' : ''}"/>`).join('')}
+      </div>
+    </div>
+    <div class="project-nav-bottom">
+      ${prev ? `<button class="proj-nav-btn" onclick="showProject('${prev.id}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+        ${prev.title}
+      </button>` : '<div></div>'}
+      ${next ? `<button class="proj-nav-btn" onclick="showProject('${next.id}')">
+        ${next.title}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M14 5l7 7-7 7"/></svg>
+      </button>` : '<div></div>'}
+    </div>
+  `;
+
+      document.getElementById('home-view').classList.remove('active');
+      document.getElementById('project-view').classList.add('active');
+      document.getElementById('nav-back').classList.add('visible');
+      document.querySelector('.nav-logo').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showHome() {
+      document.getElementById('project-view').classList.remove('active');
+      document.getElementById('home-view').classList.add('active');
+      document.getElementById('nav-back').classList.remove('visible');
+      document.querySelector('.nav-logo').style.display = '';
+      window.scrollTo({ top: 0 });
+      observeReveal();
+    }
+
+    // ── SCROLL REVEAL ──
+    function observeReveal() {
+      const els = document.querySelectorAll('.reveal:not(.visible)');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } });
+      }, { threshold: 0.1 });
       els.forEach(el => obs.observe(el));
-    })();
-  </script>
+    }
 
+    // ── INIT ──
+    renderGallery();
+    observeReveal();
+  </script>
 </body>
 
 </html>

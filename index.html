@@ -1015,24 +1015,26 @@
         gallery: ['./22-2.webp', './22-3.webp', './22-4.webp']
       },
       {
-        id: 'frozen',
-        title: 'Frozen Live-Action',
-        subtitle: 'Personal project',
-        tags: ['Video'],
-        category: ['video'],
-        thumb: './23.png',
-        year: '2025',
-        type: 'Personal Project',
-        galleryStyle: 'slider-169',
-        description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
-        bullets: [
-          'Explored adaptation of a known animated universe into AI live-action visuals.',
-          'Focused on mood, costume realism and believable character styling.',
-          'Used AI tools to achieve a dreamy but grounded visual language.'
-        ],
-        results: [],
-        gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
-      },
+  id: 'frozen',
+  title: 'Frozen Live-Action',
+  subtitle: 'Personal project',
+  tags: ['Video'],
+  category: ['video'],
+  thumb: './23.png',
+  year: '2025',
+  type: 'Personal Project',
+  galleryStyle: 'grid-34',
+  videoWide: true,
+  videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
+  description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
+  bullets: [
+    'Explored adaptation of a known animated universe into AI live-action visuals.',
+    'Focused on mood, costume realism and believable character styling.',
+    'Used AI tools to achieve a dreamy but grounded visual language.'
+  ],
+  results: [],
+  gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
+},
       {
         id: 'whycgi',
         title: 'Why.CGI',
@@ -1472,6 +1474,27 @@
       `;
     }
 
+    function buildWideVideo(p) {
+  if (!p.videoWide) return '';
+
+  return `
+    <div class="project-video">
+      <h3>Video</h3>
+      <div class="project-video-frame ratio-169">
+        <div class="project-video-frame-inner">
+          <iframe
+            src="${p.videoEmbed || ''}"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="${p.title} video">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  `;
+}
+    
     function showProject(id) {
       const p = projects.find(x => x.id === id);
       if (!p) return;
@@ -1537,6 +1560,7 @@
         </div>
 
         ${buildVideoOnly(p)}
+        ${buildWideVideo(p)}
         ${buildVideoStrip(p)}
         ${buildGallery(p)}
 

@@ -557,15 +557,21 @@
     }
 
     .project-gallery-grid.slider-169 {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 100%;
-      gap: 0;
-      overflow: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      border-radius: var(--r-lg);
-    }
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  border-radius: var(--r-lg);
+  scrollbar-width: none;
+}
+
+.project-gallery-grid.slider-169::-webkit-scrollbar {
+  display: none;
+}
 
     .project-gallery-grid.slider-169 .slide {
       scroll-snap-align: start;

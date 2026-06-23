@@ -400,7 +400,8 @@
     .project-desc-block h3,
     .project-gallery h3,
     .project-video h3,
-    .project-video-strip h3 {
+    .project-video-strip h3,
+    .project-copy-section h3 {
       font-size: var(--xs);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -409,12 +410,17 @@
       margin-bottom: 12px;
     }
 
-    .project-desc-block p {
+    .project-desc-block p,
+    .project-copy-section p {
       font-size: var(--base);
       color: var(--text);
       line-height: 1.75;
       margin-bottom: 16px;
       max-width: 66ch;
+    }
+
+    .project-copy-section {
+      margin-bottom: 28px;
     }
 
     .project-bullets {
@@ -435,6 +441,24 @@
       position: absolute;
       left: 0;
       color: var(--faint);
+    }
+
+    .deliverables-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .deliverable-chip {
+      font-size: var(--xs);
+      padding: 6px 12px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: var(--surface);
     }
 
     .project-results {
@@ -1061,12 +1085,15 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-169',
-        description: 'Driven by a sense of nostalgia for the iconic Winx universe, I created a series of AI-powered live-action transformation videos featuring the fairies.',
-        bullets: [
-          'Developed custom AI models representing three Winx characters, reimagined in a realistic live-action style.',
-          'Designed transformation costumes, including both pre- and post-transformation looks, while preserving the original aesthetic.',
-          'Produced short-form action videos with cinematic visuals, dynamic editing, and high-impact transformation effects.'
+        overview: 'A nostalgic AI-powered live-action reinterpretation of the Winx universe, designed as a cinematic fan-driven short-form series.',
+        whatWasDone: [
+          'Developed custom AI character models for three Winx fairies.',
+          'Designed pre- and post-transformation looks inspired by the original universe.',
+          'Created cinematic transformation sequences for short-form video.',
+          'Built a visually recognizable fantasy world with a live-action feel.'
         ],
+        useCase: 'Social series / fan-driven launch concept',
+        deliverables: ['Reels', 'Concepts', 'AI avatars', 'Visual variations'],
         results: [
           { num: '2.2M+', label: 'Total views across platforms' },
           { num: 'Viral', label: 'Nostalgia-driven traction' }
@@ -1089,12 +1116,15 @@
         type: 'Personal Project',
         galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'https://kinescope.io/bKxPN5Jx5Uhz8hNY1Mj7PH',
-        description: 'A Halloween mood project mixing recognizable horror imagery with product placement and cozy cinematic framing.',
-        bullets: [
-          'Combined pop-culture horror with a product-centered setup.',
-          'Built a strong seasonal visual mood using lighting and composition.',
-          'Focused on atmosphere and meme-like memorability.'
+        overview: 'A Halloween-themed mood project combining horror references, product placement and short-form cinematic storytelling.',
+        whatWasDone: [
+          'Created a seasonal visual concept with strong Halloween cues.',
+          'Integrated the product into a recognizable horror-inspired setup.',
+          'Built a cinematic vertical reel for social media.',
+          'Focused on atmosphere, mood and visual memorability.'
         ],
+        useCase: 'Social teaser / seasonal content',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: [],
         gallery: ['./22-2.webp', './22-3.webp', './22-4.webp']
       },
@@ -1110,12 +1140,15 @@
         galleryStyle: 'slider-portrait',
         videoWide: true,
         videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
-        description: 'A live-action reinterpretation inspired by the Frozen universe, translated into a soft cinematic AI aesthetic.',
-        bullets: [
-          'Explored adaptation of a known animated universe into AI live-action visuals.',
-          'Focused on mood, costume realism and believable character styling.',
-          'Used AI tools to achieve a dreamy but grounded visual language.'
+        overview: 'A soft cinematic AI interpretation of the Frozen universe translated into a believable live-action visual language.',
+        whatWasDone: [
+          'Reimagined an animated universe in live-action AI form.',
+          'Focused on styling, costume realism and atmosphere.',
+          'Created portrait visuals and a cinematic hero reel.',
+          'Built a dreamy but grounded aesthetic for screen-first viewing.'
         ],
+        useCase: 'Launch concept / entertainment visual pitch',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Visual variations'],
         results: [],
         gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
       },
@@ -1123,19 +1156,22 @@
         id: 'whycgi',
         title: 'Why.CGI',
         subtitle: 'Thanksgiving Day Reel',
-        tags: ['Video'],
+        tags: ['Video', 'Only Brand Projects'],
         category: ['video'],
         thumb: './24.png',
         year: '2025',
         type: 'Brand Project',
         videoPortrait: true,
         videoEmbed: 'https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV',
-        description: 'In the lead-up to Thanksgiving Day, the video was developed for the client’s Instagram page.',
-        bullets: [
-          'Created a seasonal social-first concept for Instagram.',
-          'Built the visual around a surreal oversized CGI moment for fast attention.',
-          'Designed the piece as a compact, memorable reel for short-form viewing.'
+        overview: 'A Thanksgiving-themed CGI reel created for the client’s Instagram page, designed to stop the scroll and make the seasonal campaign instantly visible.',
+        whatWasDone: [
+          'Created a seasonal CGI concept tailored for Instagram.',
+          'Built the visual around an oversized surreal object for instant recognition.',
+          'Designed a compact short-form reel with a fast attention-grabbing opening.',
+          'Adapted the output for social-first campaign communication.'
         ],
+        useCase: 'Social teaser / campaign visual',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: [
           { num: '25.3K', label: 'Views' }
         ],
@@ -1145,19 +1181,22 @@
         id: 'alfabank',
         title: 'Alfa Bank × Changellenge',
         subtitle: 'Telegram-based game',
-        tags: ['Static Images'],
+        tags: ['Static Images', 'Only Brand Projects'],
         category: ['static'],
         thumb: './25.png',
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-portrait',
         portraitRatio: '9-16',
-        description: 'A mascot-driven visual concept for a Telegram-based game campaign created for Alfa Bank × Changellenge.',
-        bullets: [
-          'Designed a memorable 3D mascot with a playful branded identity.',
-          'Adapted the visuals for community interaction and Telegram mechanics.',
-          'Focused on clarity, friendliness and campaign recognizability.'
+        overview: 'A mascot-led visual direction for a Telegram-based branded game, created to support engagement and build a recognizable campaign identity.',
+        whatWasDone: [
+          'Designed a 3D mascot with a playful branded character system.',
+          'Developed visual assets adapted to Telegram-native interaction.',
+          'Created campaign stills with strong recognition value.',
+          'Built a friendly and game-ready visual language for community use.'
         ],
+        useCase: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'AI avatar', 'Ad variations'],
         results: [
           { num: '34K', label: 'Interactions' }
         ],
@@ -1177,12 +1216,15 @@
           'https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn',
           'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'
         ],
-        description: 'A beauty/fashion Halloween concept built around bold red lighting, sharp styling and a luxury product image.',
-        bullets: [
-          'Created a fashion-horror visual setup with a premium feel.',
-          'Integrated the perfume bottle into a theatrical composition.',
-          'Focused on editorial styling and dramatic color contrast.'
+        overview: 'A fashion-horror beauty concept built around luxury styling, dramatic red lighting and a product-led editorial frame.',
+        whatWasDone: [
+          'Created a premium beauty-horror visual direction.',
+          'Integrated the perfume as a hero object in the composition.',
+          'Developed vertical video outputs and supporting stills.',
+          'Focused on theatrical styling and a strong luxury mood.'
         ],
+        useCase: 'Beauty reel / campaign visual',
+        deliverables: ['Reels', 'Stills', 'Concepts'],
         results: [],
         gallery: ['./26-1.png', './26-2.webp']
       },
@@ -1196,12 +1238,15 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-portrait',
-        description: 'A postcard-inspired visual series exploring surreal, ironic and emotionally charged compositions.',
-        bullets: [
-          'Created editorial static visuals with a strong poster-like composition.',
-          'Focused on bold storytelling through a single frame.',
-          'Explored visual metaphor and graphic simplicity.'
+        overview: 'A static image series exploring surreal, poster-like storytelling through emotionally charged editorial compositions.',
+        whatWasDone: [
+          'Created single-frame visuals with strong poster composition.',
+          'Used surreal storytelling and metaphor-based image ideas.',
+          'Focused on editorial clarity and emotional tone.',
+          'Built a compact static series for visual narrative impact.'
         ],
+        useCase: 'Editorial visual / concept series',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./27.png', './27-1.png', './27-2.png', './27-3.png']
       },
@@ -1215,12 +1260,15 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-portrait',
-        description: 'A postcard-inspired visual series exploring surreal, ironic and emotionally charged compositions.',
-        bullets: [
-          'Created editorial static visuals with a strong poster-like composition.',
-          'Focused on bold storytelling through a single frame.',
-          'Explored visual metaphor and graphic simplicity.'
+        overview: 'A static visual series built around symbolic and emotionally resonant compositions for Women’s Day.',
+        whatWasDone: [
+          'Created editorial-style stills with a poster-inspired structure.',
+          'Focused on bold visual storytelling in a single frame.',
+          'Used symbolic imagery to support the theme.',
+          'Built a compact static series for social and campaign-style viewing.'
         ],
+        useCase: 'Campaign visual / awareness series',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./20-1.png', './20-2.png', './20-3.png', './20-4.png']
       },
@@ -1228,19 +1276,22 @@
         id: 'spotlight',
         title: 'Milfey Steal the Spotlight',
         subtitle: 'Instagram Reel',
-        tags: ['Video'],
+        tags: ['Video', 'Only Brand Projects'],
         category: ['video'],
         thumb: './28.png',
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'https://kinescope.io/jubWMGh648qbQsGFt9GCcT',
-        description: 'A clean portrait-based beauty reel concept with soft branding and a calm visual rhythm.',
-        bullets: [
-          'Used a minimal background and direct portrait composition.',
-          'Built a trust-based beauty aesthetic for social formats.',
-          'Focused on a clean and elegant visual identity.'
+        overview: 'A portrait-based beauty reel for social media, created to highlight the product with a clean premium aesthetic and calm branded rhythm.',
+        whatWasDone: [
+          'Developed a beauty-first reel concept for Instagram.',
+          'Used direct portrait framing and minimal background styling.',
+          'Built a soft premium visual language around the brand.',
+          'Prepared supporting static assets for rollout consistency.'
         ],
+        useCase: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./28-1.png', './28-2.png', './28-3.png', './28-4.webp']
       },
@@ -1248,18 +1299,21 @@
         id: 'nofilter',
         title: 'Milfey No filter',
         subtitle: 'AI Visuals',
-        tags: ['Static Images'],
+        tags: ['Static Images', 'Only Brand Projects'],
         category: ['static'],
         thumb: './29.png',
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-portrait',
-        description: 'A beauty-focused reel concept for Instagram, with a futuristic skincare aesthetic and soft, premium visuals.',
-        bullets: [
-          'Created social-first beauty content with a polished high-end feel.',
-          'Worked with clean lighting and a soft clinical visual language.',
-          'Optimized the concept for short-form platform presentation.'
+        overview: 'A beauty-focused AI visual set designed to give the brand a polished, futuristic and premium still-image identity.',
+        whatWasDone: [
+          'Created high-end static beauty visuals around the product world.',
+          'Used clean lighting and soft clinical styling cues.',
+          'Built a premium AI aesthetic suitable for campaign stills.',
+          'Prepared a visual set adaptable for multiple brand placements.'
         ],
+        useCase: 'Campaign visual / product launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./29-1.png', './29-2.png', './29-3.png', './29-4.png', './29-5.png']
       },
@@ -1267,19 +1321,22 @@
         id: 'reboot',
         title: 'Milfey Reboot',
         subtitle: 'Instagram Reel',
-        tags: ['Video'],
+        tags: ['Video', 'Only Brand Projects'],
         category: ['video'],
         thumb: './30.png',
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'https://kinescope.io/3qmLvKbRaw2zYpyTzqsNZh',
-        description: 'A clean beauty visual built around a product gesture, minimal styling and commercial clarity.',
-        bullets: [
-          'Focused on close-up beauty framing and premium skin rendering.',
-          'Balanced softness with product-centric composition.',
-          'Created imagery suitable for campaign stills and social assets.'
+        overview: 'A beauty-focused AI reel combining premium product framing, skin detail and a clean branded social-first aesthetic.',
+        whatWasDone: [
+          'Developed the creative concept for a beauty-first short-form reel.',
+          'Built close-up visual compositions around product and skin detail.',
+          'Created a premium AI aesthetic tailored to social platforms.',
+          'Prepared the concept as a branded visual direction for campaign use.'
         ],
+        useCase: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./30-1.webp', './30-2.png', './30-3.png', './30.png']
       },
@@ -1293,12 +1350,15 @@
         year: '2025',
         type: 'Competition Entry',
         galleryStyle: 'slider-portrait',
-        description: 'A surreal editorial sports visual for a Higgsfield competition, reframing golf through lifestyle and art direction.',
-        bullets: [
-          'Turned a golf motif into a stylized editorial still-life.',
-          'Used luxury drink language and sport symbols in one frame.',
-          'Focused on irony, elegance and campaign readability.'
+        overview: 'A surreal sports-editorial visual project reframing golf through fashion, lifestyle and luxury still-life language.',
+        whatWasDone: [
+          'Reinterpreted a golf motif through editorial image-making.',
+          'Combined sports symbols with luxury still-life elements.',
+          'Built a strong single-frame concept around irony and elegance.',
+          'Created a compact visual set for competition presentation.'
         ],
+        useCase: 'Editorial concept / competition visual',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./31-1.png', './31-2.png', './31-3.png', './31-4.PNG', './31.png']
       },
@@ -1313,12 +1373,15 @@
         type: 'Personal Project',
         galleryStyle: 'slider-mixed-vertical',
         videoEmbed: 'https://kinescope.io/dTsARagkrj5sNNYwzK3zgX',
-        description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
-        bullets: [
-          'Built around calm rhythm and cinematic stillness.',
-          'Focused on feeling first rather than narrative complexity.',
-          'Works as a tonal portfolio piece showing range.'
+        overview: 'A meditative visual project centered on emotional pacing, softness and slow cinematic movement.',
+        whatWasDone: [
+          'Built a concept around mood-first storytelling.',
+          'Created a calm cinematic rhythm for vertical social viewing.',
+          'Focused on softness, stillness and visual atmosphere.',
+          'Expanded the piece with supporting static frames.'
         ],
+        useCase: 'Mood reel / visual direction sample',
+        deliverables: ['Reel', 'Stills', 'Concepts'],
         results: [],
         gallery: ['./32.png', './32-1.png', './32-2.png', './32-3.png']
       },
@@ -1326,19 +1389,22 @@
         id: 'clyo',
         title: 'Clyo Health',
         subtitle: 'Website video',
-        tags: ['Video'],
+        tags: ['Video', 'Only Brand Projects'],
         category: ['video'],
         thumb: './33.png',
         year: '2025',
         type: 'Brand Project',
         videoOnly: true,
         videoEmbed: 'https://kinescope.io/hm7YXyu35SsHbfrCV7FM6G',
-        description: 'A website video concept for a health brand with a clean, trusted and calming visual tone.',
-        bullets: [
-          'Created imagery with a health-tech but human-centered feel.',
-          'Used a minimalist background and focused portrait styling.',
-          'Built a look suitable for hero website placement.'
+        overview: 'A website hero video created for a health brand, designed to communicate trust, clarity and a modern human-centered visual tone.',
+        whatWasDone: [
+          'Created a clean video concept for website placement.',
+          'Built visuals with a health-tech but approachable feel.',
+          'Used minimalist styling and focused portrait framing.',
+          'Prepared the output for strong first-screen brand communication.'
         ],
+        useCase: 'Launch / website hero video',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: []
       },
       {
@@ -1351,12 +1417,15 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-portrait',
-        description: 'A delicate surreal portrait about vulnerability, privacy and emotional retreat, built around a shell-like protective form.',
-        bullets: [
-          'Created an organic sculptural composition with a soft palette.',
-          'Focused on fragility, texture and quiet emotionality.',
-          'Works as one of the strongest surreal art pieces in the set.'
+        overview: 'A surreal portrait series about vulnerability and emotional retreat, shaped through sculptural organic imagery.',
+        whatWasDone: [
+          'Created organic surreal portraits with a soft palette.',
+          'Built a sculptural protective form as the key visual metaphor.',
+          'Focused on fragility, texture and emotional restraint.',
+          'Developed a static series for editorial-style presentation.'
         ],
+        useCase: 'Editorial concept / art visual',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./34-1.png', './34-2.png', './34-3.png', './34-4.png']
       },
@@ -1370,12 +1439,15 @@
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-portrait',
-        description: 'A campaign visual about female strength, determination and bold movement, interpreted through a striking red boxing scene.',
-        bullets: [
-          'Created a fashion-sport crossover image with high intensity.',
-          'Used motion blur and red palette for energy and drama.',
-          'Focused on empowerment and strong visual impact.'
+        overview: 'A campaign-led visual about female strength and momentum, built around a bold red boxing-inspired scene.',
+        whatWasDone: [
+          'Created a high-intensity fashion-sport visual frame.',
+          'Used motion blur and strong color direction for energy.',
+          'Built a campaign image with an empowerment-driven message.',
+          'Prepared the visuals for static campaign placement.'
         ],
+        useCase: 'Campaign visual / social launch',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./35-2.PNG', './35-1.PNG']
       },
@@ -1383,18 +1455,21 @@
         id: 'tremessis',
         title: 'Tremessis',
         subtitle: 'AI-visuals',
-        tags: ['Static Images'],
+        tags: ['Static Images', 'Only Brand Projects'],
         category: ['static'],
         thumb: './36.png',
         year: '2025',
         type: 'Brand Project',
         galleryStyle: 'slider-portrait',
-        description: 'A sharp, fashion-forward sports/editorial visual with strong angle, contrast and masculine energy.',
-        bullets: [
-          'Built a bold brand frame with strong upward perspective.',
-          'Combined sports and fashion cues into a clean hero image.',
-          'Focused on attitude, silhouette and memorable framing.'
+        overview: 'A bold brand-facing visual set combining fashion and sports cues into a sharp, energetic hero-style image direction.',
+        whatWasDone: [
+          'Built a strong upward-perspective branded hero frame.',
+          'Combined sports and fashion codes in a clean image system.',
+          'Focused on silhouette, attitude and instant recognition.',
+          'Developed a still-image set suitable for campaign adaptation.'
         ],
+        useCase: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./36.png', './36-1.png', './36-2.png', './36-3.png']
       },
@@ -1402,19 +1477,22 @@
         id: 'labrehab',
         title: 'Labrehab',
         subtitle: 'Video-ad',
-        tags: ['Video'],
+        tags: ['Video', 'Only Brand Projects'],
         category: ['video'],
         thumb: './37.png',
         year: '2025',
         type: 'Brand Project',
         videoOnly: true,
         videoEmbed: 'https://kinescope.io/r9XiVwyV5qhbsRHDCh7KqF',
-        description: 'A sports-oriented branded visual using a tennis-ball macro as the key campaign metaphor.',
-        bullets: [
-          'Focused on texture, tension and object-as-hero composition.',
-          'Built a simple but memorable sports-ad visual cue.',
-          'Designed for high contrast and thumbnail recognizability.'
+        overview: 'A sports-oriented branded video built around a macro product metaphor, designed for fast impact and strong visual recall.',
+        whatWasDone: [
+          'Created a product-led video concept using an object-as-hero approach.',
+          'Focused on texture, macro detail and visual tension.',
+          'Built a compact branded ad for high contrast presentation.',
+          'Prepared the concept for campaign and social use.'
         ],
+        useCase: 'Ad visual / social teaser',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: []
       }
     ];
@@ -1631,6 +1709,38 @@
       const prev = projects[idx - 1];
       const next = projects[idx + 1];
 
+      const overviewHTML = p.overview ? `
+        <div class="project-copy-section">
+          <h3>Overview</h3>
+          <p>${p.overview}</p>
+        </div>
+      ` : '';
+
+      const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length ? `
+        <div class="project-copy-section">
+          <h3>What was done</h3>
+          <ul class="project-bullets">
+            ${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      ` : '';
+
+      const useCaseHTML = p.useCase ? `
+        <div class="project-copy-section">
+          <h3>Use case</h3>
+          <p>${p.useCase}</p>
+        </div>
+      ` : '';
+
+      const deliverablesHTML = p.deliverables && p.deliverables.length ? `
+        <div class="project-copy-section">
+          <h3>Deliverables</h3>
+          <div class="deliverables-row">
+            ${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}
+          </div>
+        </div>
+      ` : '';
+
       const resultsHTML = p.results && p.results.length ? `
         <div class="project-results">
           <h4>Results</h4>
@@ -1657,11 +1767,10 @@
 
         <div class="project-body">
           <div class="project-desc-block">
-            <h3>About the project</h3>
-            <p>${p.description}</p>
-            <ul class="project-bullets">
-              ${p.bullets.map(b => `<li>${b}</li>`).join('')}
-            </ul>
+            ${overviewHTML}
+            ${whatWasDoneHTML}
+            ${useCaseHTML}
+            ${deliverablesHTML}
             ${resultsHTML}
           </div>
 

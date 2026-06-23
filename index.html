@@ -503,6 +503,10 @@
       padding-top: 8px;
     }
 
+    .project-media-shell {
+      position: relative;
+    }
+
     .project-video-frame {
       width: 100%;
       background: #cfcfcf;
@@ -557,25 +561,27 @@
     }
 
     .project-gallery-grid.slider-169 {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  gap: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  border-radius: var(--r-lg);
-  scrollbar-width: none;
-}
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      gap: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      border-radius: var(--r-lg);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
 
-.project-gallery-grid.slider-169::-webkit-scrollbar {
-  display: none;
-}
+    .project-gallery-grid.slider-169::-webkit-scrollbar {
+      display: none;
+    }
 
     .project-gallery-grid.slider-169 .slide {
       scroll-snap-align: start;
       width: 100%;
+      min-width: 100%;
     }
 
     .project-gallery-grid.slider-169 img {
@@ -1153,7 +1159,7 @@
         results: [
           { num: '34K', label: 'Interactions' }
         ],
-        gallery: ['./25-1.png', './25-2.png', './25-3.png']
+        gallery: ['./25-1.jpg', './25-2.jpg', './25-3.jpg', './25-4.jpg']
       },
       {
         id: 'miumiu',
@@ -1187,7 +1193,7 @@
         thumb: './27.png',
         year: '2025',
         type: 'Personal Project',
-        galleryStyle: 'slider-portrait',
+        galleryStyle: 'grid-34',
         description: 'A postcard-inspired visual series exploring surreal, ironic and emotionally charged compositions.',
         bullets: [
           'Created editorial static visuals with a strong poster-like composition.',
@@ -1195,7 +1201,7 @@
           'Explored visual metaphor and graphic simplicity.'
         ],
         results: [],
-        gallery: ['./27.png', './27-1.png', './27-2.png', './27-3.png']
+        gallery: ['./27.png']
       },
       {
         id: 'womenday',
@@ -1206,7 +1212,7 @@
         thumb: './20.png',
         year: '2025',
         type: 'Personal Project',
-        galleryStyle: 'slider-portrait',
+        galleryStyle: 'grid-34',
         description: 'A postcard-inspired visual series exploring surreal, ironic and emotionally charged compositions.',
         bullets: [
           'Created editorial static visuals with a strong poster-like composition.',
@@ -1216,7 +1222,6 @@
         results: [],
         gallery: ['./20-1.png', './20-2.png', './20-3.png', './20-4.png']
       },
-
       {
         id: 'milfey3',
         title: 'Milfey × Qute',
@@ -1257,28 +1262,25 @@
         results: [],
         gallery: ['./29.png']
       },
-      
       {
         id: 'milfey2',
-        title: 'Milfey Reboot',
-        subtitle: 'Milfey × Qute Studio',
-        tags: ['Video'],
-        category: ['video'],
+        title: 'Milfey × Qute',
+        subtitle: 'AI-Visuals',
+        tags: ['Static Images'],
+        category: ['static'],
         thumb: './30.png',
         year: '2025',
-        type: 'Personal Project',
-        galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: 'https://kinescope.io/3qmLvKbRaw2zYpyTzqsNZh',
-        description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
+        type: 'Brand Project',
+        galleryStyle: 'grid-34',
+        description: 'A clean beauty visual built around a product gesture, minimal styling and commercial clarity.',
         bullets: [
-          'Built around calm rhythm and cinematic stillness.',
-          'Focused on feeling first rather than narrative complexity.',
-          'Works as a tonal portfolio piece showing range.'
+          'Focused on close-up beauty framing and premium skin rendering.',
+          'Balanced softness with product-centric composition.',
+          'Created imagery suitable for campaign stills and social assets.'
         ],
         results: [],
-        gallery: ['./32.png', './32-1.png', './32-2.png', './32-3.png']
+        gallery: ['./30.png']
       },
-      
       {
         id: 'golf',
         title: 'Golf Is Bigger Than Just A Game',
@@ -1288,7 +1290,7 @@
         thumb: './31.png',
         year: '2025',
         type: 'Competition Entry',
-        galleryStyle: 'slider-portrait',
+        galleryStyle: 'grid-34',
         description: 'A surreal editorial sports visual for a Higgsfield competition, reframing golf through lifestyle and art direction.',
         bullets: [
           'Turned a golf motif into a stylized editorial still-life.',
@@ -1296,7 +1298,7 @@
           'Focused on irony, elegance and campaign readability.'
         ],
         results: [],
-        gallery: ['./31.png', './31-1.png', './31-2.png', './31-3.png', './31-4.PNG']
+        gallery: ['./31.png']
       },
       {
         id: 'mood',
@@ -1308,7 +1310,7 @@
         year: '2025',
         type: 'Personal Project',
         galleryStyle: 'slider-mixed-vertical',
-        videoEmbed: 'https://kinescope.io/dTsARagkrj5sNNYwzK3zgX',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A meditative visual project centered on atmosphere, softness and emotional pacing.',
         bullets: [
           'Built around calm rhythm and cinematic stillness.',
@@ -1316,7 +1318,7 @@
           'Works as a tonal portfolio piece showing range.'
         ],
         results: [],
-        gallery: ['./32.png', './32-1.png', './32-2.png', './32-3.png']
+        gallery: ['./32.png']
       },
       {
         id: 'clyo',
@@ -1328,8 +1330,7 @@
         year: '2025',
         type: 'Brand Project',
         videoOnly: true,
-        videoWide: true,
-        videoEmbed: 'https://kinescope.io/spuFayVrDzekzcrSc7nStA',
+        videoEmbed: 'PASTE_KINESCOPE_EMBED_URL_HERE',
         description: 'A website video concept for a health brand with a clean, trusted and calming visual tone.',
         bullets: [
           'Created imagery with a health-tech but human-centered feel.',
@@ -1733,22 +1734,28 @@
       let currentIndex = 0;
 
       function updateButtons() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === slides.length - 1;
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= slides.length - 1;
       }
 
       function goToSlide(index) {
         currentIndex = Math.max(0, Math.min(index, slides.length - 1));
-        slides[currentIndex].scrollIntoView({
-          behavior: 'smooth',
-          inline: 'start',
-          block: 'nearest'
+        carousel.scrollTo({
+          left: carousel.clientWidth * currentIndex,
+          behavior: 'smooth'
         });
+        updateButtons();
+      }
+
+      function syncCurrentSlide() {
+        const nextIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
         updateButtons();
       }
 
       prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
       nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+      carousel.addEventListener('scroll', syncCurrentSlide, { passive: true });
 
       updateButtons();
     }

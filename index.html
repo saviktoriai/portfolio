@@ -1,49 +1,1777 @@
-<script>
-  function openProject(id) {
-    const p = projects.find(x => x.id === id);
-    if (!p) return;
+<!DOCTYPE html>
+<html lang="en">
 
-    const idx = projects.indexOf(p);
-    const prev = projects[idx - 1];
-    const next = projects[idx + 1];
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viktoriia Saraeva · AI Content Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #dcdcdc;
+      --bg2: #d0d0d0;
+      --surface: #e4e4e4;
+      --border: rgba(0, 0, 0, 0.10);
+      --text: #111111;
+      --muted: #666666;
+      --faint: #999999;
+      --white: #f5f5f5;
+      --font: 'Inter', 'Helvetica Neue', sans-serif;
+      --xs: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
+      --sm: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
+      --base: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      --xl: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+      --hero: clamp(2.8rem, 1rem + 6vw, 7rem);
+      --r-md: 12px;
+      --r-lg: 18px;
+      --r-xl: 24px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-    const overviewHTML = p.overview
-      ? `<div class="project-copy-section"><h3>Overview</h3><p>${p.overview}</p></div>` : '';
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length
-      ? `<div class="project-copy-section"><h3>What was done</h3><ul class="project-bullets">${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}</ul></div>` : '';
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    const useCaseHTML = p.useCase
-      ? `<div class="project-copy-section"><h3>Use case</h3><p>${p.useCase}</p></div>` : '';
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100dvh;
+    }
 
-    const deliverablesHTML = p.deliverables && p.deliverables.length
-      ? `<div class="project-copy-section"><h3>Deliverables</h3><div class="deliverables-row">${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}</div></div>` : '';
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
 
-    const resultsHTML = p.results && p.results.length
-      ? `<div class="project-results"><h4>Results</h4>${p.results.map(r => `<div class="result-stat"><div class="result-num">${r.num}</div><div class="result-label">${r.label}</div></div>`).join('')}</div>` : '';
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    const videoOnlyHTML = buildVideoOnly(p);
-    const wideVideoHTML = buildWideVideo(p);
-    const portraitVideoHTML = buildPortraitVideo(p);
-    const videoStripHTML = buildVideoStrip(p);
-    const galleryHTML = buildGallery(p);
+    button {
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      border: none;
+      background: none;
+    }
 
-    const prevNavBtn = `<button class="proj-nav-btn" onclick="window.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>Back to works</button>`;
+    ul {
+      list-style: none;
+    }
 
-    const nextNavBtn = next
-      ? `<button class="proj-nav-btn" onclick="if (window.opener && !window.opener.closed) { window.opener.openProject('${next.id}'); window.close(); }">
-          ${next.title}
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px clamp(20px, 5vw, 60px);
+      background: rgba(220, 220, 220, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: var(--sm);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-right a {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-back {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .nav-back.visible {
+      display: flex;
+    }
+
+    .nav-back svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 80px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-size: var(--xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: var(--hero);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 1100px;
+    }
+
+    .hero-title .dim {
+      color: var(--faint);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-desc {
+      font-size: var(--base);
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.65;
+    }
+
+    .hero-scroll {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--faint);
+    }
+
+    .filter-bar {
+      padding: 24px clamp(20px, 5vw, 60px);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      background: rgba(220, 220, 220, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .filter-btn {
+      font-size: var(--xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s var(--ease);
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    .gallery-section {
+      padding: 36px clamp(20px, 5vw, 60px) 80px;
+      min-height: 420px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .work-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-lg);
+      cursor: pointer;
+      background: var(--bg2);
+      aspect-ratio: 3 / 4;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+
+    .work-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.35s var(--ease);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .work-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 56px rgba(0, 0, 0, 0.18);
+    }
+
+    .work-card:hover::after {
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .work-card .card-info-static {
+      z-index: 2;
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card-info-static {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 14px 14px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.22) 50%, transparent 100%);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .card-tag {
+      font-size: var(--xs);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--r-xl);
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-title {
+      font-size: var(--base);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .card-subtitle {
+      font-size: var(--xs);
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    #project-view {
+      padding-top: 80px;
+    }
+
+    .project-hero {
+      padding: 48px clamp(20px, 5vw, 60px) 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-eyebrow {
+      font-size: var(--xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .project-title-big {
+      font-size: clamp(2.5rem, 1rem + 5vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .project-meta-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-meta-item label {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .project-meta-item span {
+      font-size: var(--sm);
+      font-weight: 600;
+    }
+
+    .project-tags-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .project-tag {
+      font-size: var(--xs);
+      padding: 4px 12px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .project-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 48px;
+      padding: 48px clamp(20px, 5vw, 60px);
+      align-items: start;
+    }
+
+    .project-desc-block h3,
+    .project-gallery h3,
+    .project-video h3,
+    .project-video-strip h3,
+    .project-copy-section h3 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .project-desc-block p,
+    .project-copy-section p {
+      font-size: var(--base);
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 16px;
+      max-width: 66ch;
+    }
+
+    .project-copy-section {
+      margin-bottom: 28px;
+    }
+
+    .project-bullets {
+      margin: 16px 0 24px 0;
+    }
+
+    .project-bullets li {
+      font-size: var(--base);
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .project-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--faint);
+    }
+
+    .deliverables-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .deliverable-chip {
+      font-size: var(--xs);
+      padding: 6px 12px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: var(--surface);
+    }
+
+    .project-results {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-top: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .project-results h4 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .result-stat {
+      margin-bottom: 16px;
+    }
+
+    .result-num {
+      font-size: var(--xl);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .result-label {
+      font-size: var(--xs);
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .project-sidebar {
+      position: sticky;
+      top: 96px;
+    }
+
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card h4 {
+      font-size: var(--xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .project-gallery,
+    .project-video,
+    .project-video-strip {
+      padding: 0 clamp(20px, 5vw, 60px) 56px;
+    }
+
+    .project-video-compact {
+      padding-top: 8px;
+    }
+
+    .project-media-shell {
+      position: relative;
+    }
+
+    .project-video-frame {
+      width: 100%;
+      background: #cfcfcf;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .project-video-frame.ratio-169 {
+      max-width: 1100px;
+    }
+
+    .project-video-frame.ratio-916 {
+      max-width: 380px;
+      background: #111;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.10);
+    }
+
+    .project-video-frame-inner {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+    }
+
+    .project-video-frame.ratio-916 .project-video-frame-inner {
+      padding-bottom: 177.7778%;
+    }
+
+    .project-video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .project-gallery-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .project-gallery-grid.grid-34 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-gallery-grid.grid-34 img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-md);
+    }
+
+    .project-gallery-grid.slider-169 {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      gap: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      border-radius: var(--r-lg);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .project-gallery-grid.slider-169::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-gallery-grid.slider-169 .slide {
+      scroll-snap-align: start;
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .project-gallery-grid.slider-169 img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      object-position: center;
+      background: #d8d8d8;
+      border-radius: var(--r-lg);
+    }
+
+    .project-gallery-grid.slider-mixed-vertical {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 24vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar,
+    .project-video-strip-grid::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-track,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar-track,
+    .project-video-strip-grid::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical::-webkit-scrollbar-thumb,
+    .project-gallery-grid.slider-portrait::-webkit-scrollbar-thumb,
+    .project-video-strip-grid::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 999px;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide {
+      scroll-snap-align: start;
+      width: 100%;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-video {
+      aspect-ratio: 9 / 16;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .project-gallery-grid.slider-mixed-vertical .slide-image img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
+
+    .project-gallery-grid.slider-portrait {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-gallery-grid.slider-portrait.is-3-4 {
+      grid-auto-columns: minmax(280px, 32vw);
+    }
+
+    .project-gallery-grid.slider-portrait.is-9-16 {
+      grid-auto-columns: minmax(220px, 26vw);
+    }
+
+    .project-gallery-grid.slider-portrait .slide {
+      scroll-snap-align: start;
+      width: 100%;
+    }
+
+    .project-gallery-grid.slider-portrait.is-3-4 img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
+
+    .project-gallery-grid.slider-portrait.is-9-16 img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--r-lg);
+    }
+
+    .project-video-strip-grid {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(560px, 72vw);
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-video-card {
+      scroll-snap-align: start;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+
+    .project-video-card iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(17, 17, 17, 0.78);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      transition: all .2s var(--ease);
+    }
+
+    .gallery-arrow[disabled] {
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .gallery-arrow.prev {
+      left: 16px;
+    }
+
+    .gallery-arrow.next {
+      right: 16px;
+    }
+
+    .gallery-arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .project-nav-bottom {
+      padding: 40px clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .proj-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 12px 20px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+    }
+
+    .proj-nav-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .contact-section {
+      padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-size: clamp(2.5rem, 1rem + 4vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+
+    .contact-title .dim {
+      color: var(--faint);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .contact-link-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .contact-link-platform {
+      font-size: var(--xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-link-handle {
+      font-size: var(--base);
+      font-weight: 600;
+    }
+
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.4;
+    }
+
+    footer {
+      padding: 24px clamp(20px, 5vw, 60px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: var(--xs);
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-body {
+        grid-template-columns: 1fr;
+      }
+
+      .project-sidebar {
+        position: static;
+      }
+
+      .project-gallery-grid.grid-34 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-gallery-grid.slider-mixed-vertical {
+        grid-auto-columns: 52vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-3-4 {
+        grid-auto-columns: 52vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-9-16 {
+        grid-auto-columns: 40vw;
+      }
+
+      .project-video-strip-grid {
+        grid-auto-columns: 86vw;
+      }
+
+      .project-video-frame.ratio-916 {
+        max-width: 340px;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .project-gallery-grid.grid-34 {
+        grid-template-columns: 1fr;
+      }
+
+      .project-gallery-grid.slider-mixed-vertical {
+        grid-auto-columns: 72vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-3-4 {
+        grid-auto-columns: 72vw;
+      }
+
+      .project-gallery-grid.slider-portrait.is-9-16 {
+        grid-auto-columns: 58vw;
+      }
+
+      .project-video-strip-grid {
+        grid-auto-columns: 92vw;
+      }
+
+      .project-video-frame.ratio-916 {
+        max-width: 100%;
+      }
+
+      .gallery-arrow.prev {
+        left: 10px;
+      }
+
+      .gallery-arrow.next {
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-logo" onclick="showHome()">Viktoriia Saraeva · AI Content Creator</div>
+    <div class="nav-right">
+      <a href="#works" onclick="showHome()">Works</a>
+      <a href="#contact-anchor" onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
+    </div>
+    <button class="nav-back" id="nav-back" onclick="showHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+      </svg>
+      Back to works
+    </button>
+  </nav>
+
+  <div class="view active" id="home-view">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-label">AI Content Creator · Milano</div>
+        <h1 class="hero-title">
+          Creating <span class="dim">the future</span><br>
+          of content <span class="dim">powered</span><br>
+          by AI
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-desc">
+            AI-generated videos, visual campaigns and digital storytelling
+            for brands and personal projects.
+          </p>
+          <div class="hero-scroll">
+            <span class="scroll-line"></span>
+            scroll to explore
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="filter-bar" id="works">
+      <button class="filter-btn active" onclick="filterCards(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterCards(this,'static')">Static Images</button>
+      <button class="filter-btn" onclick="filterCards(this,'video')">Video</button>
+      <button class="filter-btn" onclick="filterCards(this,'ai avatar')">AI avatar</button>
+      <button class="filter-btn" onclick="filterCards(this,'product implementation')">Product implementation</button>
+      <button class="filter-btn" onclick="filterCards(this,'commercial')">Commercial</button>
+    </div>
+
+    <section class="gallery-section">
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <section class="contact-section" id="contact-anchor">
+      <div>
+        <h2 class="contact-title">
+          Let's <span class="dim">create</span><br>
+          something<br>
+          <span class="dim">together</span>
+        </h2>
+      </div>
+      <div class="contact-links">
+        <a href="https://t.me/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Telegram</span>
+            <span class="contact-link-handle">@saviktoriai</span>
+          </div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M14 5l7 7-7 7"/>
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
-        </button>`
-      : '<div></div>';
+        </a>
+        <a href="https://instagram.com/saviktoriai" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Instagram</span>
+            <span class="contact-link-handle">@saviktoriai</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+        <a href="mailto:viktoriiasaraeva@gmail.com" class="contact-link">
+          <div class="contact-link-left">
+            <span class="contact-link-platform">Email</span>
+            <span class="contact-link-handle">viktoriiasaraeva@gmail.com</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      </div>
+    </section>
 
-    const tagsRow = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
-    const metaRow = `<div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div><div class="project-meta-item"><label>Type</label><span>${p.type}</span></div><div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>`;
-    const quickInfo = p.tags.map(t => `<div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">${t}</div>`).join('');
+    <footer>
+      <span>© 2026</span>
+      <span>AI Content Creator · Milano, IT</span>
+    </footer>
+  </div>
 
-    const pageHTML = `<!DOCTYPE html>
+  <div class="view" id="project-view">
+    <div id="project-content"></div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        id: 'winx',
+        title: 'Winx Live-Action',
+        subtitle: 'Fairy transformation',
+        tags: ['Video', 'AI avatar'],
+        category: ['video', 'ai avatar'],
+        thumb: './21.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-169',
+        overview: 'A nostalgic AI-powered live-action reinterpretation of the Winx universe, designed as a cinematic fan-driven short-form series.',
+        whatWasDone: [
+          'Developed custom AI character models for three Winx fairies.',
+          'Designed pre- and post-transformation looks inspired by the original universe.',
+          'Created cinematic transformation sequences for short-form video.',
+          'Built a visually recognizable fantasy world with a live-action feel.'
+        ],
+        useCase: 'Social series / fan-driven launch concept',
+        deliverables: ['Reels', 'Concepts', 'AI avatars', 'Visual variations'],
+        results: [
+          { num: '2.2M+', label: 'Total views across platforms' },
+          { num: 'Viral', label: 'Nostalgia-driven traction' }
+        ],
+        videoGallery: [
+          'https://kinescope.io/aaSgmNy3NfHjuRC9biExvn',
+          'https://kinescope.io/fMiXvgEkV8iW4GVUotSrpk',
+          'https://kinescope.io/dQBjbMTfvN41dVovMVmwMt'
+        ],
+        gallery: ['./21-1.webp', './21-2.webp', './21-3.webp']
+      },
+      {
+        id: 'franui',
+        title: 'Franuí Halloween',
+        subtitle: 'Personal project',
+        tags: ['Video', 'Product implementation'],
+        category: ['video', 'product implementation'],
+        thumb: './22.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'https://kinescope.io/bKxPN5Jx5Uhz8hNY1Mj7PH',
+        overview: 'A Halloween-themed mood project combining horror references, product placement and short-form cinematic storytelling.',
+        whatWasDone: [
+          'Created a seasonal visual concept with strong Halloween cues.',
+          'Integrated the product into a recognizable horror-inspired setup.',
+          'Built a cinematic vertical reel for social media.',
+          'Focused on atmosphere, mood and visual memorability.'
+        ],
+        useCase: 'Social teaser / seasonal content',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
+        results: [],
+        gallery: ['./22-2.webp', './22-3.webp', './22-4.webp']
+      },
+      {
+        id: 'frozen',
+        title: 'Frozen Live-Action',
+        subtitle: 'Personal project',
+        tags: ['Video', 'AI avatar'],
+        category: ['video', 'ai avatar'],
+        thumb: './23.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-portrait',
+        videoWide: true,
+        videoEmbed: 'https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9',
+        overview: 'A soft cinematic AI interpretation of the Frozen universe translated into a believable live-action visual language.',
+        whatWasDone: [
+          'Reimagined an animated universe in live-action AI form.',
+          'Focused on styling, costume realism and atmosphere.',
+          'Created portrait visuals and a cinematic hero reel.',
+          'Built a dreamy but grounded aesthetic for screen-first viewing.'
+        ],
+        useCase: 'Launch concept / entertainment visual pitch',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Visual variations'],
+        results: [],
+        gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
+      },
+      {
+        id: 'whycgi',
+        title: 'Why.CGI',
+        subtitle: 'Thanksgiving Day Reel',
+        tags: ['Video', 'Commercial'],
+        category: ['video', 'commercial'],
+        thumb: './24.png',
+        year: '2025',
+        type: 'Brand Project',
+        videoPortrait: true,
+        videoEmbed: 'https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV',
+        overview: 'A Thanksgiving-themed CGI reel created for the client’s Instagram page, designed to stop the scroll and make the seasonal campaign instantly visible.',
+        whatWasDone: [
+          'Created a seasonal CGI concept tailored for Instagram.',
+          'Built the visual around an oversized surreal object for instant recognition.',
+          'Designed a compact short-form reel with a fast attention-grabbing opening.',
+          'Adapted the output for social-first campaign communication.'
+        ],
+        useCase: 'Social teaser / campaign visual',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
+        results: [
+          { num: '25.3K', label: 'Views' }
+        ],
+        gallery: []
+      },
+      {
+        id: 'alfabank',
+        title: 'Alfa Bank × Changellenge',
+        subtitle: 'Telegram-based game',
+        tags: ['Static Images', 'Commercial'],
+        category: ['static', 'commercial'],
+        thumb: './25.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-portrait',
+        portraitRatio: '9-16',
+        overview: 'A mascot-led visual direction for a Telegram-based branded game, created to support engagement and build a recognizable campaign identity.',
+        whatWasDone: [
+          'Designed a 3D mascot with a playful branded character system.',
+          'Developed visual assets adapted to Telegram-native interaction.',
+          'Created campaign stills with strong recognition value.',
+          'Built a friendly and game-ready visual language for community use.'
+        ],
+        useCase: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'AI avatar', 'Ad variations'],
+        results: [
+          { num: '34K', label: 'Interactions' }
+        ],
+        gallery: ['./25-1.png', './25-2.png', './25-3.png']
+      },
+      {
+        id: 'miumiu',
+        title: 'Miu Miu Halloween',
+        subtitle: 'Personal project',
+        tags: ['Video', 'Product implementation'],
+        category: ['video', 'product implementation'],
+        thumb: './26.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: [
+          'https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn',
+          'https://kinescope.io/8rzNMExgqnkTazY51gPYo2'
+        ],
+        overview: 'A fashion-horror beauty concept built around luxury styling, dramatic red lighting and a product-led editorial frame.',
+        whatWasDone: [
+          'Created a premium beauty-horror visual direction.',
+          'Integrated the perfume as a hero object in the composition.',
+          'Developed vertical video outputs and supporting stills.',
+          'Focused on theatrical styling and a strong luxury mood.'
+        ],
+        useCase: 'Beauty reel / campaign visual',
+        deliverables: ['Reels', 'Stills', 'Concepts'],
+        results: [],
+        gallery: ['./26-1.png', './26-2.webp']
+      },
+      {
+        id: 'postcards',
+        title: 'postcards',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static'],
+        thumb: './27.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A static image series exploring surreal, poster-like storytelling through emotionally charged editorial compositions.',
+        whatWasDone: [
+          'Created single-frame visuals with strong poster composition.',
+          'Used surreal storytelling and metaphor-based image ideas.',
+          'Focused on editorial clarity and emotional tone.',
+          'Built a compact static series for visual narrative impact.'
+        ],
+        useCase: 'Editorial visual / concept series',
+        deliverables: ['Stills', 'Concepts'],
+        results: [],
+        gallery: ['./27.png', './27-1.png', './27-2.png', './27-3.png']
+      },
+      {
+        id: 'womenday',
+        title: 'Women Day',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static'],
+        thumb: './20.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A static visual series built around symbolic and emotionally resonant compositions for Women’s Day.',
+        whatWasDone: [
+          'Created editorial-style stills with a poster-inspired structure.',
+          'Focused on bold visual storytelling in a single frame.',
+          'Used symbolic imagery to support the theme.',
+          'Built a compact static series for social and campaign-style viewing.'
+        ],
+        useCase: 'Campaign visual / awareness series',
+        deliverables: ['Stills', 'Concepts'],
+        results: [],
+        gallery: ['./20-1.png', './20-2.png', './20-3.png', './20-4.png']
+      },
+      {
+        id: 'spotlight',
+        title: 'Milfey Steal the Spotlight',
+        subtitle: 'Instagram Reel',
+        tags: ['Video', 'Commercial', 'AI avatar'],
+        category: ['video', 'commercial', 'ai avatar'],
+        thumb: './28.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'https://kinescope.io/jubWMGh648qbQsGFt9GCcT',
+        overview: 'A portrait-based beauty reel for social media, created to highlight the product with a clean premium aesthetic and calm branded rhythm.',
+        whatWasDone: [
+          'Developed a beauty-first reel concept for Instagram.',
+          'Used direct portrait framing and minimal background styling.',
+          'Built a soft premium visual language around the brand.',
+          'Prepared supporting static assets for rollout consistency.'
+        ],
+        useCase: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Ad variations'],
+        results: [],
+        gallery: ['./28-1.png', './28-2.png', './28-3.png', './28-4.webp']
+      },
+      {
+        id: 'nofilter',
+        title: 'Milfey No filter',
+        subtitle: 'AI Visuals',
+        tags: ['Static Images', 'Commercial', 'AI avatar'],
+        category: ['static', 'commercial', 'ai avatar'],
+        thumb: './29.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A beauty-focused AI visual set designed to give the brand a polished, futuristic and premium still-image identity.',
+        whatWasDone: [
+          'Created high-end static beauty visuals around the product world.',
+          'Used clean lighting and soft clinical styling cues.',
+          'Built a premium AI aesthetic suitable for campaign stills.',
+          'Prepared a visual set adaptable for multiple brand placements.'
+        ],
+        useCase: 'Campaign visual / product launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
+        results: [],
+        gallery: ['./29-1.png', './29-2.png', './29-3.png', './29-4.png', './29-5.png']
+      },
+      {
+        id: 'reboot',
+        title: 'Milfey Reboot',
+        subtitle: 'Instagram Reel',
+        tags: ['Video', 'Commercial'],
+        category: ['video', 'commercial'],
+        thumb: './30.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'https://kinescope.io/3qmLvKbRaw2zYpyTzqsNZh',
+        overview: 'A beauty-focused AI reel combining premium product framing, skin detail and a clean branded social-first aesthetic.',
+        whatWasDone: [
+          'Developed the creative concept for a beauty-first short-form reel.',
+          'Built close-up visual compositions around product and skin detail.',
+          'Created a premium AI aesthetic tailored to social platforms.',
+          'Prepared the concept as a branded visual direction for campaign use.'
+        ],
+        useCase: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Concepts', 'Ad variations'],
+        results: [],
+        gallery: ['./30-1.webp', './30-2.png', './30-3.png', './30.png']
+      },
+      {
+        id: 'golf',
+        title: 'Golf Is Bigger Than Just A Game',
+        subtitle: 'Higgsfield competition',
+        tags: ['Static Images'],
+        category: ['static'],
+        thumb: './31.png',
+        year: '2025',
+        type: 'Competition Entry',
+        galleryStyle: 'slider-portrait',
+        overview: 'A surreal sports-editorial visual project reframing golf through fashion, lifestyle and luxury still-life language.',
+        whatWasDone: [
+          'Reinterpreted a golf motif through editorial image-making.',
+          'Combined sports symbols with luxury still-life elements.',
+          'Built a strong single-frame concept around irony and elegance.',
+          'Created a compact visual set for competition presentation.'
+        ],
+        useCase: 'Editorial concept / competition visual',
+        deliverables: ['Stills', 'Concepts'],
+        results: [],
+        gallery: ['./31-1.png', './31-2.png', './31-3.png', './31-4.PNG', './31.png']
+      },
+      {
+        id: 'mood',
+        title: 'Mood Video',
+        subtitle: 'Personal project',
+        tags: ['Video'],
+        category: ['video'],
+        thumb: './32.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: 'https://kinescope.io/dTsARagkrj5sNNYwzK3zgX',
+        overview: 'A meditative visual project centered on emotional pacing, softness and slow cinematic movement.',
+        whatWasDone: [
+          'Built a concept around mood-first storytelling.',
+          'Created a calm cinematic rhythm for vertical social viewing.',
+          'Focused on softness, stillness and visual atmosphere.',
+          'Expanded the piece with supporting static frames.'
+        ],
+        useCase: 'Mood reel / visual direction sample',
+        deliverables: ['Reel', 'Stills', 'Concepts'],
+        results: [],
+        gallery: ['./32.png', './32-1.png', './32-2.png', './32-3.png']
+      },
+      {
+        id: 'clyo',
+        title: 'Clyo Health',
+        subtitle: 'Website video',
+        tags: ['Video', 'Commercial'],
+        category: ['video', 'commercial'],
+        thumb: './33.png',
+        year: '2025',
+        type: 'Brand Project',
+        videoOnly: true,
+        videoEmbed: 'https://kinescope.io/hm7YXyu35SsHbfrCV7FM6G',
+        overview: 'A website hero video created for a health brand, designed to communicate trust, clarity and a modern human-centered visual tone.',
+        whatWasDone: [
+          'Created a clean video concept for website placement.',
+          'Built visuals with a health-tech but approachable feel.',
+          'Used minimalist styling and focused portrait framing.',
+          'Prepared the output for strong first-screen brand communication.'
+        ],
+        useCase: 'Launch / website hero video',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
+        results: []
+      },
+      {
+        id: 'hiding',
+        title: 'Hiding In A Shell',
+        subtitle: 'Personal project',
+        tags: ['Static Images'],
+        category: ['static'],
+        thumb: './34.png',
+        year: '2025',
+        type: 'Personal Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A surreal portrait series about vulnerability and emotional retreat, shaped through sculptural organic imagery.',
+        whatWasDone: [
+          'Created organic surreal portraits with a soft palette.',
+          'Built a sculptural protective form as the key visual metaphor.',
+          'Focused on fragility, texture and emotional restraint.',
+          'Developed a static series for editorial-style presentation.'
+        ],
+        useCase: 'Editorial concept / art visual',
+        deliverables: ['Stills', 'Concepts'],
+        results: [],
+        gallery: ['./34-1.png', './34-2.png', './34-3.png', './34-4.png']
+      },
+      {
+        id: 'youwanna',
+        title: 'You Wanna',
+        subtitle: 'Woman is a winner campaign',
+        tags: ['Static Images', 'Product implementation'],
+        category: ['static', 'product implementation'],
+        thumb: './35.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A campaign-led visual about female strength and momentum, built around a bold red boxing-inspired scene.',
+        whatWasDone: [
+          'Created a high-intensity fashion-sport visual frame.',
+          'Used motion blur and strong color direction for energy.',
+          'Built a campaign image with an empowerment-driven message.',
+          'Prepared the visuals for static campaign placement.'
+        ],
+        useCase: 'Campaign visual / social launch',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
+        results: [],
+        gallery: ['./35-2.PNG', './35-1.PNG']
+      },
+      {
+        id: 'tremessis',
+        title: 'Tremessis',
+        subtitle: 'AI-visuals',
+        tags: ['Static Images', 'Commercial', 'Product implementation'],
+        category: ['static', 'commercial', 'product implementation'],
+        thumb: './36.png',
+        year: '2025',
+        type: 'Brand Project',
+        galleryStyle: 'slider-portrait',
+        overview: 'A bold brand-facing visual set combining fashion and sports cues into a sharp, energetic hero-style image direction.',
+        whatWasDone: [
+          'Built a strong upward-perspective branded hero frame.',
+          'Combined sports and fashion codes in a clean image system.',
+          'Focused on silhouette, attitude and instant recognition.',
+          'Developed a still-image set suitable for campaign adaptation.'
+        ],
+        useCase: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
+        results: [],
+        gallery: ['./36.png', './36-1.png', './36-2.png', './36-3.png']
+      },
+      {
+        id: 'labrehab',
+        title: 'Labrehab',
+        subtitle: 'Video-ad',
+        tags: ['Video', 'Commercial'],
+        category: ['video'],
+        thumb: './37.png',
+        year: '2025',
+        type: 'Brand Project',
+        videoOnly: true,
+        videoEmbed: 'https://kinescope.io/r9XiVwyV5qhbsRHDCh7KqF',
+        overview: 'A sports-oriented branded video built around a macro product metaphor, designed for fast impact and strong visual recall.',
+        whatWasDone: [
+          'Created a product-led video concept using an object-as-hero approach.',
+          'Focused on texture, macro detail and visual tension.',
+          'Built a compact branded ad for high contrast presentation.',
+          'Prepared the concept for campaign and social use.'
+        ],
+        useCase: 'Ad visual / social teaser',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
+        results: []
+      }
+    ];
+
+    function renderGallery(filter = 'all') {
+      const grid = document.getElementById('gallery-grid');
+      const filtered = filter === 'all'
+        ? projects
+        : projects.filter(p => p.category.includes(filter));
+
+      grid.innerHTML = filtered.map((p, i) => `
+        <div class="work-card" onclick="openProject('${p.id}')">
+          <img src="${p.thumb}" alt="${p.title}" width="900" height="1200" loading="${i < 6 ? 'eager' : 'lazy'}">
+          <div class="card-info-static">
+            <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+            <div class="card-title">${p.title}</div>
+            <div class="card-subtitle">${p.subtitle}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterCards(btn, filter) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGallery(filter);
+    }
+
+    function buildVideoStrip(p) {
+      if (!p.videoGallery || !p.videoGallery.length) return '';
+
+      return `
+        <div class="project-video-strip">
+          <h3>Videos</h3>
+          <div class="project-video-strip-grid">
+            ${p.videoGallery.map((videoUrl, i) => `
+              <div class="project-video-card">
+                <iframe
+                  src="${videoUrl}"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                  allowfullscreen
+                  loading="lazy"
+                  title="${p.title} video ${i + 1}">
+                </iframe>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function buildGallery(p) {
+      if (p.videoOnly || !p.gallery || !p.gallery.length) return '';
+
+      if (p.galleryStyle === 'slider-169') {
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <div class="project-gallery-grid slider-169" data-carousel>
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide" data-slide-index="${i}">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+              <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (p.galleryStyle === 'slider-mixed-vertical') {
+        const videoItems = Array.isArray(p.videoEmbed)
+          ? p.videoEmbed
+          : (p.videoEmbed ? [p.videoEmbed] : []);
+
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <div class="project-gallery-grid slider-mixed-vertical">
+                ${videoItems.map((videoUrl, i) => `
+                  <div class="slide slide-video">
+                    <iframe
+                      src="${videoUrl}"
+                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                      allowfullscreen
+                      loading="lazy"
+                      title="${p.title} video ${i + 1}">
+                    </iframe>
+                  </div>
+                `).join('')}
+
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide slide-image">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (p.galleryStyle === 'slider-portrait') {
+        const ratioClass = p.portraitRatio === '9-16' ? 'is-9-16' : 'is-3-4';
+
+        return `
+          <div class="project-gallery">
+            <h3>Gallery</h3>
+            <div class="project-media-shell">
+              <div class="project-gallery-grid slider-portrait ${ratioClass}">
+                ${(p.gallery || []).map((g, i) => `
+                  <div class="slide">
+                    <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="project-gallery">
+          <h3>Gallery</h3>
+          <div class="project-gallery-grid grid-34">
+            ${(p.gallery || []).map((g, i) => `
+              <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function buildVideoOnly(p) {
+      if (!p.videoOnly) return '';
+
+      return `
+        <div class="project-video">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-169">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy"
+                title="${p.title} video">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildWideVideo(p) {
+      if (!p.videoWide) return '';
+
+      return `
+        <div class="project-video">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-169">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy"
+                title="${p.title} video">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildPortraitVideo(p) {
+      if (!p.videoPortrait) return '';
+
+      return `
+        <div class="project-video project-video-compact">
+          <h3>Video</h3>
+          <div class="project-video-frame ratio-916">
+            <div class="project-video-frame-inner">
+              <iframe
+                src="${p.videoEmbed || ''}"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                allowfullscreen
+                loading="lazy"
+                title="${p.title} video">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openProject(id) {
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+
+      const idx = projects.indexOf(p);
+      const prev = projects[idx - 1];
+      const next = projects[idx + 1];
+
+      const overviewHTML = p.overview
+        ? `<div class="project-copy-section"><h3>Overview</h3><p>${p.overview}</p></div>`
+        : '';
+
+      const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length
+        ? `<div class="project-copy-section"><h3>What was done</h3><ul class="project-bullets">${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}</ul></div>`
+        : '';
+
+      const useCaseHTML = p.useCase
+        ? `<div class="project-copy-section"><h3>Use case</h3><p>${p.useCase}</p></div>`
+        : '';
+
+      const deliverablesHTML = p.deliverables && p.deliverables.length
+        ? `<div class="project-copy-section"><h3>Deliverables</h3><div class="deliverables-row">${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}</div></div>`
+        : '';
+
+      const resultsHTML = p.results && p.results.length
+        ? `<div class="project-results"><h4>Results</h4>${p.results.map(r => `<div class="result-stat"><div class="result-num">${r.num}</div><div class="result-label">${r.label}</div></div>`).join('')}</div>`
+        : '';
+
+      const videoOnlyHTML = buildVideoOnly(p);
+      const wideVideoHTML = buildWideVideo(p);
+      const portraitVideoHTML = buildPortraitVideo(p);
+      const videoStripHTML = buildVideoStrip(p);
+      const galleryHTML = buildGallery(p);
+
+      const prevNavBtn = `<button class="proj-nav-btn" onclick="window.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>Back to works</button>`;
+
+      const nextNavBtn = next
+        ? `<button class="proj-nav-btn" onclick="if (window.opener && !window.opener.closed) { window.opener.openProject('${next.id}'); window.close(); }">
+            ${next.title}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M14 5l7 7-7 7"/>
+            </svg>
+          </button>`
+        : '<div></div>';
+
+      const tagsRow = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+      const metaRow = `<div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div><div class="project-meta-item"><label>Type</label><span>${p.type}</span></div><div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>`;
+      const quickInfo = p.tags.map(t => `<div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">${t}</div>`).join('');
+
+      const pageHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -197,10 +1925,193 @@ ${videoOnlyHTML}${wideVideoHTML}${portraitVideoHTML}${videoStripHTML}${galleryHT
 </body>
 </html>`;
 
-    const newTab = window.open('', '_blank');
-    if (newTab) {
-      newTab.document.write(pageHTML);
-      newTab.document.close();
+      const newTab = window.open('', '_blank');
+      if (newTab) {
+        newTab.document.write(pageHTML);
+        newTab.document.close();
+      }
     }
-  }
-</script>
+
+    function showProject(id) {
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+
+      const idx = projects.indexOf(p);
+      const prev = projects[idx - 1];
+      const next = projects[idx + 1];
+
+      const overviewHTML = p.overview ? `
+        <div class="project-copy-section">
+          <h3>Overview</h3>
+          <p>${p.overview}</p>
+        </div>
+      ` : '';
+
+      const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length ? `
+        <div class="project-copy-section">
+          <h3>What was done</h3>
+          <ul class="project-bullets">
+            ${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      ` : '';
+
+      const useCaseHTML = p.useCase ? `
+        <div class="project-copy-section">
+          <h3>Use case</h3>
+          <p>${p.useCase}</p>
+        </div>
+      ` : '';
+
+      const deliverablesHTML = p.deliverables && p.deliverables.length ? `
+        <div class="project-copy-section">
+          <h3>Deliverables</h3>
+          <div class="deliverables-row">
+            ${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      const resultsHTML = p.results && p.results.length ? `
+        <div class="project-results">
+          <h4>Results</h4>
+          ${p.results.map(r => `
+            <div class="result-stat">
+              <div class="result-num">${r.num}</div>
+              <div class="result-label">${r.label}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
+      document.getElementById('project-content').innerHTML = `
+        <div class="project-hero">
+          <div class="project-eyebrow">${p.type} · ${p.year}</div>
+          <h1 class="project-title-big">${p.title}</h1>
+          <div class="project-tags-row">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+          <div class="project-meta-row">
+            <div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div>
+            <div class="project-meta-item"><label>Type</label><span>${p.type}</span></div>
+            <div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-desc-block">
+            ${overviewHTML}
+            ${whatWasDoneHTML}
+            ${useCaseHTML}
+            ${deliverablesHTML}
+            ${resultsHTML}
+          </div>
+
+          <div class="project-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick info</h4>
+              ${p.tags.map(t => `
+                <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">
+                  ${t}
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="sidebar-card" style="background:var(--text);color:var(--white)">
+              <h4 style="color:rgba(255,255,255,0.5)">Get in touch</h4>
+              <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">
+                Interested in a similar project?
+              </p>
+              <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px">
+                viktoriiasaraeva@gmail.com →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        ${buildVideoOnly(p)}
+        ${buildWideVideo(p)}
+        ${buildPortraitVideo(p)}
+        ${buildVideoStrip(p)}
+        ${buildGallery(p)}
+
+        <div class="project-nav-bottom">
+          ${prev ? `
+            <button class="proj-nav-btn" onclick="showProject('${prev.id}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+              </svg>
+              ${prev.title}
+            </button>
+          ` : '<div></div>'}
+
+          ${next ? `
+            <button class="proj-nav-btn" onclick="showProject('${next.id}')">
+              ${next.title}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M14 5l7 7-7 7"/>
+              </svg>
+            </button>
+          ` : '<div></div>'}
+        </div>
+      `;
+
+      document.getElementById('home-view').classList.remove('active');
+      document.getElementById('project-view').classList.add('active');
+      document.getElementById('nav-back').classList.add('visible');
+      document.querySelector('.nav-logo').style.display = 'none';
+
+      initProjectCarousel();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initProjectCarousel() {
+      const carousel = document.querySelector('[data-carousel]');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('.slide'));
+      const prevBtn = document.querySelector('[data-carousel-prev]');
+      const nextBtn = document.querySelector('[data-carousel-next]');
+
+      if (!slides.length || !prevBtn || !nextBtn) return;
+
+      let currentIndex = 0;
+
+      function updateButtons() {
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= slides.length - 1;
+      }
+
+      function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+        carousel.scrollTo({
+          left: carousel.clientWidth * currentIndex,
+          behavior: 'smooth'
+        });
+        updateButtons();
+      }
+
+      function syncCurrentSlide() {
+        const nextIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
+        updateButtons();
+      }
+
+      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+      carousel.addEventListener('scroll', syncCurrentSlide, { passive: true });
+
+      updateButtons();
+    }
+
+    function showHome() {
+      document.getElementById('project-view').classList.remove('active');
+      document.getElementById('home-view').classList.add('active');
+      document.getElementById('nav-back').classList.remove('visible');
+      document.querySelector('.nav-logo').style.display = '';
+      window.scrollTo({ top: 0 });
+    }
+
+    renderGallery();
+  </script>
+</body>
+
+</html>

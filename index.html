@@ -2056,7 +2056,391 @@ ${videoOnlyHTML}${wideVideoHTML}${portraitVideoHTML}${videoStripHTML}${galleryHT
       window.scrollTo({ top: 0 });
     }
 
-    renderGallery();
+    
+    function renderGallery(filter = 'all') {
+  const grid = document.getElementById('gallery-grid');
+  const filtered = filter === 'all'
+    ? projects
+    : projects.filter(p => p.category.includes(filter));
+
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="work-card" onclick="showProject('${p.id}')">
+      <img src="${p.thumb}" alt="${p.title}" width="900" height="1200" loading="${i < 6 ? 'eager' : 'lazy'}">
+      <div class="card-info-static">
+        <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+        <div class="card-title">${p.title}</div>
+        <div class="card-subtitle">${p.subtitle}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCards(btn, filter) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery(filter);
+}
+
+function buildVideoStrip(p) {
+  if (!p.videoGallery || !p.videoGallery.length) return '';
+
+  return `
+    <div class="project-video-strip">
+      <h3>Videos</h3>
+      <div class="project-video-strip-grid">
+        ${p.videoGallery.map((videoUrl, i) => `
+          <div class="project-video-card">
+            <iframe
+              src="${videoUrl}"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+              allowfullscreen
+              loading="lazy"
+              title="${p.title} video ${i + 1}">
+            </iframe>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildGallery(p) {
+  if (p.videoOnly || !p.gallery || !p.gallery.length) return '';
+
+  if (p.galleryStyle === 'slider-169') {
+    return `
+      <div class="project-gallery">
+        <h3>Gallery</h3>
+        <div class="project-media-shell">
+          <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <div class="project-gallery-grid slider-169" data-carousel>
+            ${(p.gallery || []).map((g, i) => `
+              <div class="slide" data-slide-index="${i}">
+                <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
+              </div>
+            `).join('')}
+          </div>
+          <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 6l6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  if (p.galleryStyle === 'slider-mixed-vertical') {
+    const videoItems = Array.isArray(p.videoEmbed)
+      ? p.videoEmbed
+      : (p.videoEmbed ? [p.videoEmbed] : []);
+
+    return `
+      <div class="project-gallery">
+        <h3>Gallery</h3>
+        <div class="project-media-shell">
+          <div class="project-gallery-grid slider-mixed-vertical">
+            ${videoItems.map((videoUrl, i) => `
+              <div class="slide slide-video">
+                <iframe
+                  src="${videoUrl}"
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+                  allowfullscreen
+                  loading="lazy"
+                  title="${p.title} video ${i + 1}">
+                </iframe>
+              </div>
+            `).join('')}
+
+            ${(p.gallery || []).map((g, i) => `
+              <div class="slide slide-image">
+                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (p.galleryStyle === 'slider-portrait') {
+    const ratioClass = p.portraitRatio === '9-16' ? 'is-9-16' : 'is-3-4';
+
+    return `
+      <div class="project-gallery">
+        <h3>Gallery</h3>
+        <div class="project-media-shell">
+          <div class="project-gallery-grid slider-portrait ${ratioClass}">
+            ${(p.gallery || []).map((g, i) => `
+              <div class="slide">
+                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="project-gallery">
+      <h3>Gallery</h3>
+      <div class="project-gallery-grid grid-34">
+        ${(p.gallery || []).map((g, i) => `
+          <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildVideoOnly(p) {
+  if (!p.videoOnly) return '';
+
+  return `
+    <div class="project-video">
+      <h3>Video</h3>
+      <div class="project-video-frame ratio-169">
+        <div class="project-video-frame-inner">
+          <iframe
+            src="${p.videoEmbed || ''}"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="${p.title} video">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function buildWideVideo(p) {
+  if (!p.videoWide) return '';
+
+  return `
+    <div class="project-video">
+      <h3>Video</h3>
+      <div class="project-video-frame ratio-169">
+        <div class="project-video-frame-inner">
+          <iframe
+            src="${p.videoEmbed || ''}"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="${p.title} video">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function buildPortraitVideo(p) {
+  if (!p.videoPortrait) return '';
+
+  return `
+    <div class="project-video project-video-compact">
+      <h3>Video</h3>
+      <div class="project-video-frame ratio-916">
+        <div class="project-video-frame-inner">
+          <iframe
+            src="${p.videoEmbed || ''}"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="${p.title} video">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function showProject(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+
+  const idx = projects.indexOf(p);
+  const prev = projects[idx - 1];
+  const next = projects[idx + 1];
+
+  const overviewHTML = p.overview ? `
+    <div class="project-copy-section">
+      <h3>Overview</h3>
+      <p>${p.overview}</p>
+    </div>
+  ` : '';
+
+  const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length ? `
+    <div class="project-copy-section">
+      <h3>What was done</h3>
+      <ul class="project-bullets">
+        ${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}
+      </ul>
+    </div>
+  ` : '';
+
+  const ClientHTML = p.Client ? `
+    <div class="project-copy-section">
+      <h3>Client</h3>
+      <p>${p.Client}</p>
+    </div>
+  ` : '';
+
+  const deliverablesHTML = p.deliverables && p.deliverables.length ? `
+    <div class="project-copy-section">
+      <h3>Deliverables</h3>
+      <div class="deliverables-row">
+        ${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  const resultsHTML = p.results && p.results.length ? `
+    <div class="project-results">
+      <h4>Results</h4>
+      ${p.results.map(r => `
+        <div class="result-stat">
+          <div class="result-num">${r.num}</div>
+          <div class="result-label">${r.label}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  document.getElementById('project-content').innerHTML = `
+    <div class="project-hero">
+      <div class="project-eyebrow">${p.type} · ${p.year}</div>
+      <h1 class="project-title-big">${p.title}</h1>
+      <div class="project-tags-row">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+      <div class="project-meta-row">
+        <div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div>
+        <div class="project-meta-item"><label>Type</label><span>${p.type}</span></div>
+        <div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>
+      </div>
+    </div>
+
+    <div class="project-body">
+      <div class="project-desc-block">
+        ${overviewHTML}
+        ${whatWasDoneHTML}
+        ${ClientHTML}
+        ${deliverablesHTML}
+        ${resultsHTML}
+      </div>
+
+      <div class="project-sidebar">
+        <div class="sidebar-card">
+          <h4>Quick info</h4>
+          ${p.tags.map(t => `
+            <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">
+              ${t}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="sidebar-card" style="background:var(--text);color:var(--white)">
+          <h4 style="color:rgba(255,255,255,0.5)">Get in touch</h4>
+          <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">
+            Interested in a similar project?
+          </p>
+          <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px">
+            viktoriiasaraeva@gmail.com →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    ${buildVideoOnly(p)}
+    ${buildWideVideo(p)}
+    ${buildPortraitVideo(p)}
+    ${buildVideoStrip(p)}
+    ${buildGallery(p)}
+
+    <div class="project-nav-bottom">
+      ${prev ? `
+        <button class="proj-nav-btn" onclick="showProject('${prev.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+          </svg>
+          ${prev.title}
+        </button>
+      ` : '<div></div>'}
+
+      ${next ? `
+        <button class="proj-nav-btn" onclick="showProject('${next.id}')">
+          ${next.title}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M14 5l7 7-7 7"/>
+          </svg>
+        </button>
+      ` : '<div></div>'}
+    </div>
+  `;
+
+  document.getElementById('home-view').classList.remove('active');
+  document.getElementById('project-view').classList.add('active');
+  document.getElementById('nav-back').classList.add('visible');
+  document.querySelector('.nav-logo').style.display = 'none';
+
+  initProjectCarousel();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function initProjectCarousel() {
+  const carousel = document.querySelector('[data-carousel]');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  const prevBtn = document.querySelector('[data-carousel-prev]');
+  const nextBtn = document.querySelector('[data-carousel-next]');
+
+  if (!slides.length || !prevBtn || !nextBtn) return;
+
+  let currentIndex = 0;
+
+  function updateButtons() {
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= slides.length - 1;
+  }
+
+  function goToSlide(index) {
+    currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    carousel.scrollTo({
+      left: carousel.clientWidth * currentIndex,
+      behavior: 'smooth'
+    });
+    updateButtons();
+  }
+
+  function syncCurrentSlide() {
+    const nextIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+    currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
+    updateButtons();
+  }
+
+  prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+  nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+  carousel.addEventListener('scroll', syncCurrentSlide, { passive: true });
+
+  updateButtons();
+}
+
+function showHome() {
+  document.getElementById('project-view').classList.remove('active');
+  document.getElementById('home-view').classList.add('active');
+  document.getElementById('nav-back').classList.remove('visible');
+  document.querySelector('.nav-logo').style.display = '';
+  window.scrollTo({ top: 0 });
+}
+
+renderGallery();
+    
   </script>
 </body>
 

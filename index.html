@@ -1100,6 +1100,39 @@
   <script>
     const projects = [
       {
+        id: 'Setters',
+        title: 'Summer seacon & Brands',
+        subtitle: 'Instagram Reel',
+        tags: ['Video', 'Commercial', 'product placement'],
+        category: ['video', 'commercial', 'product impementation'],
+        thumb: './39.png',
+        year: '2026',
+        type: 'Brand Project',
+        galleryStyle: 'slider-mixed-vertical',
+        videoEmbed: [
+          'https://kinescope.io/rD1ykrt9iysCFE9hPPKnAf',
+          'https://kinescope.io/eqYtFs7EkescDCobs1Mppk',
+          'https://kinescope.io/qNdF8gYdnRvymzu5FgfpJx',
+          'https://kinescope.io/sztCmzA5gJe1TDaykicdWV',
+          'https://kinescope.io/qCqUT7oNSMj3F21CM4rZ7i',
+          'https://kinescope.io/xcS6oGGSWLDF2Rfv5VZSme'
+        ],
+        overview: 'A seasonal special project in collaboration with ((SETTERS) Agency), exploring what items big brands as Jacquemus or LEGO should launch for Gen Z spending summer in the countryside.',
+        whatWasDone: [
+          'Developed creative ideas for the product designs.',
+          'Created static frames featuring the designed items.',
+          'Animated the objects into a finished motion piece.',
+          'Worked in close collaboration with the creative and art directors throughout the project.',
+          'Video went viral in social media'
+        ],
+        Client: '((SETTERS)) is an advertising creative agency, known for combining strategy, branding, and social-first campaigns for major clients.',
+        deliverables: ['Reel', 'Concepts', 'Ad variations'],
+        results: [
+          { num: '20k', label: 'Views'}
+        ],
+        gallery: ['./38.png', './39.png', './40.png', './41.PNG', './42.png']
+      },
+      {
         id: 'winx',
         title: 'Winx Live-Action',
         subtitle: 'Fairy transformation',
@@ -1531,7 +1564,7 @@
       const videoStripHTML = buildVideoStrip(p);
       const galleryHTML = buildGallery(p);
 
-      
+
 
       const tagsRow = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
       const metaRow = `<div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div><div class="project-meta-item"><label>Type</label><span>${p.type}</span></div><div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>`;

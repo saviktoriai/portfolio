@@ -7,7 +7,9 @@
   <title> Viktoria Saraeva · AI Content Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+    rel="stylesheet">
+  <style>
     :root {
       --bg: #dcdcdc;
       --bg2: #d0d0d0;
@@ -1000,7 +1002,8 @@
     <div class="nav-logo" onclick="showHome()">Viktoriia Saraeva · AI Content Creator</div>
     <div class="nav-right">
       <a href="#works" onclick="showHome()">Works</a>
-      <a href="#contact-anchor" onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
+      <a href="#contact-anchor"
+        onclick="showHome(); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
     </div>
     <button class="nav-back" id="nav-back" onclick="showHome()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1130,7 +1133,7 @@
         id: 'franui',
         title: 'Franuí Halloween',
         subtitle: 'Personal project',
-        tags: ['Video', 'Product placement', 'Sound design', 'Consistent character'],
+        tags: ['Video', 'Product implementation'],
         category: ['video', 'product implementation'],
         thumb: './22.png',
         year: '2025',
@@ -1145,9 +1148,9 @@
           'Animated each scene, and assembled the full video edit.',
           'Worked on sound design focusing on atmosphere, mood and visual memorability.'
         ],
-        deliverables: ['Reel', 'Advertising'],
-        results: 
-          { num: '6', label: 'reposts from Franui official accounts in different countries' }
+        Client: 'Social teaser / seasonal content',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
+        results: [],
         gallery: ['./22-2.webp', './22-3.webp', './22-4.webp']
       },
       {
@@ -1166,9 +1169,10 @@
         whatWasDone: [
           'Reworked a fragment from Frozen, closely following the original sequence and scene structure.',
           'Recreated the surrounding world in a live-action visual language.',
-          'Created an AI avatar of Anna and maintain character consistency.'.
+          'Created an AI avatar of Anna and maintain character consistency.'
         ],
-        deliverables: ['Reel', 'Stills', 'AI avatar'],
+        Client: 'Launch concept / entertainment visual pitch',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Visual variations'],
         results: [],
         gallery: ['./23-1.webp', './23-2.webp', './23-3.webp', './23-4.webp']
       },
@@ -1185,11 +1189,11 @@
         videoEmbed: 'https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV',
         overview: 'A Thanksgiving-themed CGI reel created for the client’s Instagram page, designed to stop the scroll and make the seasonal campaign instantly visible.',
         whatWasDone: [
-          'Executed the client brief precisely, following deadlines.'
+          'Executed the client brief precisely, following deadlines.',
           'Generated static frames, animated each and assembled the final edit into a short-form video.'
         ],
-        Client: 'WHY.CGI — high-end CGI and mixed reality production studio behind viral campaigns for global brands.',
-        deliverables: ['Still frames', 'Reel'],
+        Client: 'Social teaser / campaign visual',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: [
           { num: '25.3K', label: 'Views' }
         ],
@@ -1213,10 +1217,8 @@
           'Created campaign stills with strong recognition value.',
           'Built a friendly and game-ready visual language for community use.'
         ],
-        Client: 
-          'Alfa-Bank — one of the largest private banks in Russia.',
-          'Changellenge — a leading Russian platform for consulting competitions and case championships.'
-        deliverables: ['Stills', 'Concepts', 'AI avatar'],
+        Client: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'AI avatar', 'Ad variations'],
         results: [
           { num: '34K', label: 'Interactions' }
         ],
@@ -1226,7 +1228,7 @@
         id: 'miumiu',
         title: 'Miu Miu Halloween',
         subtitle: 'Personal project',
-        tags: ['Animation', 'Product placement', 'Static images'],
+        tags: ['Video', 'Product implementation'],
         category: ['video', 'product implementation'],
         thumb: './26.png',
         year: '2025',
@@ -1242,6 +1244,8 @@
           'Created static frames for the concept.',
           'Integrated the real product into the visuals and animated the frames into a finished piece.'
         ],
+        Client: 'Beauty reel / campaign visual',
+        deliverables: ['Reels', 'Stills', 'Concepts'],
         results: [],
         gallery: ['./26-1.png', './26-2.webp']
       },
@@ -1257,8 +1261,10 @@
         galleryStyle: 'slider-portrait',
         overview: 'Postcards',
         whatWasDone: [
-          'Created single-frame visuals with strong poster composition.'.
+          'Created single-frame visuals with strong poster composition.'
         ],
+        Client: 'Editorial visual / concept series',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./27.png', './27-1.png', './27-2.png', './27-3.png']
       },
@@ -1276,14 +1282,16 @@
         whatWasDone: [
           'Created editorial-style stills with a poster-inspired structure.'
         ],
+        Client: 'Campaign visual / awareness series',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./20-1.png', './20-2.png', './20-3.png', './20-4.png']
       },
       {
         id: 'spotlight',
-        title: 'Steal the Spotlight',
+        title: 'Milfey Steal the Spotlight',
         subtitle: 'Instagram Reel',
-        tags: ['animation', 'sound design', 'consistent character'],
+        tags: ['Video', 'Commercial', 'AI avatar'],
         category: ['video', 'commercial', 'ai avatar'],
         thumb: './28.png',
         year: '2025',
@@ -1298,13 +1306,14 @@
           'Animated the sequence into a finished video.',
           'Worked on the sound design.'
         ],
-        Client: 'Milfey — aesthetics clinic',
+        Client: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./28-1.png', './28-2.png', './28-3.png', './28-4.webp']
       },
       {
         id: 'nofilter',
-        title: 'No filter',
+        title: 'Milfey No filter',
         subtitle: 'AI Visuals',
         tags: ['Static Images', 'Commercial', 'AI avatar'],
         category: ['static', 'commercial', 'ai avatar'],
@@ -1315,15 +1324,16 @@
         overview: 'A series of image-driven portraits was created. The heroine is captured in candid moments during self-care — slightly ironic yet stylish and high-fashion.',
         whatWasDone: [
           'Developed static images featuring the brand’s virtual influencer.',
-          'Produced in collaboration with Qute Studio.'.
+          'Produced in collaboration with Qute Studio.'
         ],
-        Client: 'Milfey — aesthetics clinic',
+        Client: 'Campaign visual / product launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./29-1.png', './29-2.png', './29-3.png', './29-4.png', './29-5.png']
       },
       {
         id: 'reboot',
-        title: 'Reboot',
+        title: 'Milfey Reboot',
         subtitle: 'Instagram Reel',
         tags: ['Video', 'Commercial'],
         category: ['video', 'commercial'],
@@ -1334,11 +1344,12 @@
         videoEmbed: 'https://kinescope.io/3qmLvKbRaw2zYpyTzqsNZh',
         overview: 'Video explores the idea of self-update. Main character undergoes a digital-like scan that smooths out wrinkles and renews her appearance.',
         whatWasDone: [
-          'Created the storyboard for the video.'
+          'Created the storyboard for the video.',
           'Developed static frames around the concept.',
-          'Video produced in collaboration with Qute Studio.'.
+          'Video produced in collaboration with Qute Studio.'
         ],
-        Client: 'Milfey — aesthetics clinic',
+        Client: 'Beauty reel / social teaser',
+        deliverables: ['Reel', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./30-1.webp', './30-2.png', './30-3.png', './30.png']
       },
@@ -1356,8 +1367,10 @@
         whatWasDone: [
           'Developed the creative concept for the competition entry.',
           'Combined sports symbols with luxury still-life elements.',
-          'Built a strong single-frame concept around irony and elegance.'.
+          'Built a strong single-frame concept around irony and elegance.'
         ],
+        Client: 'Editorial concept / competition visual',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./31-1.png', './31-2.png', './31-3.png', './31-4.PNG', './31.png']
       },
@@ -1378,14 +1391,16 @@
           'Animated each frame into a finished video.',
           'Worked on sound design and final editing.'
         ],
+        Client: 'Mood reel / visual direction sample',
+        deliverables: ['Reel', 'Stills', 'Concepts'],
         results: [],
         gallery: ['./32.png', './32-1.png', './32-2.png', './32-3.png']
       },
       {
         id: 'clyo',
-        title: 'Scan',
+        title: 'Clyo Health',
         subtitle: 'Website video',
-        tags: ['animation'],
+        tags: ['Video', 'Commercial'],
         category: ['video', 'commercial'],
         thumb: './33.png',
         year: '2025',
@@ -1396,7 +1411,8 @@
         whatWasDone: [
           'Created a health-tech video concept for website placement.'
         ],
-        Client: 'CLYO HEALTH — clinic',
+        Client: 'Launch / website hero video',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: []
       },
       {
@@ -1413,14 +1429,16 @@
         whatWasDone: [
           'Developed a static series for editorial-style presentation.'
         ],
+        Client: 'Editorial concept / art visual',
+        deliverables: ['Stills', 'Concepts'],
         results: [],
         gallery: ['./34-1.png', './34-2.png', './34-3.png', './34-4.png']
       },
       {
         id: 'youwanna',
-        title: 'Woman is a winner campaign',
+        title: 'You Wanna',
         subtitle: 'Woman is a winner campaign',
-        tags: ['Static Images', 'Product placement'],
+        tags: ['Static Images', 'Product implementation'],
         category: ['static', 'product implementation'],
         thumb: './35.png',
         year: '2025',
@@ -1432,13 +1450,14 @@
           'Created static frames for the concept.',
           'Integrated the real product by styling a consistent AI-generated female model in a black dress from the brand collection.'
         ],
-        Client: 'You Wanna — clothing brand',
+        Client: 'Campaign visual / social launch',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./35-2.PNG', './35-1.PNG']
       },
       {
         id: 'tremessis',
-        title: 'Basketball campaign',
+        title: 'Tremessis',
         subtitle: 'AI-visuals',
         tags: ['Static Images', 'Commercial', 'Product implementation'],
         category: ['static', 'commercial', 'product implementation'],
@@ -1452,7 +1471,8 @@
           'Created static frames for the concept.',
           'Integrated the real product into the final imagery.'
         ],
-        Client: 'Tremessis — streetwear brand',
+        Client: 'Campaign visual / launch support',
+        deliverables: ['Stills', 'Concepts', 'Ad variations'],
         results: [],
         gallery: ['./36.png', './36-1.png', './36-2.png', './36-3.png']
       },
@@ -1472,7 +1492,8 @@
           'Created a video concept focused on macro detail.',
           'Video was displayed on 70+ digital screens across Luzhniki — Moscow’s largest sports and event complex.'
         ],
-        Client: 'LabRehab — recovery center'
+        Client: 'Ad visual / social teaser',
+        deliverables: ['Reel', 'Concept', 'Ad variations'],
         results: []
       }
     ];
@@ -1510,7 +1531,10 @@
       const videoStripHTML = buildVideoStrip(p);
       const galleryHTML = buildGallery(p);
 
-      
+      const prevNavBtn = `<button class="proj-nav-btn" onclick="window.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>Back to works</button>`;
+      const nextNavBtn = next
+        ? `<button class="proj-nav-btn" onclick="openProjectInTab('${next.id}', projectsData)">${next.title}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M14 5l7 7-7 7"/></svg></button>`
+        : '<div></div>';
 
       const tagsRow = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
       const metaRow = `<div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div><div class="project-meta-item"><label>Type</label><span>${p.type}</span></div><div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>`;
@@ -1643,7 +1667,10 @@ ul{list-style:none;}
 
 ${videoOnlyHTML}${wideVideoHTML}${portraitVideoHTML}${videoStripHTML}${galleryHTML}
 
-
+<div class="project-nav-bottom">
+  ${prevNavBtn}
+  ${nextNavBtn}
+</div>
 
 <script>
   function initProjectCarousel(){
@@ -2056,391 +2083,7 @@ ${videoOnlyHTML}${wideVideoHTML}${portraitVideoHTML}${videoStripHTML}${galleryHT
       window.scrollTo({ top: 0 });
     }
 
-    
-    function renderGallery(filter = 'all') {
-  const grid = document.getElementById('gallery-grid');
-  const filtered = filter === 'all'
-    ? projects
-    : projects.filter(p => p.category.includes(filter));
-
-  grid.innerHTML = filtered.map((p, i) => `
-    <div class="work-card" onclick="showProject('${p.id}')">
-      <img src="${p.thumb}" alt="${p.title}" width="900" height="1200" loading="${i < 6 ? 'eager' : 'lazy'}">
-      <div class="card-info-static">
-        <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
-        <div class="card-title">${p.title}</div>
-        <div class="card-subtitle">${p.subtitle}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function filterCards(btn, filter) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderGallery(filter);
-}
-
-function buildVideoStrip(p) {
-  if (!p.videoGallery || !p.videoGallery.length) return '';
-
-  return `
-    <div class="project-video-strip">
-      <h3>Videos</h3>
-      <div class="project-video-strip-grid">
-        ${p.videoGallery.map((videoUrl, i) => `
-          <div class="project-video-card">
-            <iframe
-              src="${videoUrl}"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-              allowfullscreen
-              loading="lazy"
-              title="${p.title} video ${i + 1}">
-            </iframe>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
-}
-
-function buildGallery(p) {
-  if (p.videoOnly || !p.gallery || !p.gallery.length) return '';
-
-  if (p.galleryStyle === 'slider-169') {
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <button class="gallery-arrow prev" type="button" data-carousel-prev aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <div class="project-gallery-grid slider-169" data-carousel>
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide" data-slide-index="${i}">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="1600" height="900" loading="lazy">
-              </div>
-            `).join('')}
-          </div>
-          <button class="gallery-arrow next" type="button" data-carousel-next aria-label="Next slide">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 6l6 6-6 6"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    `;
-  }
-
-  if (p.galleryStyle === 'slider-mixed-vertical') {
-    const videoItems = Array.isArray(p.videoEmbed)
-      ? p.videoEmbed
-      : (p.videoEmbed ? [p.videoEmbed] : []);
-
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <div class="project-gallery-grid slider-mixed-vertical">
-            ${videoItems.map((videoUrl, i) => `
-              <div class="slide slide-video">
-                <iframe
-                  src="${videoUrl}"
-                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-                  allowfullscreen
-                  loading="lazy"
-                  title="${p.title} video ${i + 1}">
-                </iframe>
-              </div>
-            `).join('')}
-
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide slide-image">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  if (p.galleryStyle === 'slider-portrait') {
-    const ratioClass = p.portraitRatio === '9-16' ? 'is-9-16' : 'is-3-4';
-
-    return `
-      <div class="project-gallery">
-        <h3>Gallery</h3>
-        <div class="project-media-shell">
-          <div class="project-gallery-grid slider-portrait ${ratioClass}">
-            ${(p.gallery || []).map((g, i) => `
-              <div class="slide">
-                <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  return `
-    <div class="project-gallery">
-      <h3>Gallery</h3>
-      <div class="project-gallery-grid grid-34">
-        ${(p.gallery || []).map((g, i) => `
-          <img src="${g}" alt="${p.title} image ${i + 1}" width="900" height="1200" loading="lazy">
-        `).join('')}
-      </div>
-    </div>
-  `;
-}
-
-function buildVideoOnly(p) {
-  if (!p.videoOnly) return '';
-
-  return `
-    <div class="project-video">
-      <h3>Video</h3>
-      <div class="project-video-frame ratio-169">
-        <div class="project-video-frame-inner">
-          <iframe
-            src="${p.videoEmbed || ''}"
-            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-            allowfullscreen
-            loading="lazy"
-            title="${p.title} video">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function buildWideVideo(p) {
-  if (!p.videoWide) return '';
-
-  return `
-    <div class="project-video">
-      <h3>Video</h3>
-      <div class="project-video-frame ratio-169">
-        <div class="project-video-frame-inner">
-          <iframe
-            src="${p.videoEmbed || ''}"
-            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-            allowfullscreen
-            loading="lazy"
-            title="${p.title} video">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function buildPortraitVideo(p) {
-  if (!p.videoPortrait) return '';
-
-  return `
-    <div class="project-video project-video-compact">
-      <h3>Video</h3>
-      <div class="project-video-frame ratio-916">
-        <div class="project-video-frame-inner">
-          <iframe
-            src="${p.videoEmbed || ''}"
-            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write"
-            allowfullscreen
-            loading="lazy"
-            title="${p.title} video">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function showProject(id) {
-  const p = projects.find(x => x.id === id);
-  if (!p) return;
-
-  const idx = projects.indexOf(p);
-  const prev = projects[idx - 1];
-  const next = projects[idx + 1];
-
-  const overviewHTML = p.overview ? `
-    <div class="project-copy-section">
-      <h3>Overview</h3>
-      <p>${p.overview}</p>
-    </div>
-  ` : '';
-
-  const whatWasDoneHTML = p.whatWasDone && p.whatWasDone.length ? `
-    <div class="project-copy-section">
-      <h3>What was done</h3>
-      <ul class="project-bullets">
-        ${p.whatWasDone.map(item => `<li>${item}</li>`).join('')}
-      </ul>
-    </div>
-  ` : '';
-
-  const ClientHTML = p.Client ? `
-    <div class="project-copy-section">
-      <h3>Client</h3>
-      <p>${p.Client}</p>
-    </div>
-  ` : '';
-
-  const deliverablesHTML = p.deliverables && p.deliverables.length ? `
-    <div class="project-copy-section">
-      <h3>Deliverables</h3>
-      <div class="deliverables-row">
-        ${p.deliverables.map(item => `<span class="deliverable-chip">${item}</span>`).join('')}
-      </div>
-    </div>
-  ` : '';
-
-  const resultsHTML = p.results && p.results.length ? `
-    <div class="project-results">
-      <h4>Results</h4>
-      ${p.results.map(r => `
-        <div class="result-stat">
-          <div class="result-num">${r.num}</div>
-          <div class="result-label">${r.label}</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
-
-  document.getElementById('project-content').innerHTML = `
-    <div class="project-hero">
-      <div class="project-eyebrow">${p.type} · ${p.year}</div>
-      <h1 class="project-title-big">${p.title}</h1>
-      <div class="project-tags-row">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
-      <div class="project-meta-row">
-        <div class="project-meta-item"><label>Category</label><span>${p.tags[0]}</span></div>
-        <div class="project-meta-item"><label>Type</label><span>${p.type}</span></div>
-        <div class="project-meta-item"><label>Year</label><span>${p.year}</span></div>
-      </div>
-    </div>
-
-    <div class="project-body">
-      <div class="project-desc-block">
-        ${overviewHTML}
-        ${whatWasDoneHTML}
-        ${ClientHTML}
-        ${deliverablesHTML}
-        ${resultsHTML}
-      </div>
-
-      <div class="project-sidebar">
-        <div class="sidebar-card">
-          <h4>Quick info</h4>
-          ${p.tags.map(t => `
-            <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase">
-              ${t}
-            </div>
-          `).join('')}
-        </div>
-
-        <div class="sidebar-card" style="background:var(--text);color:var(--white)">
-          <h4 style="color:rgba(255,255,255,0.5)">Get in touch</h4>
-          <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8)">
-            Interested in a similar project?
-          </p>
-          <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px">
-            viktoriiasaraeva@gmail.com →
-          </a>
-        </div>
-      </div>
-    </div>
-
-    ${buildVideoOnly(p)}
-    ${buildWideVideo(p)}
-    ${buildPortraitVideo(p)}
-    ${buildVideoStrip(p)}
-    ${buildGallery(p)}
-
-    <div class="project-nav-bottom">
-      ${prev ? `
-        <button class="proj-nav-btn" onclick="showProject('${prev.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
-          </svg>
-          ${prev.title}
-        </button>
-      ` : '<div></div>'}
-
-      ${next ? `
-        <button class="proj-nav-btn" onclick="showProject('${next.id}')">
-          ${next.title}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M14 5l7 7-7 7"/>
-          </svg>
-        </button>
-      ` : '<div></div>'}
-    </div>
-  `;
-
-  document.getElementById('home-view').classList.remove('active');
-  document.getElementById('project-view').classList.add('active');
-  document.getElementById('nav-back').classList.add('visible');
-  document.querySelector('.nav-logo').style.display = 'none';
-
-  initProjectCarousel();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function initProjectCarousel() {
-  const carousel = document.querySelector('[data-carousel]');
-  if (!carousel) return;
-
-  const slides = Array.from(carousel.querySelectorAll('.slide'));
-  const prevBtn = document.querySelector('[data-carousel-prev]');
-  const nextBtn = document.querySelector('[data-carousel-next]');
-
-  if (!slides.length || !prevBtn || !nextBtn) return;
-
-  let currentIndex = 0;
-
-  function updateButtons() {
-    prevBtn.disabled = currentIndex <= 0;
-    nextBtn.disabled = currentIndex >= slides.length - 1;
-  }
-
-  function goToSlide(index) {
-    currentIndex = Math.max(0, Math.min(index, slides.length - 1));
-    carousel.scrollTo({
-      left: carousel.clientWidth * currentIndex,
-      behavior: 'smooth'
-    });
-    updateButtons();
-  }
-
-  function syncCurrentSlide() {
-    const nextIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
-    currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
-    updateButtons();
-  }
-
-  prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-  nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-  carousel.addEventListener('scroll', syncCurrentSlide, { passive: true });
-
-  updateButtons();
-}
-
-function showHome() {
-  document.getElementById('project-view').classList.remove('active');
-  document.getElementById('home-view').classList.add('active');
-  document.getElementById('nav-back').classList.remove('visible');
-  document.querySelector('.nav-logo').style.display = '';
-  window.scrollTo({ top: 0 });
-}
-
-renderGallery();
-    
+    renderGallery();
   </script>
 </body>
 

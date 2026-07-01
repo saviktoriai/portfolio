@@ -142,67 +142,123 @@
     }
 
     .hero {
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 80px);
-      position: relative;
-      overflow: hidden;
-    }
+  min-height: 100dvh;
+  padding: 100px clamp(20px, 5vw, 60px) clamp(40px, 6vw, 80px);
+  position: relative;
+  overflow: visible;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+.hero-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 420px);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+}
 
-    .hero-label {
-      font-size: var(--xs);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 24px;
-      font-weight: 500;
-    }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
 
-    .hero-title {
-      font-size: var(--hero);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      max-width: 1100px;
-    }
+.hero-label {
+  font-size: var(--xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
 
-    .hero-title .dim {
-      color: var(--faint);
-    }
+.hero-title {
+  font-size: clamp(3rem, 6vw, 7rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
 
-    .hero-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-top: 40px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+.hero-title .dim {
+  color: var(--faint);
+}
 
-    .hero-desc {
-      font-size: var(--base);
-      color: var(--muted);
-      max-width: 42ch;
-      line-height: 1.65;
-    }
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
 
-    .hero-scroll {
-      font-size: var(--xs);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--faint);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+.hero-desc {
+  font-size: var(--base);
+  color: var(--muted);
+  max-width: 42ch;
+  line-height: 1.65;
+}
+
+.hero-scroll {
+  font-size: var(--xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--faint);
+}
+
+.hero-photo-wrap {
+  width: 100%;
+  justify-self: end;
+  align-self: start;
+}
+
+.hero-photo {
+  width: 100%;
+  display: block;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo-wrap {
+    justify-self: start;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 110px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 12vw, 4.2rem);
+  }
+
+  .hero-photo-wrap {
+    max-width: 100%;
+  }
+}
 
     .scroll-line {
       width: 40px;
@@ -1017,7 +1073,7 @@
     <section class="hero">
   <div class="hero-layout">
     <div class="hero-content">
-      <div class="hero-label">Viktoria Saraeva · AI Content Creator  </div>
+      <div class="hero-label">AI Content Creator · Milano</div>
       <h1 class="hero-title">
         Creating <span class="dim">the future</span><br>
         of content <span class="dim">powered</span><br>
@@ -1037,7 +1093,7 @@
     </div>
 
     <div class="hero-photo-wrap">
-      <img src="./43.png" alt="Viktoria Saraeva portrait" class="hero-photo">
+      <img src="./image.jpg" alt="Viktoriia Saraeva portrait" class="hero-photo">
     </div>
   </div>
 </section>

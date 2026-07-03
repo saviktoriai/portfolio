@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winx Live-Action · Viktoria Saraeva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#dcdcdc;--bg2:#d0d0d0;--surface:#e4e4e4;--border:rgba(0,0,0,0.10);--text:#111111;--muted:#666666;--faint:#999999;--white:#f5f5f5;--font:'Inter',sans-serif;--xs:clamp(0.65rem,0.6rem + 0.2vw,0.75rem);--sm:clamp(0.8rem,0.75rem + 0.2vw,0.9rem);--base:clamp(0.95rem,0.9rem + 0.2vw,1.05rem);--xl:clamp(1.5rem,1rem + 2vw,2.5rem);--r-md:12px;--r-lg:18px;--r-xl:24px;--ease:cubic-bezier(0.16,1,0.3,1);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;padding-top:72px;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font:inherit;color:inherit;border:none;background:none;}
+ul{list-style:none;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,5vw,60px);background:rgba(220,220,220,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:var(--sm);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--muted);cursor:pointer;}
+.nav-back svg{width:14px;height:14px;}
+.project-hero{padding:48px clamp(20px,5vw,60px) 40px;border-bottom:1px solid var(--border);}
+.project-eyebrow{font-size:var(--xs);letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500;}
+.project-title-big{font-size:clamp(2.5rem,1rem + 5vw,6rem);font-weight:900;letter-spacing:-0.03em;text-transform:uppercase;line-height:0.95;margin-bottom:24px;}
+.project-meta-row{display:flex;gap:40px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);}
+.project-meta-item label{font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500;display:block;margin-bottom:4px;}
+.project-meta-item span{font-size:var(--sm);font-weight:600;}
+.project-tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px;}
+.project-tag{font-size:var(--xs);padding:4px 12px;border-radius:var(--r-xl);border:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-weight:500;}
+.project-body{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:48px;padding:48px clamp(20px,5vw,60px);align-items:start;}
+.project-desc-block h3,.project-gallery h3,.project-video-strip h3,.project-copy-section h3{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px;}
+.project-desc-block p,.project-copy-section p{font-size:var(--base);color:var(--text);line-height:1.75;margin-bottom:16px;max-width:66ch;}
+.project-copy-section{margin-bottom:28px;}
+.project-bullets{margin:16px 0 24px 0;}
+.project-bullets li{font-size:var(--base);color:var(--muted);line-height:1.7;padding-left:16px;position:relative;margin-bottom:8px;}
+.project-bullets li::before{content:"—";position:absolute;left:0;color:var(--faint);}
+.project-results{background:var(--surface);border-radius:var(--r-lg);padding:24px;margin-top:32px;border:1px solid var(--border);}
+.project-results h4{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px;}
+.result-stat{margin-bottom:16px;}
+.result-num{font-size:var(--xl);font-weight:900;letter-spacing:-0.02em;line-height:1;}
+.result-label{font-size:var(--xs);color:var(--muted);margin-top:2px;}
+.project-sidebar{position:sticky;top:96px;}
+.sidebar-card{background:var(--surface);border-radius:var(--r-lg);padding:24px;border:1px solid var(--border);margin-bottom:16px;}
+.sidebar-card h4{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px;}
+.project-gallery,.project-video-strip{padding:0 clamp(20px,5vw,60px) 56px;}
+.project-media-shell{position:relative;}
+.project-gallery-grid.slider-169{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:var(--r-lg);-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.project-gallery-grid.slider-169::-webkit-scrollbar{display:none;}
+.project-gallery-grid.slider-169 .slide{scroll-snap-align:start;width:100%;min-width:100%;}
+.project-gallery-grid.slider-169 img{width:100%;aspect-ratio:16/9;object-fit:contain;object-position:center;background:#d8d8d8;border-radius:var(--r-lg);}
+.project-video-strip-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(560px,72vw);gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:8px;-webkit-overflow-scrolling:touch;}
+.project-video-card{scroll-snap-align:start;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#111;position:relative;}
+.project-video-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(17,17,17,0.78);color:#fff;backdrop-filter:blur(8px);transition:all .2s var(--ease);}
+.gallery-arrow:disabled{opacity:0.28;pointer-events:none;}
+.gallery-arrow.prev{left:16px;}
+.gallery-arrow.next{right:16px;}
+.gallery-arrow svg{width:18px;height:18px;}
+.project-nav-bottom{padding:40px clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.proj-nav-btn{display:flex;align-items:center;gap:10px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:12px 20px;border-radius:var(--r-xl);border:1px solid var(--border);}
+.proj-nav-btn svg{width:16px;height:16px;}
+@media (max-width:900px){.project-body{grid-template-columns:1fr;}.project-sidebar{position:static;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo">Viktoria Saraeva · AI Content Creator</div>
+  <a class="nav-back" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    Back to works
+  </a>
+</nav>
+
+<div class="project-hero">
+  <div class="project-eyebrow">Personal Project · 2025</div>
+  <h1 class="project-title-big">Winx Live-Action</h1>
+  <div class="project-tags-row">
+    <span class="project-tag">Video</span>
+    <span class="project-tag">AI avatar</span>
+    <span class="project-tag">sound design</span>
+  </div>
+  <div class="project-meta-row">
+    <div class="project-meta-item"><label>Category</label><span>video</span></div>
+    <div class="project-meta-item"><label>Type</label><span>Personal Project</span></div>
+    <div class="project-meta-item"><label>Year</label><span>2025</span></div>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-desc-block">
+    <div class="project-copy-section">
+      <h3>Overview</h3>
+      <p>A nostalgic AI-powered live-action reinterpretation of the Winx universe, designed as a cinematic fan-driven short-form series.</p>
+    </div>
+    <div class="project-copy-section">
+      <h3>What was done</h3>
+      <ul class="project-bullets">
+        <li>Developed custom AI character models for Winx fairies.</li>
+        <li>Designed pre- and post-transformation looks inspired by the original universe.</li>
+        <li>Created cinematic transformation sequences for short-form video.</li>
+        <li>Built a visually recognizable fantasy world with a live-action feel.</li>
+      </ul>
+    </div>
+    <div class="project-results">
+      <h4>Results</h4>
+      <div class="result-stat"><div class="result-num">2.2M</div><div class="result-label">Total views across platforms</div></div>
+      <div class="result-stat"><div class="result-num">Viral</div><div class="result-label">Nostalgia-driven traction</div></div>
+    </div>
+  </div>
+
+  <div class="project-sidebar">
+    <div class="sidebar-card">
+      <h4>Quick info</h4>
+      <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Video</div>
+      <div style="font-size:var(--xs);padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">AI avatar</div>
+      <div style="font-size:var(--xs);padding:6px 0;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">sound design</div>
+    </div>
+
+    <div class="sidebar-card" style="background:var(--text);color:var(--white);">
+      <h4 style="color:rgba(255,255,255,0.5);">Get in touch</h4>
+      <p style="font-size:var(--sm);line-height:1.6;color:rgba(255,255,255,0.8);">Interested in a similar project?</p>
+      <a href="mailto:viktoriiasaraeva@gmail.com" style="display:block;margin-top:14px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--white);border-top:1px solid rgba(255,255,255,0.2);padding-top:14px;">viktoriiasaraeva@gmail.com →</a>
+    </div>
+  </div>
+</div>
+
+<div class="project-gallery">
+  <h3>Gallery</h3>
+  <div class="project-media-shell">
+    <button class="gallery-arrow prev" type="button" data-carousel-prev>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <div class="project-gallery-grid slider-169" data-carousel>
+      <div class="slide"><img src="../.21-1.webp" alt="Winx image 1" width="1600" height="900" loading="lazy"></div>
+      <div class="slide"><img src="../.21-2.webp" alt="Winx image 2" width="1600" height="900" loading="lazy"></div>
+      <div class="slide"><img src="../.21-3.webp" alt="Winx image 3" width="1600" height="900" loading="lazy"></div>
+    </div>
+
+    <button class="gallery-arrow next" type="button" data-carousel-next>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="project-video-strip">
+  <h3>Videos</h3>
+  <div class="project-video-strip-grid">
+    <div class="project-video-card"><iframe src="https://kinescope.io/embed/aaSgmNy3NfHjuRC9biExvn" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Winx video 1"></iframe></div>
+    <div class="project-video-card"><iframe src="https://kinescope.io/embed/fMiXvgEkV8iW4GVUotSrpk" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Winx video 2"></iframe></div>
+    <div class="project-video-card"><iframe src="https://kinescope.io/embed/dQBjbMTfvN41dVovMVmwMt" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Winx video 3"></iframe></div>
+  </div>
+</div>
+
+<div class="project-nav-bottom">
+  <a class="proj-nav-btn" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    All works
+  </a>
+</div>
+
+<script>
+(function initCarousel(){
+  const carousel = document.querySelector('[data-carousel]');
+  if(!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  const prevBtn = document.querySelector('[data-carousel-prev]');
+  const nextBtn = document.querySelector('[data-carousel-next]');
+  if(!slides.length || !prevBtn || !nextBtn) return;
+  let currentIndex = 0;
+  function updateButtons(){prevBtn.disabled = currentIndex===0; nextBtn.disabled = currentIndex===slides.length-1;}
+  function goToSlide(index){currentIndex = Math.max(0, Math.min(index, slides.length-1)); carousel.scrollTo({left: carousel.clientWidth*currentIndex, behavior:'smooth'}); updateButtons();}
+  prevBtn.addEventListener('click', ()=>goToSlide(currentIndex-1));
+  nextBtn.addEventListener('click', ()=>goToSlide(currentIndex+1));
+  carousel.addEventListener('scroll', ()=>{
+    const nextIndex = Math.round(carousel.scrollLeft/carousel.clientWidth);
+    currentIndex = Math.max(0, Math.min(nextIndex, slides.length-1));
+    updateButtons();
+  }, {passive:true});
+  updateButtons();
+})();
+</script>
+</body>
+</html>

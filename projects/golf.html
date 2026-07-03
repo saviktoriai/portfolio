@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>golf · Viktoria Saraeva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#dcdcdc;--bg2:#d0d0d0;--surface:#e4e4e4;--border:rgba(0,0,0,0.10);--text:#111111;--muted:#666666;--faint:#999999;--white:#f5f5f5;--font:Inter,Helvetica Neue,sans-serif;--xs:clamp(0.65rem,0.6rem + 0.2vw,0.75rem);--sm:clamp(0.8rem,0.75rem + 0.2vw,0.9rem);--base:clamp(0.95rem,0.9rem + 0.2vw,1.05rem);--xl:clamp(1.5rem,1rem + 2vw,2.5rem);--r-lg:18px;--r-xl:24px;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;min-height:100dvh;padding-top:72px}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font:inherit;color:inherit;border:none;background:none}
+ul{list-style:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,5vw,60px);background:rgba(220,220,220,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:var(--sm);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.nav-back svg{width:14px;height:14px}
+.project-hero{padding:48px clamp(20px,5vw,60px) 40px;border-bottom:1px solid var(--border)}
+.project-eyebrow{font-size:var(--xs);letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+.project-title-big{font-size:clamp(2.5rem,1rem + 5vw,6rem);font-weight:900;letter-spacing:-0.03em;text-transform:uppercase;line-height:0.95;margin-bottom:24px}
+.project-meta-row{display:flex;gap:40px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+.project-meta-item label{font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500;display:block;margin-bottom:4px}
+.project-meta-item span{font-size:var(--sm);font-weight:600}
+.project-tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.project-tag{font-size:var(--xs);padding:4px 12px;border-radius:var(--r-xl);border:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-weight:500}
+.project-body{display:grid;grid-template-columns:1fr;gap:48px;padding:48px clamp(20px,5vw,60px);align-items:start}
+.project-copy-section{margin-bottom:28px}
+.project-copy-section h3,.project-gallery h3,.project-video-strip h3{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
+.project-copy-section p{font-size:var(--base);color:var(--text);line-height:1.75;margin-bottom:16px;max-width:66ch}
+.project-bullets{margin:16px 0 24px 0}
+.project-bullets li{font-size:var(--base);color:var(--muted);line-height:1.7;padding-left:16px;position:relative;margin-bottom:8px}
+.project-bullets li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+.project-results{background:var(--surface);border-radius:var(--r-lg);padding:24px;margin-top:32px;border:1px solid var(--border);max-width:520px}
+.project-results h4{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px}
+.project-gallery,.project-video-strip{padding:0 clamp(20px,5vw,60px) 56px}
+.project-media-shell{position:relative}
+.project-gallery-grid{display:grid;gap:12px}
+.project-gallery-grid.slider-portrait{grid-auto-flow:column;grid-auto-columns:minmax(220px,26vw);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.project-gallery-grid.slider-portrait .slide{scroll-snap-align:start;width:100%}
+.project-gallery-grid.slider-portrait img{width:100%;object-fit:cover;object-position:center;border-radius:var(--r-lg)}
+.project-nav-bottom{padding:40px clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.proj-nav-btn{display:flex;align-items:center;gap:10px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:12px 20px;border-radius:var(--r-xl);border:1px solid var(--border)}
+.proj-nav-btn svg{width:16px;height:16px}
+@media (max-width:900px){.project-body{grid-template-columns:1fr}.project-gallery-grid.slider-portrait{grid-auto-columns:72vw}}
+@media (max-width:600px){.project-gallery-grid.slider-portrait{grid-auto-columns:86vw}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo">Viktoria Saraeva · AI Content Creator</div>
+  <a class="nav-back" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    Back to works
+  </a>
+</nav>
+
+<div class="project-hero">
+  <div class="project-eyebrow">Competition Entry · 2025</div>
+  <h1 class="project-title-big">Golf Is Bigger Than Just A Game</h1>
+  <div class="project-tags-row">
+    <span class="project-tag">Static Images</span>
+  </div>
+  <div class="project-meta-row">
+    <div class="project-meta-item"><label>Category</label><span>static</span></div>
+    <div class="project-meta-item"><label>Type</label><span>Competition Entry</span></div>
+    <div class="project-meta-item"><label>Year</label><span>2025</span></div>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-copy-section">
+    <h3>Overview</h3>
+    <p>A personal project for the Higgsfield competition exploring the idea that golf is bigger than just a game, visualized through oversized golf balls and clubs.</p>
+  </div>
+
+  <div class="project-copy-section">
+    <h3>What was done</h3>
+    <ul class="project-bullets">
+      <li>Built a strong single-frame concept around irony and elegance.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="project-gallery">
+  <h3>Gallery</h3>
+  <div class="project-media-shell">
+    <div class="project-gallery-grid slider-portrait">
+      <div class="slide"><img src="../31-1.png" alt="golf 1" loading="lazy"></div>
+      <div class="slide"><img src="../31-2.png" alt="golf 2" loading="lazy"></div>
+      <div class="slide"><img src="../31-3.png" alt="golf 3" loading="lazy"></div>
+      <div class="slide"><img src="../31-4.PNG" alt="golf 4" loading="lazy"></div>
+      <div class="slide"><img src="../31.png" alt="golf 5" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<div class="project-nav-bottom">
+  <a class="proj-nav-btn" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    All works
+  </a>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 [
   {
-    "id": "prstcon",
-    "title": "ёprstcon",
+    "id": "eprstcon",
+    "title": "eprstcon",
     "subtitle": "Cybersecurity conference",
     "tags": ["Video", "static images", "key visual", "sound design"],
     "category": ["video", "commercial"],
@@ -10,16 +10,17 @@
     "type": "Brand Project",
     "galleryStyle": "slider-169",
     "videoEmbed": ["https://kinescope.io/uFKrvGWy9o6iqySA3LoxGB", "https://kinescope.io/rLQrV4nSgMM8fp7Ph2Y18s"],
-    "overview": "Key visual was developed for the IT conference ёPRSTCON to run seamlessly on stage screens during speaker sessions. The content featured the mascot, playful logo animations, and IT-themed visual scenes designed to support the event’s atmosphere.",
+    "overview": "Key visual was developed for the IT conference ePRSTCON to run seamlessly on stage screens during speaker sessions. The content featured the mascot, playful logo animations, and IT-themed visual scenes designed to support the event’s atmosphere.",
     "whatWasDone": [
       "Developed a continuous video loop for five screens running throughout the event.",
       "Built mascot-led scenes and reimagined the logo in different visual settings.",
       "Created supporting identity materials (stickers & badges) to unify the conference experience."
     ],
-    "client": "ёPRSTCON — IT conference at the intersection of cybersecurity, science and art.",
+    "client": "ePRSTCON — IT conference at the intersection of cybersecurity, science and art.",
     "results": [],
     "gallery": []
   },
+  
   {
     "id": "setters",
     "title": "((setters) agency)",
@@ -45,6 +46,7 @@
     ],
     "gallery": ["./38.png", "./39.png", "./40.png", "./41.PNG", "./42.png"]
   },
+  
   {
     "id": "winx",
     "title": "Winx Live-Action",
@@ -69,6 +71,7 @@
     "videoEmbed": ["https://kinescope.io/aaSgmNy3NfHjuRC9biExvn", "https://kinescope.io/fMiXvgEkV8iW4GVUotSrpk", "https://kinescope.io/dQBjbMTfvN41dVovMVmwMt"],
     "gallery": ["./21-1.webp", "./21-2.webp", "./21-3.webp"]
   },
+  
   {
     "id": "franui",
     "title": "Franuí Halloween",
@@ -91,6 +94,7 @@
     "results": [],
     "gallery": ["./22-2.webp", "./22-3.webp", "./22-4.webp"]
   },
+  
   {
     "id": "frozen",
     "title": "Frozen Live-Action",
@@ -111,6 +115,7 @@
     "results": [],
     "gallery": ["./23-1.webp", "./23-2.webp", "./23-3.webp", "./23-4.webp"]
   },
+  
   {
     "id": "whycgi",
     "title": "Why.CGI — Thanksgiving Day",
@@ -133,6 +138,7 @@
     ],
     "gallery": []
   },
+  
   {
     "id": "alfabank",
     "title": "Alfa Bank × Changellenge — Mascot",
@@ -158,6 +164,7 @@
     ],
     "gallery": ["./25-1.png", "./25-2.png", "./25-3.png"]
   },
+  
   {
     "id": "miumiu",
     "title": "Miu Miu Halloween",
@@ -178,6 +185,7 @@
     "results": [],
     "gallery": ["./26-1.png", "./26-2.webp"]
   },
+  
   {
     "id": "postcards",
     "title": "postcards",
@@ -192,6 +200,7 @@
     "results": [],
     "gallery": ["./27.png", "./27-1.png", "./27-2.png", "./27-3.png"]
   },
+  
   {
     "id": "spotlight",
     "title": "Steal the Spotlight",
@@ -213,6 +222,7 @@
     "results": [],
     "gallery": ["./28-1.png", "./28-2.png", "./28-3.png", "./28-4.webp"]
   },
+  
   {
     "id": "nofilter",
     "title": "No filter",
@@ -232,6 +242,7 @@
     "results": [],
     "gallery": ["./29-1.png", "./29-2.png", "./29-3.png", "./29-4.png", "./29-5.png"]
   },
+  
   {
     "id": "reboot",
     "title": "Reboot",
@@ -253,6 +264,7 @@
     "results": [],
     "gallery": ["./30-1.webp", "./30-2.png", "./30-3.png", "./30.png"]
   },
+  
   {
     "id": "golf",
     "title": "Golf Is Bigger Than Just A Game",
@@ -270,6 +282,7 @@
     "results": [],
     "gallery": ["./31-1.png", "./31-2.png", "./31-3.png", "./31-4.PNG", "./31.png"]
   },
+  
   {
     "id": "mood",
     "title": "Mood Video",
@@ -290,6 +303,7 @@
     "results": [],
     "gallery": ["./32.png", "./32-1.png", "./32-2.png", "./32-3.png"]
   },
+  
   {
     "id": "clyo",
     "title": "Clyo Health",
@@ -308,6 +322,7 @@
     "client": "CLYO HEALTH — clinic",
     "results": []
   },
+  
   {
     "id": "hiding",
     "title": "Hiding In A Shell",
@@ -322,6 +337,7 @@
     "results": [],
     "gallery": ["./34-1.png", "./34-2.png", "./34-3.png", "./34-4.png"]
   },
+  
   {
     "id": "youwanna",
     "title": "Woman is a winner",
@@ -342,6 +358,7 @@
     "results": [],
     "gallery": ["./35-2.PNG", "./35-1.PNG"]
   },
+  
   {
     "id": "tremessis",
     "title": "Basketball",
@@ -361,6 +378,7 @@
     "results": [],
     "gallery": ["./36.png", "./36-1.png", "./36-2.png", "./36-3.png"]
   },
+  
   {
     "id": "labrehab",
     "title": "Labrehab",
@@ -380,4 +398,6 @@
     "client": "LabRehab — recovery center",
     "results": []
   }
+  
 ]
+

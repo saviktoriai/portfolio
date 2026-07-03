@@ -1,1 +1,383 @@
-
+[
+  {
+    "id": "ёprstcon",
+    "title": "ёprstcon",
+    "subtitle": "Cybersecurity conference",
+    "tags": ["Video", "static images", "key visual", "sound design"],
+    "category": ["video", "commercial"],
+    "thumb": "./44.png",
+    "year": "2026",
+    "type": "Brand Project",
+    "galleryStyle": "slider-169",
+    "videoEmbed": ["https://kinescope.io/uFKrvGWy9o6iqySA3LoxGB", "https://kinescope.io/rLQrV4nSgMM8fp7Ph2Y18s"],
+    "overview": "Key visual was developed for the IT conference ёPRSTCON to run seamlessly on stage screens during speaker sessions. The content featured the mascot, playful logo animations, and IT-themed visual scenes designed to support the event’s atmosphere.",
+    "whatWasDone": [
+      "Developed a continuous video loop for five screens running throughout the event.",
+      "Built mascot-led scenes and reimagined the logo in different visual settings.",
+      "Created supporting identity materials (stickers & badges) to unify the conference experience."
+    ],
+    "client": "ёPRSTCON — IT conference at the intersection of cybersecurity, science and art.",
+    "results": [],
+    "gallery": []
+  },
+  {
+    "id": "setters",
+    "title": "((setters) agency)",
+    "subtitle": "Countryside x Big brands special project",
+    "tags": ["Video", "static images", "product placement"],
+    "category": ["video", "commercial", "product implementation"],
+    "thumb": "./39.png",
+    "year": "2026",
+    "type": "Brand Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/rD1ykrt9iysCFE9hPPKnAf"],
+    "overview": "A seasonal special project in collaboration with ((SETTERS) Agency), exploring what items big brands as Jacquemus or LEGO should launch for Gen Z spending summer in the countryside.",
+    "whatWasDone": [
+      "Developed creative ideas for the product designs.",
+      "Created static frames featuring the designed items.",
+      "Animated the objects into a finished motion piece.",
+      "Worked in close collaboration with ((SETTERS)) creative and art directors throughout the project.",
+      "Video went viral in social media"
+    ],
+    "client": "((SETTERS)) — advertising creative agency, known for combining strategy, branding, and social-first campaigns for major clients.",
+    "results": [
+      { "num": "20k", "label": "Views" }
+    ],
+    "gallery": ["./38.png", "./39.png", "./40.png", "./41.PNG", "./42.png"]
+  },
+  {
+    "id": "winx",
+    "title": "Winx Live-Action",
+    "subtitle": "Fairy transformation video",
+    "tags": ["Video", "AI avatar", "sound design"],
+    "category": ["video", "ai avatar"],
+    "thumb": "./21.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-169",
+    "overview": "A nostalgic AI-powered live-action reinterpretation of the Winx universe, designed as a cinematic fan-driven short-form series.",
+    "whatWasDone": [
+      "Developed custom AI character models for Winx fairies.",
+      "Designed pre- and post-transformation looks inspired by the original universe.",
+      "Created cinematic transformation sequences for short-form video.",
+      "Built a visually recognizable fantasy world with a live-action feel."
+    ],
+    "results": [
+      { "num": "2.2M+", "label": "Total views across platforms" },
+      { "num": "Viral", "label": "Nostalgia-driven traction" }
+    ],
+    "videoEmbed": ["https://kinescope.io/aaSgmNy3NfHjuRC9biExvn", "https://kinescope.io/fMiXvgEkV8iW4GVUotSrpk", "https://kinescope.io/dQBjbMTfvN41dVovMVmwMt"],
+    "gallery": ["./21-1.webp", "./21-2.webp", "./21-3.webp"]
+  },
+  {
+    "id": "franui",
+    "title": "Franuí Halloween",
+    "subtitle": "Personal project",
+    "tags": ["Video", "Product placement", "sound design"],
+    "category": ["video", "product implementation"],
+    "thumb": "./22.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/bKxPN5Jx5Uhz8hNY1Mj7PH"],
+    "overview": "A Halloween-themed mood project for Franuí.",
+    "whatWasDone": [
+      "Developed a seasonal creative concept.",
+      "Created a storyboard, generated still frames.",
+      "Integrated the product into a horror-inspired setup.",
+      "Animated each scene, and assembled the full video edit.",
+      "Worked on sound design and voice-over."
+    ],
+    "results": [],
+    "gallery": ["./22-2.webp", "./22-3.webp", "./22-4.webp"]
+  },
+  {
+    "id": "frozen",
+    "title": "Frozen Live-Action",
+    "subtitle": "Personal project",
+    "tags": ["Video", "AI avatar", "sound design"],
+    "category": ["video", "ai avatar"],
+    "thumb": "./23.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-portrait",
+    "videoWide": true,
+    "videoEmbed": ["https://kinescope.io/vx4Lrwwf6bsJQXAwZGbHv9"],
+    "overview": "A live-action version of the song from Frozen.",
+    "whatWasDone": [
+      "Reworked a fragment from Frozen in a live-action visual language.",
+      "Created an AI avatar of Anna and maintained character consistency."
+    ],
+    "results": [],
+    "gallery": ["./23-1.webp", "./23-2.webp", "./23-3.webp", "./23-4.webp"]
+  },
+  {
+    "id": "whycgi",
+    "title": "Why.CGI — Thanksgiving Day",
+    "subtitle": "For Why.CGI",
+    "tags": ["Video"],
+    "category": ["video", "commercial"],
+    "thumb": "./24.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "videoPortrait": true,
+    "videoEmbed": ["https://kinescope.io/0SVRVQe9n5BXkNoJEo22PV"],
+    "overview": "A Thanksgiving-themed reel created for the WHY.CGI Instagram page.",
+    "whatWasDone": [
+      "Executed the client brief precisely, following deadlines.",
+      "Generated static frames, animated each and assembled the final video."
+    ],
+    "client": "WHY.CGI — high-end CGI and mixed reality production studio behind viral campaigns for global brands.",
+    "results": [
+      { "num": "25.3K", "label": "Views" }
+    ],
+    "gallery": []
+  },
+  {
+    "id": "alfabank",
+    "title": "Alfa Bank × Changellenge — Mascot",
+    "subtitle": "Mascot for an online-game",
+    "tags": ["Static Images"],
+    "category": ["static", "commercial"],
+    "thumb": "./25.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-portrait",
+    "portraitRatio": "9-16",
+    "overview": "Created a mascot for ALfa-bank x Changellange collaboration.",
+    "whatWasDone": [
+      "Designed a 3D mascot in 2 hours which was approved without revisions and used as a key visual for an online-game.",
+      "The mascot was integrated into the game interface and featured on Alfa-Bank channels."
+    ],
+    "client": [
+      "Alfa-Bank — one of the largest private banks in Russia.",
+      "Changellenge — a leading Russian platform for consulting competitions and case championships."
+    ],
+    "results": [
+      { "num": "34K", "label": "Interactions" }
+    ],
+    "gallery": ["./25-1.png", "./25-2.png", "./25-3.png"]
+  },
+  {
+    "id": "miumiu",
+    "title": "Miu Miu Halloween",
+    "subtitle": "Personal project",
+    "tags": ["Video", "static images", "Product placement"],
+    "category": ["video", "product implementation"],
+    "thumb": "./26.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/nJ7HuZ4XzVDGcW1eTqTBMn", "https://kinescope.io/8rzNMExgqnkTazY51gPYo2"],
+    "overview": "In the lead-up to Halloween, Miu Miu’s Miutine fragrance was reimagined in the hands of a striking demonic figure.",
+    "whatWasDone": [
+      "Developed the creative idea as part of Halloween seasonal content.",
+      "Created static frames for the concept.",
+      "Integrated the real product into the visuals and animated the frames into a finished piece."
+    ],
+    "results": [],
+    "gallery": ["./26-1.png", "./26-2.webp"]
+  },
+  {
+    "id": "postcards",
+    "title": "postcards",
+    "subtitle": "Personal project",
+    "tags": ["Static Images"],
+    "category": ["static"],
+    "thumb": "./27.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-portrait",
+    "overview": "Postcards",
+    "results": [],
+    "gallery": ["./27.png", "./27-1.png", "./27-2.png", "./27-3.png"]
+  },
+  {
+    "id": "spotlight",
+    "title": "Steal the Spotlight",
+    "subtitle": "For Milfey",
+    "tags": ["Video", "sound design", "ai avatar"],
+    "category": ["video", "commercial", "ai avatar"],
+    "thumb": "./28.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/jubWMGh648qbQsGFt9GCcT"],
+    "overview": "Video is focused on a virtual influencer of Milfey aesthetics clinic who undergoes BBL photorejuvenation and transforms into a paparazzi-chased star.",
+    "whatWasDone": [
+      "Created the storyboard for the video.",
+      "Generated static frames and animated the sequence into a finished video.",
+      "Worked on the sound design and voice-over."
+    ],
+    "client": "Milfey — aesthetics clinic",
+    "results": [],
+    "gallery": ["./28-1.png", "./28-2.png", "./28-3.png", "./28-4.webp"]
+  },
+  {
+    "id": "nofilter",
+    "title": "No filter",
+    "subtitle": "For Milfey",
+    "tags": ["Static images", "AI avatar"],
+    "category": ["static", "commercial", "ai avatar"],
+    "thumb": "./29.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-portrait",
+    "overview": "The virtual influencer of the Milfey aesthetics clinic is captured in during self-care.",
+    "whatWasDone": [
+      "Developed ideas and produced static images featuring the brand’s virtual influencer.",
+      "Produced in collaboration with Qute Studio."
+    ],
+    "client": "Milfey — aesthetics clinic",
+    "results": [],
+    "gallery": ["./29-1.png", "./29-2.png", "./29-3.png", "./29-4.png", "./29-5.png"]
+  },
+  {
+    "id": "reboot",
+    "title": "Reboot",
+    "subtitle": "For Milfey",
+    "tags": ["Video"],
+    "category": ["video", "commercial"],
+    "thumb": "./30.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/3qmLvKbRaw2zYpyTzqsNZh"],
+    "overview": "Video explores the idea of self-update. Main character undergoes a digital-like scan that smooths out wrinkles and renews her appearance.",
+    "whatWasDone": [
+      "Created the storyboard for the video.",
+      "Developed static frames around the concept.",
+      "Video produced in collaboration with Qute Studio."
+    ],
+    "client": "Milfey — aesthetics clinic",
+    "results": [],
+    "gallery": ["./30-1.webp", "./30-2.png", "./30-3.png", "./30.png"]
+  },
+  {
+    "id": "golf",
+    "title": "Golf Is Bigger Than Just A Game",
+    "subtitle": "Higgsfield competition",
+    "tags": ["Static Images"],
+    "category": ["static"],
+    "thumb": "./31.png",
+    "year": "2025",
+    "type": "Competition Entry",
+    "galleryStyle": "slider-portrait",
+    "overview": "A personal project for the Higgsfield competition exploring the idea that golf is bigger than just a game, visualized through oversized golf balls and clubs.",
+    "whatWasDone": [
+      "Built a strong single-frame concept around irony and elegance."
+    ],
+    "results": [],
+    "gallery": ["./31-1.png", "./31-2.png", "./31-3.png", "./31-4.PNG", "./31.png"]
+  },
+  {
+    "id": "mood",
+    "title": "Mood Video",
+    "subtitle": "Personal project",
+    "tags": ["Video", "sound design"],
+    "category": ["video"],
+    "thumb": "./32.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-mixed-vertical",
+    "videoEmbed": ["https://kinescope.io/dTsARagkrj5sNNYwzK3zgX"],
+    "overview": "A meditative visual project where emotions are conveyed through music.",
+    "whatWasDone": [
+      "Created storyboard and static image for the story.",
+      "Animated each frame into a finished video.",
+      "Worked on sound design and final editing."
+    ],
+    "results": [],
+    "gallery": ["./32.png", "./32-1.png", "./32-2.png", "./32-3.png"]
+  },
+  {
+    "id": "clyo",
+    "title": "Clyo Health",
+    "subtitle": "For CLYO website",
+    "tags": ["Video"],
+    "category": ["video", "commercial"],
+    "thumb": "./33.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "videoOnly": true,
+    "videoEmbed": ["https://kinescope.io/hm7YXyu35SsHbfrCV7FM6G"],
+    "overview": "A website hero video created for a health brand homepage.",
+    "whatWasDone": [
+      "Video concept for CLYO website homepage."
+    ],
+    "client": "CLYO HEALTH — clinic",
+    "results": []
+  },
+  {
+    "id": "hiding",
+    "title": "Hiding In A Shell",
+    "subtitle": "Personal project",
+    "tags": ["Static Images"],
+    "category": ["static"],
+    "thumb": "./34.png",
+    "year": "2025",
+    "type": "Personal Project",
+    "galleryStyle": "slider-portrait",
+    "overview": "Project explores the idea of people hiding in a shell — escaping from the world",
+    "results": [],
+    "gallery": ["./34-1.png", "./34-2.png", "./34-3.png", "./34-4.png"]
+  },
+  {
+    "id": "youwanna",
+    "title": "Woman is a winner",
+    "subtitle": "For YouWanna",
+    "tags": ["Static Images", "Product placement"],
+    "category": ["static", "product implementation", "commercial"],
+    "thumb": "./35.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-portrait",
+    "overview": "Visuals showcase the modern woman’s strength, confidence and sexuality. Femininity is not vulnerability, but a weapon.",
+    "whatWasDone": [
+      "Developed the creative idea for the campaign direction.",
+      "Created static frames for the concept.",
+      "Integrated the real product by styling a consistent AI-generated female model in a black dress from the brand collection."
+    ],
+    "client": "YouWanna — clothing brand",
+    "results": [],
+    "gallery": ["./35-2.PNG", "./35-1.PNG"]
+  },
+  {
+    "id": "tremessis",
+    "title": "Basketball",
+    "subtitle": "For Tremessis",
+    "tags": ["Static Images", "Product placement"],
+    "category": ["static", "commercial", "product implementation"],
+    "thumb": "./36.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "galleryStyle": "slider-portrait",
+    "overview": "The real product was spotlighted in an urban visual concept.",
+    "whatWasDone": [
+      "Created static frames for the concept.",
+      "Integrated the real product into the final imagery."
+    ],
+    "client": "Tremessis — streetwear brand",
+    "results": [],
+    "gallery": ["./36.png", "./36-1.png", "./36-2.png", "./36-3.png"]
+  },
+  {
+    "id": "labrehab",
+    "title": "Labrehab",
+    "subtitle": "Video-ad",
+    "tags": ["Video"],
+    "category": ["video"],
+    "thumb": "./37.png",
+    "year": "2025",
+    "type": "Brand Project",
+    "videoOnly": true,
+    "videoEmbed": ["https://kinescope.io/r9XiVwyV5qhbsRHDCh7KqF"],
+    "overview": "A sports-oriented branded video.",
+    "whatWasDone": [
+      "Created a video concept focused on macro detail according to the client brief.",
+      "Video was displayed on 70+ digital screens across Luzhniki — Moscow’s largest sports and event complex."
+    ],
+    "client": "LabRehab — recovery center",
+    "results": []
+  }
+]

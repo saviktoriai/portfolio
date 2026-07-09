@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiuMiu · Viktoria Saraeva</title>
+  <title>miumiu · Viktoria Saraeva</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -259,7 +259,7 @@
       display: grid;
       gap: 12px;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(220px, 26vw);
+      grid-auto-columns: minmax(240px, 26vw);
       overflow-x: auto;
       overflow-y: hidden;
       scroll-snap-type: x mandatory;
@@ -270,27 +270,15 @@
 
     .project-media-grid .slide {
       scroll-snap-align: start;
+      position: relative;
       width: 100%;
-    }
-
-    .project-media-grid img {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      object-position: center;
-      border-radius: var(--r-lg);
-    }
-
-    .project-media-grid .video-slide {
       aspect-ratio: 9 / 16;
       border-radius: var(--r-lg);
       overflow: hidden;
       background: #111;
-      position: relative;
-      width: 100%;
-      min-width: 240px;
     }
 
+    .project-media-grid .image-slide img,
     .project-media-grid .video-slide iframe {
       position: absolute;
       inset: 0;
@@ -298,6 +286,11 @@
       height: 100%;
       border: 0;
       display: block;
+    }
+
+    .project-media-grid .image-slide img {
+      object-fit: cover;
+      object-position: center;
     }
 
     .similar-section {
@@ -442,15 +435,35 @@
         <div class="slide video-slide">
           <iframe src="https://kinescope.io/embed/8rzNMExgqnkTazY51gPYo2" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="miumiu video 2"></iframe>
         </div>
-        <div class="slide"><img src="../26-1.png" alt="miumiu 1" loading="lazy" width="900" height="1600"></div>
-        <div class="slide"><img src="../26-2.webp" alt="miumiu 2" loading="lazy" width="900" height="1600"></div>
-        <div class="slide"><img src="../26-3.png" alt="miumiu 3" loading="lazy" width="900" height="1600"></div>
-        <div class="slide"><img src="../26-4.png" alt="miumiu 4" loading="lazy" width="900" height="1600"></div>
+        <div class="slide image-slide">
+          <img src="../26-1.png" alt="miumiu 1" loading="lazy" width="900" height="1600">
+        </div>
+        <div class="slide image-slide">
+          <img src="../26-2.webp" alt="miumiu 2" loading="lazy" width="900" height="1600">
+        </div>
+        <div class="slide image-slide">
+          <img src="../26-3.png" alt="miumiu 3" loading="lazy" width="900" height="1600">
+        </div>
+        <div class="slide image-slide">
+          <img src="../26-4.png" alt="miumiu 4" loading="lazy" width="900" height="1600">
+        </div>
       </div>
     </div>
   </div>
 
-  
+  <section class="similar-section">
+    <a class="similar-card" href="reboot.html">
+      <div>
+        <h3>Want a similar project</h3>
+        <p>Reboot</p>
+      </div>
+      <span class="proj-nav-btn">Open project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      </span>
+    </a>
+  </section>
 
   <div class="project-nav-bottom">
     <a class="proj-nav-btn" href="../index.html">

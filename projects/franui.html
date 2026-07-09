@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>franui · Viktoria Saraeva</title>
+<title>Franui · Viktoria Saraeva</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@ ul{list-style:none}
 .project-tag{font-size:var(--xs);padding:4px 12px;border-radius:var(--r-xl);border:1px solid var(--border);color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-weight:500}
 .project-body{display:grid;grid-template-columns:1fr;gap:48px;padding:48px clamp(20px,5vw,60px);align-items:start}
 .project-copy-section{margin-bottom:28px}
-.project-copy-section h3,.project-gallery h3,.project-video-strip h3{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
+.project-copy-section h3,.project-gallery h3{font-size:var(--xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
 .project-copy-section p{font-size:var(--base);color:var(--text);line-height:1.75;margin-bottom:16px;max-width:66ch}
 .project-bullets{margin:16px 0 24px 0}
 .project-bullets li{font-size:var(--base);color:var(--muted);line-height:1.7;padding-left:16px;position:relative;margin-bottom:8px}
@@ -40,12 +40,14 @@ ul{list-style:none}
 .result-stat{margin-bottom:16px}
 .result-num{font-size:var(--xl);font-weight:900;letter-spacing:-0.02em;line-height:1}
 .result-label{font-size:var(--xs);color:var(--muted);margin-top:2px}
-.project-gallery,.project-video-strip{padding:0 clamp(20px,5vw,60px) 56px}
+.project-gallery{padding:0 clamp(20px,5vw,60px) 56px}
 .project-media-shell{position:relative}
 .project-gallery-grid{display:grid;gap:12px}
 .project-gallery-grid.slider-mixed-vertical{grid-auto-flow:column;grid-auto-columns:minmax(240px,24vw);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:8px;-webkit-overflow-scrolling:touch}
 .project-gallery-grid.slider-mixed-vertical .slide{scroll-snap-align:start;width:100%}
 .project-gallery-grid.slider-mixed-vertical img{width:100%;aspect-ratio:9/16;object-fit:cover;object-position:center;border-radius:var(--r-lg)}
+.project-gallery-grid.slider-mixed-vertical .video-slide{aspect-ratio:9/16;border-radius:var(--r-lg);overflow:hidden;background:#111;position:relative;width:100%}
+.project-gallery-grid.slider-mixed-vertical .video-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .project-nav-bottom{padding:40px clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .proj-nav-btn{display:flex;align-items:center;gap:10px;font-size:var(--xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:12px 20px;border-radius:var(--r-xl);border:1px solid var(--border)}
 .proj-nav-btn svg{width:16px;height:16px}
@@ -71,7 +73,7 @@ ul{list-style:none}
     <span class="project-tag">sound design</span>
   </div>
   <div class="project-meta-row">
-    <div class="project-meta-item"><label>Category</label><span>video · product implementation</span></div>
+    <div class="project-meta-item"><label>Category</label><span>Video</span></div>
     <div class="project-meta-item"><label>Type</label><span>Personal Project</span></div>
     <div class="project-meta-item"><label>Year</label><span>2025</span></div>
   </div>
@@ -99,18 +101,12 @@ ul{list-style:none}
   <h3>Gallery</h3>
   <div class="project-media-shell">
     <div class="project-gallery-grid slider-mixed-vertical">
+      <div class="slide video-slide">
+        <iframe src="https://kinescope.io/embed/bKxPN5Jx5Uhz8hNY1Mj7PH" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="franui video"></iframe>
+      </div>
       <div class="slide"><img src="../22-2.webp" alt="franui 1" loading="lazy"></div>
       <div class="slide"><img src="../22-3.webp" alt="franui 2" loading="lazy"></div>
       <div class="slide"><img src="../22-4.webp" alt="franui 3" loading="lazy"></div>
-    </div>
-  </div>
-</div>
-
-<div class="project-video-strip">
-  <h3>Video</h3>
-  <div class="project-video-strip-grid">
-    <div class="project-video-card" style="aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#111;position:relative;max-width:100%;">
-      <iframe src="https://kinescope.io/embed/bKxPN5Jx5Uhz8hNY1Mj7PH" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="franui video"></iframe>
     </div>
   </div>
 </div>
